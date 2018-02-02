@@ -1,4 +1,17 @@
-# Pediatric_game
+# Pediatric game
 game for Chelsea and Westminster hospital nuclear medicine department
 
-Testing git for Unity
+### Team Name:
+##### Tennis Tooth
+
+### Team members:
+* Abdur Rafey Masood
+* Aleksandr Pessina
+* Amedeo China
+* Amine Amor
+* Daniel Lopes De Castro
+* Daniel Mannix
+* Melanie Wong
+* Raihan Sharif
+* Rewaz Esmaeel
+* Stefan Colakovic
