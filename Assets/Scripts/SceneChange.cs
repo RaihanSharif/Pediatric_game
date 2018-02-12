@@ -17,7 +17,7 @@ public class SceneChange : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SceneManager.LoadScene(num);
+            SceneManager.LoadScene(num+1);
             Debug.Log("Scene changed to " + num);
         }
     }
