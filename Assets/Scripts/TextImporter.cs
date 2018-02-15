@@ -27,7 +27,7 @@ public class TextImporter : MonoBehaviour {
 
             //Assign TextBox to the text component of this game object and assign nextDialogButton to a child button and give it a on click action listener
             TextBox = this.gameObject.GetComponent<Text>();
-            nextDialogButton = this.gameObject.GetComponentInChildren<Button>();
+            nextDialogButton = GameObject.FindGameObjectWithTag("NextButton").GetComponent<Button>();
             nextDialogButton.onClick.AddListener(nextText);
         }
 
