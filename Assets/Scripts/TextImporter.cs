@@ -14,6 +14,7 @@ public class TextImporter : MonoBehaviour {
 
     private Text TextBox;
     private Button nextDialogButton;
+    private GameObject dialogBox;
 
 	// Update is called once per frame
 	void Start () {
@@ -29,6 +30,8 @@ public class TextImporter : MonoBehaviour {
             TextBox = this.gameObject.GetComponent<Text>();
             nextDialogButton = GameObject.FindGameObjectWithTag("NextButton").GetComponent<Button>();
             nextDialogButton.onClick.AddListener(nextText);
+            dialogBox = GameObject.FindGameObjectWithTag("DialogBox");
+            dialogBox.SetActive(false);
         }
 
     }
@@ -41,6 +44,8 @@ public class TextImporter : MonoBehaviour {
         if (currentLine >= endLine && endLine != -1)
         {
             currentLine = 0;
+            dialogBox.SetActive(true);
+            nextDialogButton.gameObject.SetActive(false);
         }
     }
 

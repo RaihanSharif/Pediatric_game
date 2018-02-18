@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - NextButton
+  - DialogBox
+  - MainCanvas
   layers:
   - Default
   - TransparentFX
