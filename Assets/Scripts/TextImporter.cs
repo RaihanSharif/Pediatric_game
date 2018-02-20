@@ -57,4 +57,9 @@ public class TextImporter : MonoBehaviour {
             TextBox.text = textLines[currentLine];
         }
     }
+
+    void TaskOnClick()
+    {
+        Debug.Log("You have clicked the button!");
+    }
 }
