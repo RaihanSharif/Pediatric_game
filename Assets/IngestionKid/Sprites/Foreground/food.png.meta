@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0c204905c9967584fb21ed81be700f54
-timeCreated: 1519139153
+guid: 34684cf52ab2643b3871210adb1ea346
+timeCreated: 1519221259
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -12,235 +12,22 @@ TextureImporter:
     21300010: f
     21300012: g
     21300014: h
-    21300016: e
+    21300016: i
     21300018: j
     21300020: k
     21300022: l
-    21300024: f
+    21300024: m
     21300026: n
     21300028: o
     21300030: p
-    21300032: g
+    21300032: q
     21300034: r
     21300036: s
     21300038: t
-    21300040: h
+    21300040: u
     21300042: v
     21300044: w
-    21300046: multiSprite_23
-    21300048: multiSprite_24
-    21300050: multiSprite_25
-    21300052: multiSprite_26
-    21300054: multiSprite_27
-    21300056: i
-    21300058: multiSprite_29
-    21300060: multiSprite_30
-    21300062: multiSprite_31
-    21300064: multiSprite_32
-    21300066: multiSprite_33
-    21300068: multiSprite_34
-    21300070: multiSprite_35
-    21300072: j
-    21300074: multiSprite_37
-    21300076: multiSprite_38
-    21300078: multiSprite_39
-    21300080: multiSprite_40
-    21300082: multiSprite_41
-    21300084: multiSprite_42
-    21300086: multiSprite_43
-    21300088: multiSprite_44
-    21300090: k
-    21300092: multiSprite_46
-    21300094: multiSprite_47
-    21300096: multiSprite_48
-    21300098: multiSprite_49
-    21300100: multiSprite_50
-    21300102: multiSprite_51
-    21300104: multiSprite_52
-    21300106: multiSprite_53
-    21300108: multiSprite_54
-    21300110: l
-    21300112: multiSprite_56
-    21300114: multiSprite_57
-    21300116: multiSprite_58
-    21300118: multiSprite_59
-    21300120: multiSprite_60
-    21300122: multiSprite_61
-    21300124: multiSprite_62
-    21300126: multiSprite_63
-    21300128: multiSprite_64
-    21300130: multiSprite_65
-    21300132: multiSprite_66
-    21300134: m
-    21300136: multiSprite_68
-    21300138: multiSprite_69
-    21300140: multiSprite_70
-    21300142: multiSprite_71
-    21300144: multiSprite_72
-    21300146: multiSprite_73
-    21300148: multiSprite_74
-    21300150: multiSprite_75
-    21300152: multiSprite_76
-    21300154: multiSprite_77
-    21300156: multiSprite_78
-    21300158: multiSprite_79
-    21300160: n
-    21300162: multiSprite_81
-    21300164: multiSprite_82
-    21300166: multiSprite_83
-    21300168: multiSprite_84
-    21300170: multiSprite_85
-    21300172: multiSprite_86
-    21300174: multiSprite_87
-    21300176: multiSprite_88
-    21300178: multiSprite_89
-    21300180: multiSprite_90
-    21300182: multiSprite_91
-    21300184: multiSprite_92
-    21300186: o
-    21300188: multiSprite_94
-    21300190: multiSprite_95
-    21300192: multiSprite_96
-    21300194: multiSprite_97
-    21300196: multiSprite_98
-    21300198: multiSprite_99
-    21300200: multiSprite_100
-    21300202: multiSprite_101
-    21300204: multiSprite_102
-    21300206: multiSprite_103
-    21300208: multiSprite_104
-    21300210: multiSprite_105
-    21300212: p
-    21300214: multiSprite_107
-    21300216: multiSprite_108
-    21300218: multiSprite_109
-    21300220: multiSprite_110
-    21300222: multiSprite_111
-    21300224: multiSprite_112
-    21300226: multiSprite_113
-    21300228: multiSprite_114
-    21300230: multiSprite_115
-    21300232: multiSprite_116
-    21300234: multiSprite_117
-    21300236: multiSprite_118
-    21300238: multiSprite_119
-    21300240: q
-    21300242: multiSprite_121
-    21300244: multiSprite_122
-    21300246: multiSprite_123
-    21300248: multiSprite_124
-    21300250: multiSprite_125
-    21300252: multiSprite_126
-    21300254: multiSprite_127
-    21300256: multiSprite_128
-    21300258: multiSprite_129
-    21300260: multiSprite_130
-    21300262: multiSprite_131
-    21300264: multiSprite_132
-    21300266: multiSprite_133
-    21300268: r
-    21300270: multiSprite_135
-    21300272: multiSprite_136
-    21300274: multiSprite_137
-    21300276: multiSprite_138
-    21300278: multiSprite_139
-    21300280: multiSprite_140
-    21300282: multiSprite_141
-    21300284: multiSprite_142
-    21300286: multiSprite_143
-    21300288: multiSprite_144
-    21300290: multiSprite_145
-    21300292: s
-    21300294: multiSprite_147
-    21300296: multiSprite_148
-    21300298: multiSprite_149
-    21300300: multiSprite_150
-    21300302: multiSprite_151
-    21300304: multiSprite_152
-    21300306: multiSprite_153
-    21300308: multiSprite_154
-    21300310: multiSprite_155
-    21300312: multiSprite_156
-    21300314: multiSprite_157
-    21300316: multiSprite_158
-    21300318: multiSprite_159
-    21300320: t
-    21300322: multiSprite_161
-    21300324: multiSprite_162
-    21300326: multiSprite_163
-    21300328: multiSprite_164
-    21300330: multiSprite_165
-    21300332: multiSprite_166
-    21300334: multiSprite_167
-    21300336: multiSprite_168
-    21300338: multiSprite_169
-    21300340: multiSprite_170
-    21300342: multiSprite_171
-    21300344: multiSprite_172
-    21300346: multiSprite_173
-    21300348: multiSprite_174
-    21300350: multiSprite_175
-    21300352: multiSprite_176
-    21300354: multiSprite_177
-    21300356: u
-    21300358: multiSprite_179
-    21300360: multiSprite_180
-    21300362: multiSprite_181
-    21300364: multiSprite_182
-    21300366: multiSprite_183
-    21300368: multiSprite_184
-    21300370: multiSprite_185
-    21300372: multiSprite_186
-    21300374: multiSprite_187
-    21300376: multiSprite_188
-    21300378: multiSprite_189
-    21300380: multiSprite_190
-    21300382: multiSprite_191
-    21300384: multiSprite_192
-    21300386: multiSprite_193
-    21300388: multiSprite_194
-    21300390: multiSprite_195
-    21300392: multiSprite_196
-    21300394: multiSprite_197
-    21300396: v
-    21300398: multiSprite_199
-    21300400: multiSprite_200
-    21300402: multiSprite_201
-    21300404: multiSprite_202
-    21300406: multiSprite_203
-    21300408: multiSprite_204
-    21300410: multiSprite_205
-    21300412: multiSprite_206
-    21300414: multiSprite_207
-    21300416: multiSprite_208
-    21300418: multiSprite_209
-    21300420: multiSprite_210
-    21300422: multiSprite_211
-    21300424: multiSprite_212
-    21300426: multiSprite_213
-    21300428: multiSprite_214
-    21300430: multiSprite_215
-    21300432: multiSprite_216
-    21300434: multiSprite_217
-    21300436: multiSprite_218
-    21300438: multiSprite_219
-    21300440: multiSprite_220
-    21300442: multiSprite_221
-    21300444: w
-    21300446: multiSprite_223
-    21300448: multiSprite_224
-    21300450: multiSprite_225
-    21300452: multiSprite_226
-    21300454: multiSprite_227
-    21300456: multiSprite_228
-    21300458: multiSprite_229
-    21300460: multiSprite_230
-    21300462: multiSprite_231
-    21300464: multiSprite_232
-    21300466: multiSprite_233
-    21300468: multiSprite_234
-    21300470: multiSprite_235
-    21300472: multiSprite_236
+    21300046: x
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -333,6 +120,16 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -341,11 +138,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5935.2173
+        y: 6205.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -355,11 +152,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5666.2173
+        y: 5936.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,11 +166,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5397.2173
+        y: 5667.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,11 +180,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 5128.2173
+        y: 5398.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -397,11 +194,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4859.2173
+        y: 5129.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -411,11 +208,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4590.2173
+        y: 4860.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,11 +222,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4321.2173
+        y: 4591.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -439,11 +236,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4052.2173
+        y: 4322.2085
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -453,11 +250,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3783.2173
+        y: 4053.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,11 +264,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3514.2173
+        y: 3784.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -481,11 +278,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3245.2173
+        y: 3515.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -495,11 +292,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2976.2173
+        y: 3246.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -509,11 +306,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2707.2173
+        y: 2977.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -523,11 +320,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2438.2173
+        y: 2708.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,11 +334,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2169.2173
+        y: 2439.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -551,11 +348,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1900.2174
+        y: 2170.2083
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -565,11 +362,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1631.2174
+        y: 1901.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -579,11 +376,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1362.2174
+        y: 1632.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -593,11 +390,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1093.2174
+        y: 1363.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -607,11 +404,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 824.2174
+        y: 1094.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -621,11 +418,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 555.2174
+        y: 825.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -635,11 +432,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 286.21738
+        y: 556.2084
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -649,11 +446,25 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 17.217377
+        y: 287.20834
         width: 550
-        height: 269.78262
+        height: 269.79166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: x
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18.208344
+        width: 550
+        height: 269.79166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
