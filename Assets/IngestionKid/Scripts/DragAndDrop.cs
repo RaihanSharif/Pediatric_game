@@ -8,14 +8,19 @@ public class DragAndDrop : MonoBehaviour {
     private GameObject spoon;   //holds a reference to an object being dragged
     private Vector2 touchOffset;    // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
 
-    Animator anim;
-    public GameObject food;
-    Animator spoonAnimation;
-    public Sprite fullSpoon, emptySpoon;
-
+	// TODO: to be finished
+    Animator anim; //Animator for the spoon
+    public GameObject food; //Reference to the food
+    Animator spoonAnimation; //What's the fucking difference? Will se when we merge
+    public Sprite fullSpoon, emptySpoon; //References to the full and empty spoon images to render
+    public GameObject kid; // Reference to the kid object
+    private bool isRotated = false;
+	public bool isFull = false; // tracks if spoon is full, used to ensure only one bite can be taken at a time
+	public changeFoodOnContact foodScript; // Reference to the script to take off the bites
 
     void Start()
     {
+		//TODO: tbd when we merge
         anim = gameObject.GetComponent<Animator>();
         spoonAnimation = food.GetComponent<Animator>();
     }
@@ -36,6 +41,22 @@ public class DragAndDrop : MonoBehaviour {
             if (isDragged)
                 DropItem();
         }
+
+        float distance = Vector2.Distance(this.transform.position, kid.transform.position);
+        if (distance < 6 && !isRotated)
+        {
+            transform.Rotate(Vector3.back);
+            isRotated = true;     
+        }
+
+		// prevents the spoon from leaving the scene
+		Vector3 pos = Camera.main.WorldToViewportPoint (transform.position); 
+		pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // second, third param prevents part of the spoon leaving scene
+		pos.y = Mathf.Clamp(pos.y, 0.05f, 0.95f);
+		transform.position = Camera.main.ViewportToWorldPoint(pos); //boilerplate
+        
+
+        
     }
 
     /// <summary>
@@ -75,7 +96,6 @@ public class DragAndDrop : MonoBehaviour {
                     isDragged = true;
                     spoon = hit.transform.gameObject;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 }
             }
         }
@@ -100,13 +120,28 @@ public class DragAndDrop : MonoBehaviour {
     void DropItem()
     {
         isDragged = false;
-        //draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
-
+	/// <summary>
+	/// Raises the trigger enter2 d event. Handle the contact between the spoon and the food or kid
+	/// colliders
+	/// </summary>
+	/// <param name="col">Col.</param>
     void OnTriggerEnter2D(Collider2D col)
     {
+		//if the spoon touches the food, check the food is not finished
+		//and display full spoon
+		if (col == food.GetComponent<Collider2D>() && (foodScript.frame <= 24))
+		{ 
+			this.GetComponent<SpriteRenderer>().sprite = fullSpoon;
+			//Flag spoon as full
+			isFull = true;
 
-            this.GetComponent<SpriteRenderer>().sprite = fullSpoon;
-
+		} else if (col == kid.GetComponent<Collider2D>()) 
+		{ 
+			//if the spoon touches the kid, display empty spoon
+			//and flag spoon as empty
+			this.GetComponent<SpriteRenderer>().sprite = emptySpoon;
+			isFull = false;
+		}	
     }
 }
