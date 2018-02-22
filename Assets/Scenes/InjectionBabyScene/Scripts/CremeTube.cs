@@ -24,11 +24,11 @@ public class CremeTube : MonoBehaviour {
 		if(resize == true) {
 
 			if (timeInteger % 2 == 0) {
-				m_SpriteRenderer.color = Color.blue;
+				//m_SpriteRenderer.color = Color.blue;
 				transform.localScale += new Vector3(0.01F, 0, 0);
 			}else {
 				transform.localScale -= new Vector3(0.01F, 0, 0);
-				m_SpriteRenderer.color = Color.white;
+				//m_SpriteRenderer.color = Color.white;
 			}
 			//transform.Rotate(new Vector3(0,0,1));
 			//transform.Rotate (Vector3.right * 50 * Time.deltaTime, Space.World);

@@ -7,8 +7,7 @@ public class Arm : MonoBehaviour {
 	public float CreamCurrentProgress;   //corresponds to number of spots the creame has been applied to
 	public float CreamMaxProgress;      //corresponds to maximum number of spots the cream can been applied to
 	public int ProgressOffset = 3;   //the offset by which the progressbar will be increased
-	public Sprite cremeTube;
-	public Sprite syringe;
+
 
 	public bool firstStepIsDone = false;
 

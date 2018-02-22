@@ -9,6 +9,12 @@ public class DragAndDrop : MonoBehaviour {
 	private GameObject draggedObject;  //holds a reference to an object being dragged
 	private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
 
+
+
+	void Start(){
+	}
+
+
 	/// <summary>
 	/// calls the methods DropItems() and DragOrPickup() when required
 	/// checks if the player is currently touching the screen and if 
@@ -47,6 +53,7 @@ public class DragAndDrop : MonoBehaviour {
 	/// </summary>
 	private void DragOrPickUp()
 	{
+
 		var inputPosition = CurrentTouchPosition;
 
 		if (draggingItem)
@@ -56,15 +63,26 @@ public class DragAndDrop : MonoBehaviour {
 		else
 		{
 			RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
-			if (touches.Length > 0)
+			if (touches.Length > 0 )
 			{
 				var hit = touches[0];
-				if (hit.transform != null)
+
+				if (hit.transform != null && (hit.collider.name == "syringe"))
 				{
+					draggedObject =  GameObject.FindGameObjectWithTag("Syringe");
+					Debug.Log ("hit = :" + hit.collider.name);
 					draggingItem = true;
-					draggedObject = hit.transform.gameObject;
+//					draggedObject = hit.transform.gameObject;
 					touchOffset = (Vector2)hit.transform.position - inputPosition;
-					draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+					//draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+				}else if (hit.transform != null && (hit.collider.name == "cremeTube"))
+				{
+					draggedObject =  GameObject.FindGameObjectWithTag("CremeTube");
+					Debug.Log ("hit = :" + hit.collider.name);
+					draggingItem = true;
+					//					draggedObject = hit.transform.gameObject;
+					touchOffset = (Vector2)hit.transform.position - inputPosition;
+					//draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 				}
 			}
 		}
@@ -88,8 +106,9 @@ public class DragAndDrop : MonoBehaviour {
 	/// </summary>
 	void DropItem()
 	{
+		
 		draggingItem = false;
-		draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
+		//draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
 
