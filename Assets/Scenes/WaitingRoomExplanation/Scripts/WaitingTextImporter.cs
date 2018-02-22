@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ReceptionTextImporter : MonoBehaviour {
+public class WaitingTextImporter : MonoBehaviour {
 
 
     private TextAsset textFile;
     public string[] textLines;
-    public TextAsset receptionTextFile;
+    public TextAsset waitingTextFile;
 
     private int currentLine = 0;
     private int endLine = -1;
@@ -31,7 +31,7 @@ public class ReceptionTextImporter : MonoBehaviour {
                 break;
 
             case 1:
-                textFile = receptionTextFile;
+                textFile = waitingTextFile;
                 break;
 
 
