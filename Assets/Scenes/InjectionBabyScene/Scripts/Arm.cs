@@ -7,6 +7,9 @@ public class Arm : MonoBehaviour {
 	public float CreamCurrentProgress;   //corresponds to number of spots the creame has been applied to
 	public float CreamMaxProgress;      //corresponds to maximum number of spots the cream can been applied to
 	public int ProgressOffset = 3;   //the offset by which the progressbar will be increased
+	private float timeCounter = 0.0f;
+	private bool completed = false;
+	public Animator fadeOut;
 
 
 	public bool firstStepIsDone = false;
@@ -16,7 +19,7 @@ public class Arm : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		CreamMaxProgress = 12f;
+		CreamMaxProgress = 6f;
 		CreamCurrentProgress = 0f;    //initially current cream progress is going to be 0 because no spots have been covered
 
 	}
@@ -26,6 +29,14 @@ public class Arm : MonoBehaviour {
 //		if (cremeTube.intersect(syringe){
 //			Debug.Log("amine")
 //		}
+
+		if (completed == true) {
+			timeCounter += Time.deltaTime;
+
+			if (timeCounter > 3.0){
+				fadeOut.SetTrigger("FadeOut");
+			}
+		}
 
 	}
 
@@ -65,7 +76,8 @@ public class Arm : MonoBehaviour {
 	{
 		CreamCurrentProgress = CreamMaxProgress;
 		Debug.Log("You did it bro");
-		Application.LoadLevel(6);
+		completed = true;
+
 	}
 
 	/// <summary>

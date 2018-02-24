@@ -7,21 +7,65 @@ public class CremeSpotCollision : MonoBehaviour {
 	public Arm arm;
 	public SpriteRenderer m_SpriteRenderer;
 	private float timeCounter = 0.0f;
-	private int timeInteger = 0;
 	public Syringe syringe;
+	public Star star;
+	public Star star2;
+	public bool inCollision;
+	public Sprite spriteToRenderWhenExit;
 
 
 	void Start(){
+		inCollision = false;
+	
 	}
 
 	void Update(){
-		if (syringe.isAnimationFinished == true) {
-			syringe.anim.enabled = false;
-			//Debug.Log ("");
-			//animation for success
-			//Animator.Play(state, layer, normalizedTime);
-			//syringe.anim.StartPlayback;
+//		if (syringe.isAnimationFinished == true) {
+//			Debug.Log ("asasasas");
+//			syringe.anim.enabled = false;
+//		}
+
+		if (inCollision == true) {
+			timeCounter += Time.deltaTime;
+
+			if (timeCounter > 6.0) {
+
+				if (this.tag == "CremeSpot1") {
+
+					syringe.anim.enabled = false;
+					Debug.Log (timeCounter);
+
+					Debug.Log ("cremespot1");
+					//syringe.SetAnimationToFinished ();
+					timeCounter = 0.0f;
+					arm.startProcess ();
+					this.GetComponent<SpriteRenderer>().enabled = false;
+					this.GetComponent<PolygonCollider2D>().enabled = false;
+					star.anim.SetTrigger("Active");
+					syringe.anim.enabled = false;
+					inCollision = false;
+
+				}else if(this.tag == "CremeSpot2"){
+					Debug.Log (timeCounter);
+
+					Debug.Log ("cremespot2");
+					syringe.anim.Play ("Idle");
+
+					//syringe.SetAnimationToFinished ();
+					timeCounter = 0.0f;
+					arm.startProcess ();
+					this.GetComponent<SpriteRenderer>().enabled = false;
+					this.GetComponent<PolygonCollider2D>().enabled = false;
+					star2.anim.SetTrigger("Active");
+					syringe.anim.enabled = false;
+					inCollision = false;
+
+				}
+
+			}
 		}
+			
+		
 	}
 
 
@@ -49,33 +93,40 @@ public class CremeSpotCollision : MonoBehaviour {
 //	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		syringe.anim.enabled = true;
-				
-			timeCounter += Time.deltaTime;
-			timeInteger = (int)timeCounter;
+		if (other.GetType () == typeof(PolygonCollider2D)) {
 
+			Debug.Log ("isHere");
+			syringe.anim.enabled = true;
+			syringe.anim.Play("SyringeAnimation");
+			inCollision = true;
+			timeCounter += Time.deltaTime;
+			//Debug.Log ("time = " + timeCounter);
+
+		}
 	}
 
 
 	void OnTriggerExit2D(Collider2D other){
-		Debug.Log ("trigger exit works");
-		syringe.anim.enabled = false;
+
+		if (other.GetType () == typeof(PolygonCollider2D)) {
+
+
+			timeCounter = 0.0f;
+			inCollision = false;
+			//syringe.anim.enabled = false;
+			syringe.m_SpriteRenderer.sprite = spriteToRenderWhenExit;
+			//syringe.anim.enabled = false;
+			//Debug.Log ("exited");
+			syringe.anim.Play ("Idle");
+			syringe.anim.enabled = false;
+
+
+		}
+
+
+
 	}
 
 
-//	void OnCollisionStay2D(Collision2D coll) {
-//
-//		if (timeInteger <= 13) {
-//			syringeAnim.enabled = true;
-//
-//		}
-//			
-//		timeCounter += Time.deltaTime;
-//		timeInteger = (int)timeCounter;
-//	}
-//
-//
-//	void OnCollisionExit2D(Collision2D coll) {
-//		syringeAnim.enabled = false;
-//	}
+
 }
