@@ -18,6 +18,8 @@ public class DragAndDrop : MonoBehaviour {
 	public bool isFull = false; // tracks if spoon is full, used to ensure only one bite can be taken at a time
 	public changeFoodOnContact foodScript; // Reference to the script to take off the bites
 
+
+
     void Start()
     {
 		//TODO: tbd when we merge
@@ -43,20 +45,33 @@ public class DragAndDrop : MonoBehaviour {
         }
 
         float distance = Vector2.Distance(this.transform.position, kid.transform.position);
-        if (distance < 6 && !isRotated)
+        if (distance < 6 )
         {
-            transform.Rotate(Vector3.back);
-            isRotated = true;     
+            //anim.SetTrigger("Active");
+            int hash = Animator.StringToHash("flipSpoon");
+            anim.Play(hash, 0, 0.8F);
+            isRotated = true;
         }
-
-		// prevents the spoon from leaving the scene
-		Vector3 pos = Camera.main.WorldToViewportPoint (transform.position); 
+        else if ( distance > 6 && distance < 7 )
+        {
+            // needs to search of how to only play it once. 
+            anim.SetTrigger("Active");
+        }
+        else
+        {
+            int hashFirstHalf = Animator.StringToHash("flipSpoon");
+            anim.Play(hashFirstHalf, 0, 0.0F);
+            isRotated = false;
+        }
+        
+        // prevents the spoon from leaving the scene
+        Vector3 pos = Camera.main.WorldToViewportPoint (transform.position); 
 		pos.x = Mathf.Clamp(pos.x, 0.05f, 0.95f); // second, third param prevents part of the spoon leaving scene
 		pos.y = Mathf.Clamp(pos.y, 0.05f, 0.95f);
 		transform.position = Camera.main.ViewportToWorldPoint(pos); //boilerplate
-        
 
-        
+ 
+
     }
 
     /// <summary>
@@ -142,6 +157,8 @@ public class DragAndDrop : MonoBehaviour {
 			//and flag spoon as empty
 			this.GetComponent<SpriteRenderer>().sprite = emptySpoon;
 			isFull = false;
-		}	
+            foodScript.isMouthOpen = false;
+
+        }	
     }
 }
