@@ -8,11 +8,10 @@ using UnityEngine;
 public class changeFoodOnContact : MonoBehaviour {
 
 	// array of sprites representing the food
-    public Sprite[] mySprites;
+    public Sprite[] mySprites;  
 	public DragAndDrop spoonScript; // the script attached to the spoon for drag and drop
     public int frame = 0;  // refers to the number of 'bites' taken so far
-    public bool isMouthOpen;
-
+    public bool isMouthOpen; 
 
     // Use this for initialisation
     void Start ()

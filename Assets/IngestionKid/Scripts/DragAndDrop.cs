@@ -18,6 +18,9 @@ public class DragAndDrop : MonoBehaviour {
 	public bool isFull = false; // tracks if spoon is full, used to ensure only one bite can be taken at a time
 	public changeFoodOnContact foodScript; // Reference to the script to take off the bites
 
+    public AudioClip impact;
+    AudioSource audioSource;
+
 
 
     void Start()
@@ -25,6 +28,7 @@ public class DragAndDrop : MonoBehaviour {
 		//TODO: tbd when we merge
         anim = gameObject.GetComponent<Animator>();
         spoonAnimation = food.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -142,7 +146,7 @@ public class DragAndDrop : MonoBehaviour {
 	/// </summary>
 	/// <param name="col">Col.</param>
     void OnTriggerEnter2D(Collider2D col)
-    {
+    {   
 		//if the spoon touches the food, check the food is not finished
 		//and display full spoon
 		if (col == food.GetComponent<Collider2D>() && (foodScript.frame <= 24))
@@ -158,6 +162,7 @@ public class DragAndDrop : MonoBehaviour {
 			this.GetComponent<SpriteRenderer>().sprite = emptySpoon;
 			isFull = false;
             foodScript.isMouthOpen = false;
+            audioSource.Play();
 
         }	
     }
