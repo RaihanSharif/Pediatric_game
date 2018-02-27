@@ -16,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Nurse
   - 
   - 
   - 
@@ -43,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Nurse
+    uniqueID: 3340779091
+    locked: 0
+  - name: UI
+    uniqueID: 1016941223
     locked: 0
