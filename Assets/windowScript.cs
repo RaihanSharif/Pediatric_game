@@ -17,7 +17,6 @@ public class windowScript : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("well done u pressed me");
         SceneManager.LoadScene(1);
     }
 

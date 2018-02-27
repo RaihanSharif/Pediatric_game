@@ -56,7 +56,6 @@ public class WaitingTextImporter : MonoBehaviour {
             if (currentLine >= endLine && endLine != -1)
             {
                 currentLine = 0;
-                Debug.Log("this is the last step");
                 SceneManager.LoadScene(0);
             }
         }
