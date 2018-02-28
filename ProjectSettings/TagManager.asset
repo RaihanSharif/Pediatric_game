@@ -7,6 +7,10 @@ TagManager:
   - NextButton
   - DialogBox
   - MainCanvas
+  - Strap1
+  - Strap2
+  - Sandbag1
+  - Sandbag2
   layers:
   - Default
   - TransparentFX
