@@ -26,6 +26,8 @@ public class Arm : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		// updating the value of the slider here so maybe it won't break testing
+		progressBar.value = CalculateProgress();
 //		if (cremeTube.intersect(syringe){
 //			Debug.Log("amine")
 //		}
@@ -49,7 +51,7 @@ public class Arm : MonoBehaviour {
 	void IncreaseProgress(int progressOffset)
 	{
 		CreamCurrentProgress += progressOffset;
-		progressBar.value = CalculateProgress();
+//		progressBar.value = CalculateProgress();
 
 		if (CreamCurrentProgress >= CreamMaxProgress)
 		{
