@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class SplashScreen : MonoBehaviour {
 
-	public Image exampleImage;
-	public string imageToLoad;
+	public Image exampleImage; // image to load as a background
+	public string imageToLoad; // path to the image file 
 
 	public void Start(){
-		exampleImage.sprite = (Sprite)Resources.Load<Sprite>(imageToLoad) as Sprite;
+		exampleImage.sprite = (Sprite)Resources.Load<Sprite>(imageToLoad) as Sprite; // load the sprite image from the path 
 
 	}
 

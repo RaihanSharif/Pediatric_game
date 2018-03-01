@@ -5,35 +5,25 @@ using UnityEngine;
 public class Star : MonoBehaviour {
 
 	public Animator anim;
-	public SpriteRenderer plaster;
-	public SpriteRenderer plaster2;
-	public Syringe syringe;
+	public SpriteRenderer plaster; // plaster displayed when the injection of the first creme spot is completed
+	public SpriteRenderer plaster2; // plaster displayed when the injection of the first creme spot is completed
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+	/// <summary>
+	/// Shows the 1st plaster and remove the star sprite on creme spot 1.
+	/// </summary>
 	public void showPlasterAndRemoveStar(){
 		this.GetComponent<SpriteRenderer>().enabled = false;
 		plaster.enabled = true;
-		//syringe.anim.Play("Idle");
-//		syringe.anim.enabled = false;
 
 	}
 
-
+	/// <summary>
+	/// Shows the 1st plaster and remove the star sprite on creme spot 2
+	/// </summary>
 	public void showPlasterAndRemoveStar2(){
 		this.GetComponent<SpriteRenderer>().enabled = false;
 		plaster2.enabled = true;
-		//syringe.anim.Play("Idle");
-//		syringe.anim.enabled = false;
+
 
 	}
 }

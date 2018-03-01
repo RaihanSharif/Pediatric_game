@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Fading : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
+	/// <summary>
+	/// move to the next scene (success is displayed)
+	/// </summary>
 	public void moveToNextScene(){
 		Application.LoadLevel(6);
 	}

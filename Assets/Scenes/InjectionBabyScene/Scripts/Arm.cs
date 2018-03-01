@@ -10,25 +10,18 @@ public class Arm : MonoBehaviour {
 	private float timeCounter = 0.0f;
 	private bool completed = false;
 	public Animator fadeOut;
-
-
-	public bool firstStepIsDone = false;
-
 	public Slider progressBar;
 
 
 	// Use this for initialization
 	void Start () {
-		CreamMaxProgress = 6f;
+		CreamMaxProgress = 6f; // when the creamMaxProgress is reached, the game is completed
 		CreamCurrentProgress = 0f;    //initially current cream progress is going to be 0 because no spots have been covered
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-//		if (cremeTube.intersect(syringe){
-//			Debug.Log("amine")
-//		}
 
 		if (completed == true) {
 			timeCounter += Time.deltaTime;
@@ -75,7 +68,6 @@ public class Arm : MonoBehaviour {
 	void CompleteScene()
 	{
 		CreamCurrentProgress = CreamMaxProgress;
-		Debug.Log("You did it bro");
 		completed = true;
 
 	}
@@ -85,7 +77,7 @@ public class Arm : MonoBehaviour {
 	/// </summary>
 	public void startProcess()
 	{
-//		(if syringe.position about the same as button...
+//		if syringe.position about the same as button...
 		IncreaseProgress (ProgressOffset);
 	}
 

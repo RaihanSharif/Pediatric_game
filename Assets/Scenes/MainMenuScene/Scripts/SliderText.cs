@@ -11,6 +11,10 @@ public class SliderText : MonoBehaviour {
 		textComponent = GetComponent<Text>();
 	}
 
+	/// <summary>
+	/// update slider value when the slider is dragged from left to right 
+	/// </summary>
+	/// <param name="sliderValue">Slider value.</param>
 	public void SetSliderValue(float sliderValue) {
 		textComponent.text = Mathf.Round(sliderValue * 10).ToString();
 	}
