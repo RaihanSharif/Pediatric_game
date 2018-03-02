@@ -8,11 +8,11 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 	private bool draggingItem = false; //whether the player is currently dragging an item
 	private GameObject draggedObject;  //holds a reference to an object being dragged
 	private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
+    private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table" };
     private bool strap1inPlace = false;
     private bool strap2inPlace = false;
     private bool sandbag1inPlace = false;
     private bool sandbag2inPlace = false;
-    private int waitingFrames = 20;
 
 
 
@@ -91,51 +91,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 			{
 				var hit = touches[0];
 
-				if (hit.transform != null && (hit.collider.name == "Strap1"))
-				{
-					draggedObject =  GameObject.FindGameObjectWithTag("Strap1");
-					Debug.Log ("hit = :" + hit.collider.name);
-					draggingItem = true;
-//					draggedObject = hit.transform.gameObject;
-					touchOffset = (Vector2)hit.transform.position - inputPosition;
-					//draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-				}
-                else if (hit.transform != null && (hit.collider.name == "Strap2"))
-				{
-					draggedObject =  GameObject.FindGameObjectWithTag("Strap2");
-					Debug.Log ("hit = :" + hit.collider.name);
-					draggingItem = true;
-					//					draggedObject = hit.transform.gameObject;
-					touchOffset = (Vector2)hit.transform.position - inputPosition;
-					//draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-				}
-                else if (hit.transform != null && (hit.collider.name == "Sandbag1"))
-                {
-                    draggedObject = GameObject.FindGameObjectWithTag("Sandbag1");
-                    Debug.Log("hit = :" + hit.collider.name);
-                    draggingItem = true;
-                    //					draggedObject = hit.transform.gameObject;
-                    touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                }
-                else if (hit.transform != null && (hit.collider.name == "Sandbag2"))
-                {
-                    draggedObject = GameObject.FindGameObjectWithTag("Sandbag2");
-                    Debug.Log("hit = :" + hit.collider.name);
-                    draggingItem = true;
-                    //					draggedObject = hit.transform.gameObject;
-                    touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                }
-                else if (hit.transform != null && (hit.collider.name == "Table"))
-                {
-                    draggedObject = GameObject.FindGameObjectWithTag("Table");
-                    Debug.Log("hit = :" + hit.collider.name);
-                    draggingItem = true;
-                    //					draggedObject = hit.transform.gameObject;
-                    touchOffset = (Vector2)hit.transform.position - inputPosition;
-                    //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                }
+                PickUp(tags, hit, inputPosition);
             }
 		}
 	}
@@ -187,6 +143,24 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(-2.0f, 1.65f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             sandbag2inPlace = true;
+        }
+    }
+
+    void PickUp(string[] tags, RaycastHit2D hit, Vector2 inputPosition)
+    {
+        if (hit.transform != null)
+        {
+            foreach (string tag in tags)
+            {
+                if (hit.collider.name.Equals(tag))
+                {
+                    draggedObject = GameObject.FindGameObjectWithTag(tag);
+                    Debug.Log("hit = :" + hit.collider.name);
+                    draggingItem = true;
+                    touchOffset = (Vector2)hit.transform.position - inputPosition;
+                    break;
+                }
+            }
         }
     }
 
