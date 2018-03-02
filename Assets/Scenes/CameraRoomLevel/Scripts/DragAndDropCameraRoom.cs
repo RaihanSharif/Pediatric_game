@@ -8,7 +8,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 	private bool draggingItem = false; //whether the player is currently dragging an item
 	private GameObject draggedObject;  //holds a reference to an object being dragged
 	private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
-    private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table" };
+    private string[] tags = {"Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom"};
     private bool strap1inPlace = false;
     private bool strap2inPlace = false;
     private bool sandbag1inPlace = false;
@@ -19,8 +19,8 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 
     void Start()
     {
-        disableTableHitbox();
-	}
+        
+    }
 
     void disableTableHitbox()
     {
@@ -143,6 +143,10 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(-2.0f, 1.65f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             sandbag2inPlace = true;
+        }
+        else if (draggedObject.name.Equals("CameraTop") || draggedObject.name.Equals("CameraBottom"))
+        {
+            draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
         }
     }
 
