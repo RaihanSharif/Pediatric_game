@@ -11,6 +11,7 @@ TagManager:
   - Strap2
   - Sandbag1
   - Sandbag2
+  - Table
   layers:
   - Default
   - TransparentFX

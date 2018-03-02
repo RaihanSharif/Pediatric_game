@@ -8,19 +8,37 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 	private bool draggingItem = false; //whether the player is currently dragging an item
 	private GameObject draggedObject;  //holds a reference to an object being dragged
 	private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
+    private bool strap1inPlace = false;
+    private bool strap2inPlace = false;
+    private bool sandbag1inPlace = false;
+    private bool sandbag2inPlace = false;
+    private int waitingFrames = 20;
 
 
 
-	void Start(){
+
+    void Start()
+    {
+        disableTableHitbox();
 	}
 
+    void disableTableHitbox()
+    {
+        GameObject.FindGameObjectWithTag("Table").GetComponent<BoxCollider2D>().enabled = false;
+    }
 
-	/// <summary>
-	/// calls the methods DropItems() and DragOrPickup() when required
-	/// checks if the player is currently touching the screen and if 
-	/// he is, Drag or pick up the object, otherwise drop the item
-	/// </summary>
-	void Update()
+    void enableTableHitbox()
+    {
+        GameObject.FindGameObjectWithTag("Table").GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+
+    /// <summary>
+    /// calls the methods DropItems() and DragOrPickup() when required
+    /// checks if the player is currently touching the screen and if 
+    /// he is, Drag or pick up the object, otherwise drop the item
+    /// </summary>
+    void Update()
 	{
 		if (HasInput)
 		{
@@ -59,9 +77,15 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 		if (draggingItem)
 		{
 			draggedObject.transform.position = inputPosition + touchOffset;
-		}
+            clickIntoPlace();
+        }
 		else
 		{
+            if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
+            {
+                enableTableHitbox();
+            }
+
 			RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
 			if (touches.Length > 0 )
 			{
@@ -103,9 +127,68 @@ public class DragAndDropCameraRoom : MonoBehaviour {
                     touchOffset = (Vector2)hit.transform.position - inputPosition;
                     //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 }
+                else if (hit.transform != null && (hit.collider.name == "Table"))
+                {
+                    draggedObject = GameObject.FindGameObjectWithTag("Table");
+                    Debug.Log("hit = :" + hit.collider.name);
+                    draggingItem = true;
+                    //					draggedObject = hit.transform.gameObject;
+                    touchOffset = (Vector2)hit.transform.position - inputPosition;
+                    //draggedObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                }
             }
 		}
 	}
+
+    void clickIntoPlace()
+    {
+        if (draggedObject.name.Equals("Table"))
+        {
+            draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
+        }
+        else if
+            (draggedObject.name.Equals("Strap1") &&
+            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+            && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
+            && sandbag1inPlace && sandbag2inPlace)
+        {
+            DropItem();
+            draggedObject.transform.position = new Vector2(-4.0f, 0.0f);
+            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            strap1inPlace = true;
+        }
+        else if
+            (draggedObject.name.Equals("Strap2") &&
+            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+            && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
+            && sandbag1inPlace && sandbag2inPlace)
+        {
+            DropItem();
+            draggedObject.transform.position = new Vector2(0.0f, 0.0f);
+            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            strap2inPlace = true;
+        }
+        else if
+            (draggedObject.name.Equals("Sandbag1") &&
+            draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
+            && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        {
+            DropItem();
+            draggedObject.transform.position = new Vector2(-2.0f, -1.65f);
+            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            sandbag1inPlace = true;
+        }
+        else if
+           (draggedObject.name.Equals("Sandbag2") &&
+           draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
+           && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        {
+            DropItem();
+            draggedObject.transform.position = new Vector2(-2.0f, 1.65f);
+            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            sandbag2inPlace = true;
+        }
+    }
 
 	/// <summary>
 	/// returns true when the player is currently
