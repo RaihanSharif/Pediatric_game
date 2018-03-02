@@ -12,6 +12,8 @@ TagManager:
   - Sandbag1
   - Sandbag2
   - Table
+  - CameraTop
+  - CameraBottom
   layers:
   - Default
   - TransparentFX
