@@ -15,15 +15,6 @@ public class PauseMenu : MonoBehaviour {
 	public const int MENUSCENE = 0;
 
 	/// <summary>
-	/// Based on the paused status, calls Pause() xor Resume()
-	/// Using the escape key as a trigger.
- 	/// </summary>
-	void Update () {
-			
-			
-	}
-
-	/// <summary>
 	/// Pauses the game by freezing game time and enables the pause menu
  	/// </summary>
 	public void Pause(){
