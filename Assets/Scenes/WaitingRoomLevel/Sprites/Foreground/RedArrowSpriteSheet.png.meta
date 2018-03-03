@@ -1,0 +1,564 @@
+fileFormatVersion: 2
+guid: 05d5449bcd10cce48b811ef2ff36af04
+timeCreated: 1519385646
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: RedArrowSpriteSheet_0
+    21300002: RedArrowSpriteSheet_1
+    21300004: RedArrowSpriteSheet_2
+    21300006: RedArrowSpriteSheet_3
+    21300008: RedArrowSpriteSheet_4
+    21300010: RedArrowSpriteSheet_5
+    21300012: RedArrowSpriteSheet_6
+    21300014: RedArrowSpriteSheet_7
+    21300016: RedArrowSpriteSheet_8
+    21300018: RedArrowSpriteSheet_9
+    21300020: RedArrowSpriteSheet_10
+    21300022: RedArrowSpriteSheet_11
+    21300024: RedArrowSpriteSheet_12
+    21300026: RedArrowSpriteSheet_13
+    21300028: RedArrowSpriteSheet_14
+    21300030: RedArrowSpriteSheet_15
+    21300032: RedArrowSpriteSheet_16
+    21300034: RedArrowSpriteSheet_17
+    21300036: RedArrowSpriteSheet_18
+    21300038: RedArrowSpriteSheet_19
+    21300040: RedArrowSpriteSheet_20
+    21300042: RedArrowSpriteSheet_21
+    21300044: RedArrowSpriteSheet_22
+    21300046: RedArrowSpriteSheet_23
+    21300048: RedArrowSpriteSheet_24
+    21300050: RedArrowSpriteSheet_25
+    21300052: RedArrowSpriteSheet_26
+    21300054: RedArrowSpriteSheet_27
+    21300056: RedArrowSpriteSheet_28
+    21300058: RedArrowSpriteSheet_29
+    21300060: RedArrowSpriteSheet_30
+    21300062: RedArrowSpriteSheet_31
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 616
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 616
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 616
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 616
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 529
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 529
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 529
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 529
+        width: 83
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 426
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 426
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 426
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 426
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 341
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 341
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 341
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 341
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 264
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 264
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 264
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 264
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 182
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 182
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 182
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 182
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 94
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 94
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 94
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 94
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 12
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 12
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 12
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RedArrowSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 12
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
