@@ -10,6 +10,7 @@ public class playAnimationOnClick : MonoBehaviour {
     public GameObject simleyObject;
     Animator smileyAnimation;
     private int maxNumOfClicks = 0;
+    public bool gameOver;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class playAnimationOnClick : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (maxNumOfClicks <= 6)
+        if (maxNumOfClicks <= 6 && !gameOver)
         {
             
             smileyAnimation.SetTrigger("smileyActive");

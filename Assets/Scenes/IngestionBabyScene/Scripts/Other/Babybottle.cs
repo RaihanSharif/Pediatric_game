@@ -10,6 +10,7 @@ public class Babybottle : MonoBehaviour {
     public AudioClip win;
     public AudioClip MilkDrunk;
     private bool playedSound = false;
+    public bool gameOver;
 
 
     void Start(){
@@ -19,62 +20,9 @@ public class Babybottle : MonoBehaviour {
     }
     
 
-    void Update(){
-
-
-
-        switch (ctr){
-    		
-    		case 0:
-    			this.GetComponent<SpriteRenderer>().sprite = P100;
-    			
-    			Debug.Log(ctr);
-    			break;
-    		
-    		case 1:
-    			this.GetComponent<SpriteRenderer>().sprite = P80;
-    	
-    			Debug.Log(ctr);
-    			break;
-    		case 2:
-    			this.GetComponent<SpriteRenderer>().sprite = P70;
-    			
-    			Debug.Log(ctr);
-    			break;
-    		case 3:
-    			this.GetComponent<SpriteRenderer>().sprite = P60;
-    		
-    			Debug.Log(ctr);
-    			break;
-    		case 4:
-    			this.GetComponent<SpriteRenderer>().sprite = P50;
-    			
-    			Debug.Log(ctr);
-    			break;
-    		case 5:
-    			this.GetComponent<SpriteRenderer>().sprite = P40;
-    			
-    			Debug.Log(ctr);
-    			break;
-    		case 6:
-    			this.GetComponent<SpriteRenderer>().sprite = P20;
-    	
-    			Debug.Log(ctr);
-    			break;
-    		case 7:
-    			this.GetComponent<SpriteRenderer>().sprite = P0;
-    			
-    			Debug.Log(ctr);
-                if (!playedSound)
-                {
-                    playSound();
-                    playedSound = true;
-                }
-                
-                break;
-    		
-    	}
-
+    void Update()
+    {
+        changeSprite();
     }
 
     void playSound()
@@ -85,16 +33,58 @@ public class Babybottle : MonoBehaviour {
     void OnMouseDown()
     {
 		
-        if (ctr<=6)
+        if (!gameOver)
         {
-            sound.PlayOneShot(MilkDrunk);
-        }
-        
-        ctr++;        
+            if (ctr <= 6)
+            {
+                sound.PlayOneShot(MilkDrunk);
+            }
 
+            ctr++;
+        }
 
     }
 
+    void changeSprite()
+    {
+        switch (ctr)
+        {
+
+            case 0:
+                this.GetComponent<SpriteRenderer>().sprite = P100;
+                break;
+
+            case 1:
+                this.GetComponent<SpriteRenderer>().sprite = P80;
+                break;
+            case 2:
+                this.GetComponent<SpriteRenderer>().sprite = P70;
+                break;
+            case 3:
+                this.GetComponent<SpriteRenderer>().sprite = P60;
+                break;
+            case 4:
+                this.GetComponent<SpriteRenderer>().sprite = P50;
+                break;
+            case 5:
+                this.GetComponent<SpriteRenderer>().sprite = P40;
+                break;
+            case 6:
+                this.GetComponent<SpriteRenderer>().sprite = P20;
+                break;
+            case 7:
+                this.GetComponent<SpriteRenderer>().sprite = P0;
+
+                if (!playedSound)
+                {
+                    playSound();
+                    playedSound = true;
+                }
+
+                break;
+
+        }
+    }
 
 }
 
