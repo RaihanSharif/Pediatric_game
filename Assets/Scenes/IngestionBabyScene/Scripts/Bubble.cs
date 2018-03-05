@@ -13,6 +13,7 @@ public class Bubble : MonoBehaviour
     public GameObject[] greenBubbles;
 
     public Text losingText;
+    public Text winningText;
 
     [SerializeField]
     private bool[] blueBubblesFinished;
@@ -43,6 +44,8 @@ public class Bubble : MonoBehaviour
         startTimer();
         showBubbles();
         hideBubblesAfterClicks();
+        if (checkGameWon())
+            gameWon();
 
     }
 
@@ -138,6 +141,7 @@ public class Bubble : MonoBehaviour
     void hideAllText()
     {
         losingText.enabled = false;
+        winningText.enabled = false;
     }
 
     public void setTrueTheNthBlueBubble(int n)
@@ -204,6 +208,21 @@ public class Bubble : MonoBehaviour
         hideAllBubbleAtStart();
         losingText.enabled = true;
 
+    }
+    
+    public bool checkGameWon()
+    {
+        if (babyBottleScript.gameWon)
+            return true;
+
+        return false;
+    }
+
+    public void gameWon()
+    {
+       
+        winningText.enabled = true;
+        hideAllBubbleAtStart();
     }
 
     

@@ -11,6 +11,8 @@ public class Babybottle : MonoBehaviour {
     public AudioClip MilkDrunk;
     private bool playedSound = false;
     public bool gameOver;
+    public bool bottleEnabled;
+    public bool gameWon;
 
 
     void Start(){
@@ -33,7 +35,7 @@ public class Babybottle : MonoBehaviour {
     void OnMouseDown()
     {
 		
-        if (!gameOver)
+        if (!gameOver && bottleEnabled)
         {
             if (ctr <= 6)
             {
@@ -41,6 +43,11 @@ public class Babybottle : MonoBehaviour {
             }
 
             ctr++;
+        }
+
+        if (ctr == 7)
+        {
+            gameWon = true;
         }
 
     }
