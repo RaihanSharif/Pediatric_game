@@ -13,6 +13,9 @@ public class DragAndDropCameraRoom : MonoBehaviour {
     private bool strap2inPlace = false;
     private bool sandbag1inPlace = false;
     private bool sandbag2inPlace = false;
+    private bool camera1inPlace = false;
+    private bool camera2inPlace = false;
+    private bool tableInPLace = false;
 
 
 
@@ -22,14 +25,14 @@ public class DragAndDropCameraRoom : MonoBehaviour {
         
     }
 
-    void disableTableHitbox()
+    void disableHitbox(string name)
     {
-        GameObject.FindGameObjectWithTag("Table").GetComponent<BoxCollider2D>().enabled = false;
+        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    void enableTableHitbox()
+    void enableHitbox(string name)
     {
-        GameObject.FindGameObjectWithTag("Table").GetComponent<BoxCollider2D>().enabled = true;
+        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = true;
     }
 
 
@@ -83,7 +86,10 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 		{
             if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
             {
-                enableTableHitbox();
+                enableHitbox("Table");
+                enableHitbox("CameraTop");
+                enableHitbox("CameraBottom");
+
             }
 
 			RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
@@ -101,6 +107,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
         if (draggedObject.name.Equals("Table"))
         {
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
+            GameObject.FindWithTag("Strap1").transform.position = new Vector2(GameObject.FindWithTag("Strap1").transform.position.x, 0.0f);
         }
         else if
             (draggedObject.name.Equals("Strap1") &&
@@ -144,10 +151,36 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             sandbag2inPlace = true;
         }
-        else if (draggedObject.name.Equals("CameraTop") || draggedObject.name.Equals("CameraBottom"))
+        else if
+            (draggedObject.name.Equals("CameraTop") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
         {
             draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
+            if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
+            {
+                DropItem();
+                draggedObject.transform.position = new Vector2(6.3f, 0f);
+                draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+                camera1inPlace = true;
+                disableHitbox("CameraTop");
+            }
+
         }
+        else if
+            (draggedObject.name.Equals("CameraBottom") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
+        {
+            draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
+            if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
+            {
+                DropItem();
+                draggedObject.transform.position = new Vector2(6.3f, 0f);
+                draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+                camera1inPlace = true;
+                disableHitbox("CameraBottom");
+            }
+
+        }
+
+
     }
 
     void PickUp(string[] tags, RaycastHit2D hit, Vector2 inputPosition)
