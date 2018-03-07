@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextImporter : MonoBehaviour {
+public class TextImporterCopy : MonoBehaviour {
 
 
     private TextAsset textFile;
