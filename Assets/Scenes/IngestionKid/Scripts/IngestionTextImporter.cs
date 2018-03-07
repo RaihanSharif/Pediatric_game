@@ -15,7 +15,6 @@ public class IngestionTextImporter : MonoBehaviour
     private Text TextBox;
     private Button nextDialogButton;
     private GameObject dialogBox;
-
     
     private int procedureSelected = 1; //0 = Failed selection, 1 = Ingestion Dialog
 
