@@ -22,7 +22,7 @@ public class ScoreCounter : MonoBehaviour {
 		score++;
 		scoreText.text = "Score: " + score.ToString();
 		Wait();
-		other.gameObject.transform.Translate(new Vector3(550f, transform.position.y-200f), Space.World); //instead of 550f you could use a randomiser between -550 and 550.
+		other.gameObject.transform.Translate(new Vector3(250f, transform.position.y-90f), Space.World); //instead of 250f you could use a randomiser between -200 and 250.
 			
 	}
 
