@@ -26,6 +26,8 @@ public class Bubble : MonoBehaviour
 
     public Babybottle babyBottleScript;
     public playAnimationOnClick playAnimationOnClickScript;
+    public ArrowClass arrowScript;
+    public bool isFirstBubblePopped;
 
 
 
@@ -42,6 +44,7 @@ public class Bubble : MonoBehaviour
     {
         if (checkLostGame())
             gameOver();
+
         startTimer();
         showBubbles();
         hideBubblesAfterClicks();
@@ -56,30 +59,31 @@ public class Bubble : MonoBehaviour
     {
         if (timer > 3 && blueBubblesFinished[0] == false)
         {
+            arrowScript.isTimeToActivate = true;
             blueBubbles[0].SetActive(true);
         }
 
-        if (timer > 4 && blueBubblesFinished[1] == false)
+        if (timer > 4 && blueBubblesFinished[1] == false && isFirstBubblePopped)
         {
             blueBubbles[1].SetActive(true);
         }
 
-        if (timer > 5 && pinkBubblesFinished[0] == false)
+        if (timer > 6 && pinkBubblesFinished[0] == false && isFirstBubblePopped)
         {
             pinkBubbles[0].SetActive(true);
         }
 
-        if (timer > 7 && blueBubblesFinished[2] == false)
+        if (timer > 8 && blueBubblesFinished[2] == false && isFirstBubblePopped)
         {
             blueBubbles[2].SetActive(true);
         }
 
-        if (timer > 8 && pinkBubblesFinished[1] == false)
+        if (timer > 9 && pinkBubblesFinished[1] == false && isFirstBubblePopped)
         {
             pinkBubbles[1].SetActive(true);
         }
 
-        if (timer > 9 && pinkBubblesFinished[2] == false)
+        if (timer > 10 && pinkBubblesFinished[2] == false && isFirstBubblePopped)
         {
             pinkBubbles[2].SetActive(true);
         }
@@ -87,7 +91,10 @@ public class Bubble : MonoBehaviour
 
     void startTimer()
     {
-        timer += Time.deltaTime;
+        if (timer < 3 || (timer > 3 && isFirstBubblePopped) )
+            timer += Time.deltaTime;
+
+        Debug.Log("Time: " + timer);
     }
 
     void hideBubblesAfterClicks()

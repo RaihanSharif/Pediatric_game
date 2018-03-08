@@ -28,18 +28,22 @@ public class BubbleClick : MonoBehaviour
 
     void Update()
     {
-        
+        if (bubbleNum != 1 && bubbleScript.isFirstBubblePopped)
+        {
+            Debug.Log("this is running");
             transform.position = Vector3.Lerp(frometh, untoeth,
-             Mathf.SmoothStep(0f, 0.5f,
-              Mathf.PingPong(Time.time / secondsForOneLength, 0.5f)
-            ));
-        
+            Mathf.SmoothStep(0f, 0.5f,
+             Mathf.PingPong(Time.time / secondsForOneLength, 0.5f)
+           ));
+        }
+             
     }
 
     void OnMouseDown()
     {
         if (bubbleNum == 1)
         {
+            bubbleScript.isFirstBubblePopped = true;
             bubbleScript.setTrueTheNthBlueBubble(0);
         }
 
