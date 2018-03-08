@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class WaitingTextImporter : MonoBehaviour {
+public class WaitingTextImporterExplanation : MonoBehaviour {
 
 
     private TextAsset textFile;
@@ -15,6 +14,8 @@ public class WaitingTextImporter : MonoBehaviour {
     private int endLine = -1;
 
     private Text TextBox;
+    private Button nextDialogButton;
+    private GameObject dialogBox;
 
     private int procedureSelected = 1; //0 = Failed selection, 1 = Reception Dialog
 
@@ -43,28 +44,33 @@ public class WaitingTextImporter : MonoBehaviour {
 
             //Assign TextBox to the text component of this game object and assign nextDialogButton to a child button and give it a on click action listener
             TextBox = this.gameObject.GetComponent<Text>();
+            nextDialogButton = GameObject.FindGameObjectWithTag("NextButton").GetComponent<Button>();
+            nextDialogButton.onClick.AddListener(nextText);
+            dialogBox = GameObject.FindGameObjectWithTag("DialogBox");
+            dialogBox.SetActive(false);
         }
 
     }
 
+    /***Increments Currentline, thusly scrolling through a supplied dialog text file
+     */
+    void nextText()
+    {
+        currentLine++;
+        if (currentLine >= endLine && endLine != -1)
+        {
+            currentLine = 0;
+            dialogBox.SetActive(true);
+            nextDialogButton.gameObject.SetActive(false);
+        }
+    }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            currentLine++;
-            if (currentLine >= endLine && endLine != -1)
-            {
-                currentLine = 0;
-                SceneManager.LoadScene(0);
-            }
-        }
-            
         //Check and assign text on every frame refresh
-        if (endLine != -1 && TextBox != null && textFile != null)
+        if(endLine != -1 && TextBox != null && textFile != null)
         {
             TextBox.text = textLines[currentLine];
-            
         }
     }
 }

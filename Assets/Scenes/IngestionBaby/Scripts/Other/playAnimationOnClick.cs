@@ -10,6 +10,8 @@ public class playAnimationOnClick : MonoBehaviour {
     public GameObject simleyObject;
     Animator smileyAnimation;
     private int maxNumOfClicks = 0;
+    public bool gameOver;
+    public bool bottleEnabled;
 
     void Start()
     {
@@ -21,13 +23,13 @@ public class playAnimationOnClick : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (maxNumOfClicks <= 6)
+        if (maxNumOfClicks <= 6 && !gameOver && bottleEnabled)
         {
             
             smileyAnimation.SetTrigger("smileyActive");
             anim.SetTrigger("Active");
             maxNumOfClicks++;
-        }   
+        }
 
     }
 
