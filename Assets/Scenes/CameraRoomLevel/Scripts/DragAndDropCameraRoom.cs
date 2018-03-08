@@ -119,6 +119,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(-4.0f, 0.0f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             strap1inPlace = true;
+            draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
         else if
             (draggedObject.name.Equals("Strap2") &&
@@ -130,6 +131,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(0.0f, 0.0f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             strap2inPlace = true;
+            draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
         else if
             (draggedObject.name.Equals("Sandbag1") &&
@@ -140,6 +142,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(-2.0f, -1.65f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             sandbag1inPlace = true;
+            draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
         else if
            (draggedObject.name.Equals("Sandbag2") &&
@@ -150,6 +153,8 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(-2.0f, 1.65f);
             draggedObject.GetComponent<BoxCollider2D>().enabled = false;
             sandbag2inPlace = true;
+            draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
+
         }
         else if
             (draggedObject.name.Equals("CameraTop") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
