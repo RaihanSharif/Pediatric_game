@@ -36,6 +36,7 @@ public class Bubble : MonoBehaviour
         hideAllText();
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +47,8 @@ public class Bubble : MonoBehaviour
         hideBubblesAfterClicks();
         if (checkGameWon())
             gameWon();
+
+
 
     }
 

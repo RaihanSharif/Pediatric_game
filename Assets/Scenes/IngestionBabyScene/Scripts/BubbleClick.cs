@@ -15,6 +15,27 @@ public class BubbleClick : MonoBehaviour
     private int countPinkBubble2Click = 0;
     private int countPinkBubble3Click = 0;
 
+    public Transform farEnd;
+    private Vector3 frometh;
+    private Vector3 untoeth;
+    private float secondsForOneLength = 24f;
+
+    void Start()
+    {
+        frometh = transform.position;
+        untoeth = farEnd.position;
+    }
+
+    void Update()
+    {
+        
+            transform.position = Vector3.Lerp(frometh, untoeth,
+             Mathf.SmoothStep(0f, 0.5f,
+              Mathf.PingPong(Time.time / secondsForOneLength, 0.5f)
+            ));
+        
+    }
+
     void OnMouseDown()
     {
         if (bubbleNum == 1)
