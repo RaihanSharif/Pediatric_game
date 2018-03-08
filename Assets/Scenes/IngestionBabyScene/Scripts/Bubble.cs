@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Bubble : MonoBehaviour
 {
 
-    float timer = 0.0f;
+    public float timer = 0.0f;
 
     public GameObject[] blueBubbles;
     public GameObject[] pinkBubbles;
@@ -34,14 +34,15 @@ public class Bubble : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        hideAllBubbleAtStart();
         hideAllText();
+        hideAllBubbleAtStart();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+
         if (checkLostGame())
             gameOver();
 
@@ -94,7 +95,7 @@ public class Bubble : MonoBehaviour
         if (timer < 3 || (timer > 3 && isFirstBubblePopped) )
             timer += Time.deltaTime;
 
-        Debug.Log("Time: " + timer);
+        // Debug.Log("Time: " + timer);
     }
 
     void hideBubblesAfterClicks()
@@ -168,6 +169,21 @@ public class Bubble : MonoBehaviour
     {
         greenBubblesFinished[n] = true;
     }
+
+    //public GameObject getNthGreenBubble(int n)
+    //{
+    //    return blueBubbles[n];
+    //}
+
+    //public GameObject getNthPinkBubble(int n)
+    //{
+    //    return pinkBubbles[n];
+    //}
+
+    //public GameObject getNthBlueBubble(int n)
+    //{
+    //    return blueBubbles[n];
+    //}
 
     public bool checkLostGame()
     {

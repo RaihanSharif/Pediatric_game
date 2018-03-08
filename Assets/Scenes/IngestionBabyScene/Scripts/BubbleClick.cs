@@ -19,6 +19,7 @@ public class BubbleClick : MonoBehaviour
     private Vector3 frometh;
     private Vector3 untoeth;
     private float secondsForOneLength = 24f;
+    bool firstPopped;
 
     void Start()
     {
@@ -28,16 +29,36 @@ public class BubbleClick : MonoBehaviour
 
     void Update()
     {
+        moveBubbles();
+             
+    }
+
+    void moveBubbles()
+    {
+        if (firstPopped)
+            Debug.Log("yeeeees");
+
         if (bubbleNum != 1 && bubbleScript.isFirstBubblePopped)
         {
             Debug.Log("this is running");
             transform.position = Vector3.Lerp(frometh, untoeth,
             Mathf.SmoothStep(0f, 0.5f,
-             Mathf.PingPong(Time.time / secondsForOneLength, 0.5f)
+             Mathf.PingPong(bubbleScript.timer / secondsForOneLength, 0.5f)
            ));
         }
-             
     }
+
+    //void moveBubble()
+    //{
+    //    if (bubbleNum != 1 && bubbleScript.isFirstBubblePopped)
+    //    {
+    //        Debug.Log("this is running");
+    //        bubbleScript.getNthBlueBubble(2).transform.position = Vector3.Lerp(frometh, untoeth,
+    //        Mathf.SmoothStep(0f, 0.5f,
+    //         Mathf.PingPong(bubbleScript.timer / secondsForOneLength, 0.5f)
+    //       ));
+    //    }
+    //}
 
     void OnMouseDown()
     {
@@ -45,6 +66,8 @@ public class BubbleClick : MonoBehaviour
         {
             bubbleScript.isFirstBubblePopped = true;
             bubbleScript.setTrueTheNthBlueBubble(0);
+            firstPopped = true;
+
         }
 
         if (bubbleNum == 2)
