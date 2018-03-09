@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour {
 	public const int KID = 2;
 	//Flag for selecting the age
 	private int ageSelected;
+	public string chosenScene;
 
 	//Loads a scene with a specific name
 	public void LoadSceneByName(string name){
@@ -29,9 +30,11 @@ public class EventManager : MonoBehaviour {
 		ageSelected = BABY;
 		if (procedureSelected == INGESTION){
 			LoadSceneByName("IngestionBaby");
+			chosenScene = "IngestionBaby";
 		}
 		if (procedureSelected == INJECTION){
 			LoadSceneByName("InjectionKid");
+			chosenScene = "InjectionKid";
 		}
 	}
 
@@ -40,9 +43,11 @@ public class EventManager : MonoBehaviour {
 		ageSelected = KID;
 		if (procedureSelected == INGESTION){
 			LoadSceneByName("IngestionKid");
+			chosenScene = "IngestionKid";
 		}
 		if (procedureSelected == INJECTION){
 			LoadSceneByName("InjectionKid");
+			chosenScene = "InjectionKid";
 		}
 		
 	}
@@ -52,9 +57,11 @@ public class EventManager : MonoBehaviour {
 		procedureSelected = INGESTION;
 		if (ageSelected == BABY){
 			LoadSceneByName("IngestionBaby");
+			chosenScene = "IngestionBaby";
 		}
 		if (ageSelected == KID){
 			LoadSceneByName("IngestionKid");
+			chosenScene = "InjectionKid";
 		}
 	}
 
@@ -64,6 +71,7 @@ public class EventManager : MonoBehaviour {
 		procedureSelected = INJECTION;
 		if (ageSelected == BABY  || ageSelected == KID){
 			LoadSceneByName("InjectionKid");
+			chosenScene = "InjectionKid";
 		}
 		
 	}

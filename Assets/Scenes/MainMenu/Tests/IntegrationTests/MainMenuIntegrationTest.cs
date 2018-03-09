@@ -2,6 +2,7 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenuIntegrationTest {
 
@@ -16,6 +17,10 @@ public class MainMenuIntegrationTest {
 	public IEnumerator MainMenuIntegrationTestWithEnumeratorPasses() {
 		// Use the Assert class to test conditions.
 		// yield to skip a frame
+		var manager = new GameObject().AddComponent<EventManager>();
+		manager.babyButtonPressed ();
+		manager.ingestionButtonPressed ();
+		Assert.AreEqual(manager.chosenScene, "IngestionBaby");
 		yield return null;
 	}
 }
