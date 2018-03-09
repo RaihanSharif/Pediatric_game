@@ -9,25 +9,30 @@ public class ScoreCounter : MonoBehaviour {
 	public int score;
 	public Text scoreText;
 
+	public System.Random r = new System.Random();
+
 	void Start(){
 		score = 0;
-		scoreText.text = "WAITING ROOM";
+		setScoreText();
 	}
 
 	void Update(){
 	}
 
-	void OnTriggerEnter2D(Collider2D other){
-		
+	IEnumerator OnTriggerEnter2D(Collider2D other){
+
 		score++;
-		scoreText.text = "Score: " + score.ToString();
-		Wait();
-		other.gameObject.transform.Translate(new Vector3(250f, transform.position.y-90f), Space.World); //instead of 250f you could use a randomiser between -200 and 250.
-			
+		setScoreText();
+
+		yield return new WaitForSeconds(2);
+
+		int rInt = r.Next(-200, 250);
+		other.gameObject.transform.Translate(new Vector3(rInt, transform.position.y-90f), Space.World); //instead of 250f you could use a randomiser between -200 and 250.
+
 	}
 
-	IEnumerator Wait(){
-		yield return new WaitForSeconds(3);
+	void setScoreText(){
+		scoreText.text = "Score: " + score.ToString();
 	}
 
 }

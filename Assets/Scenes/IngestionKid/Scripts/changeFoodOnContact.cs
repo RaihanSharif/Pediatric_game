@@ -12,8 +12,7 @@ public class changeFoodOnContact : MonoBehaviour {
 	public DragAndDrop spoonScript; // the script attached to the spoon for drag and drop
     public int frame = 0;  // refers to the number of 'bites' taken so far
     public bool isMouthOpen;
-    public EventManager em; //Reference to the event manager
-    public const string NEXTSCENE = "WaitingRoom"; //Constant for the scene to load after level is completed
+    public LevelFinishedMenu lvlFM; //Reference to the event manager
 
     // Use this for initialisation
     void Start ()
@@ -37,7 +36,7 @@ public class changeFoodOnContact : MonoBehaviour {
         } else if (frame == 24) {
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			frame++;
-            em.LoadSceneByName(NEXTSCENE);
+            lvlFM.OnLevelFinished();
 
 		}
 
