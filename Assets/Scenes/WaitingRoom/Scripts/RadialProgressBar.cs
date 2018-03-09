@@ -10,6 +10,9 @@ public class RadialProgressBar : MonoBehaviour {
     public Image loadingBarImage;   //image of the loading bar in the canvas   
 
     [SerializeField]
+    private LevelFinishedMenu lvlFM;
+
+    [SerializeField]
     private float currentTimeAmount = 100f;    
 
     [SerializeField]
@@ -39,6 +42,7 @@ public class RadialProgressBar : MonoBehaviour {
         } else
         {
             displayDoneTextOnGauge();
+            lvlFM.OnLevelFinished();
         }
 
         updateLoadingBar();
