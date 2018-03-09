@@ -61,7 +61,7 @@ public class EventManager : MonoBehaviour {
 		}
 		if (ageSelected == KID){
 			LoadSceneByName("IngestionKid");
-			chosenScene = "InjectionKid";
+			chosenScene = "IngestionKid";
 		}
 	}
 
