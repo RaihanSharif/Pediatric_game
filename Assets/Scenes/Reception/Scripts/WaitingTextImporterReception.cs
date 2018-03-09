@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class WaitingTextImporterCopy2 : MonoBehaviour {
+public class WaitingTextImporterReception : MonoBehaviour {
 
 
     private TextAsset textFile;
