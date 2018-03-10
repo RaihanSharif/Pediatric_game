@@ -58,8 +58,6 @@ public class Bubble : MonoBehaviour
         if (checkGameWon())
             gameWon();
 
-
-
     }
 
 
@@ -107,8 +105,6 @@ public class Bubble : MonoBehaviour
     {
         if (timer < 3 || (timer > 3 && isFirstBlueBubblePopped && timer < 4)  || ( timer > 4 && isFirstPinkBubbleSecondClicked) )
             timer += Time.deltaTime;
-
-        Debug.Log("Time: " + timer);
     }
 
     void hideBubblesAfterClicks()

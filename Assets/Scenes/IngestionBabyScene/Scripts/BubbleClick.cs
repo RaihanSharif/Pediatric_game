@@ -47,18 +47,6 @@ public class BubbleClick : MonoBehaviour
         }
     }
 
-    //void moveBubble()
-    //{
-    //    if (bubbleNum != 1 && bubbleScript.isFirstBubblePopped)
-    //    {
-    //        Debug.Log("this is running");
-    //        bubbleScript.getNthBlueBubble(2).transform.position = Vector3.Lerp(frometh, untoeth,
-    //        Mathf.SmoothStep(0f, 0.5f,
-    //         Mathf.PingPong(bubbleScript.timer / secondsForOneLength, 0.5f)
-    //       ));
-    //    }
-    //}
-
     void OnMouseDown()
     {
         if (bubbleNum == 1)
