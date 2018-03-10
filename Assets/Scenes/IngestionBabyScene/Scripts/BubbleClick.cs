@@ -29,8 +29,7 @@ public class BubbleClick : MonoBehaviour
 
     void Update()
     {
-        moveBubbles();
-             
+            moveBubbles();       
     }
 
     void moveBubbles()
@@ -38,7 +37,7 @@ public class BubbleClick : MonoBehaviour
         if (firstPopped)
             Debug.Log("yeeeees");
 
-        if (bubbleNum != 1 && bubbleScript.isFirstBubblePopped)
+        if (bubbleScript.isFirstPinkBubbleSecondClicked)
         {
             Debug.Log("this is running");
             transform.position = Vector3.Lerp(frometh, untoeth,
@@ -64,7 +63,7 @@ public class BubbleClick : MonoBehaviour
     {
         if (bubbleNum == 1)
         {
-            bubbleScript.isFirstBubblePopped = true;
+            bubbleScript.isFirstBlueBubblePopped = true;
             bubbleScript.setTrueTheNthBlueBubble(0);
             firstPopped = true;
 
@@ -83,9 +82,11 @@ public class BubbleClick : MonoBehaviour
         if (bubbleNum == 4)
         {
             countPinkBubble1Click += 1;
+            bubbleScript.isFirstPinkBubbleFirstClicked = true;
             if ( countPinkBubble1Click == 2)
             {
                 bubbleScript.setTrueTheNthPinkBubble(0);
+                bubbleScript.isFirstPinkBubbleSecondClicked = true;
             }
         }
 

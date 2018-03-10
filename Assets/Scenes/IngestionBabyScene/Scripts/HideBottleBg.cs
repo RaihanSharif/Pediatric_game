@@ -14,7 +14,7 @@ public class HideBottleBg : MonoBehaviour {
     {
         startTimer();
         hidebgImage();
-    }
+    }   
 
     void startTimer()
     {

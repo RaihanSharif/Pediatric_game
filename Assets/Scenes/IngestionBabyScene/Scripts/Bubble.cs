@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,12 @@ public class Bubble : MonoBehaviour
     public Babybottle babyBottleScript;
     public playAnimationOnClick playAnimationOnClickScript;
     public ArrowClass arrowScript;
-    public bool isFirstBubblePopped;
+    public NumHit numHit1Script;
+    public NumHit numHit2Script;
+    public bool isFirstBlueBubblePopped;
+    public bool isFirstPinkBubbleFirstClicked;
+    public bool isFirstPinkBubbleSecondClicked;
+    public GameObject arrowObject;
 
 
 
@@ -56,35 +62,42 @@ public class Bubble : MonoBehaviour
 
     }
 
+
     void showBubbles()
     {
         if (timer > 3 && blueBubblesFinished[0] == false)
         {
-            arrowScript.isTimeToActivate = true;
+            arrowScript.isTimeToActivateFirstArrow = true;
             blueBubbles[0].SetActive(true);
         }
 
-        if (timer > 4 && blueBubblesFinished[1] == false && isFirstBubblePopped)
+        if (timer > 4 && pinkBubblesFinished[0] == false && isFirstBlueBubblePopped)
+        {
+            arrowScript.isTimeToActivateSecondArrow = true;
+            numHit1Script.isTimeToActivateFirstNum = true;
+            if (isFirstPinkBubbleFirstClicked)
+                numHit2Script.isTimeToActivateSecondNum = true;
+
+            pinkBubbles[0].SetActive(true);
+        }
+
+        if (timer > 6 && blueBubblesFinished[1] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             blueBubbles[1].SetActive(true);
         }
 
-        if (timer > 6 && pinkBubblesFinished[0] == false && isFirstBubblePopped)
-        {
-            pinkBubbles[0].SetActive(true);
-        }
 
-        if (timer > 8 && blueBubblesFinished[2] == false && isFirstBubblePopped)
+        if (timer > 8 && blueBubblesFinished[2] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             blueBubbles[2].SetActive(true);
         }
 
-        if (timer > 9 && pinkBubblesFinished[1] == false && isFirstBubblePopped)
+        if (timer > 9 && pinkBubblesFinished[1] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             pinkBubbles[1].SetActive(true);
         }
 
-        if (timer > 10 && pinkBubblesFinished[2] == false && isFirstBubblePopped)
+        if (timer > 10 && pinkBubblesFinished[2] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             pinkBubbles[2].SetActive(true);
         }
@@ -92,10 +105,10 @@ public class Bubble : MonoBehaviour
 
     void startTimer()
     {
-        if (timer < 3 || (timer > 3 && isFirstBubblePopped) )
+        if (timer < 3 || (timer > 3 && isFirstBlueBubblePopped && timer < 4)  || ( timer > 4 && isFirstPinkBubbleSecondClicked) )
             timer += Time.deltaTime;
 
-        // Debug.Log("Time: " + timer);
+        Debug.Log("Time: " + timer);
     }
 
     void hideBubblesAfterClicks()
@@ -133,19 +146,19 @@ public class Bubble : MonoBehaviour
 
     void hideAllBubbleAtStart()
     {
-        for (int i = 0; i < blueBubbles.Length; i++)
+        foreach (GameObject bubble in blueBubbles)
         {
-            blueBubbles[i].SetActive(false);
+            bubble.SetActive(false);
         }
 
-        for (int i = 0; i < pinkBubbles.Length; i++)
+        foreach ( GameObject bubble in pinkBubbles)
         {
-            pinkBubbles[i].SetActive(false);
+            bubble.SetActive(false);
         }
 
-        for (int i = 0; i < greenBubbles.Length; i++)
+        foreach (GameObject bubble in greenBubbles)
         {
-            greenBubbles[i].SetActive(false);
+            bubble.SetActive(false);
         }
     }
 
