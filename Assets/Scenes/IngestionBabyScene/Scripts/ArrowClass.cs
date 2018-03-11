@@ -6,15 +6,18 @@ public class ArrowClass : MonoBehaviour {
 
     public bool isTimeToActivateFirstArrow;
     public bool isTimeToActivateSecondArrow;
-    public Renderer firstArrowrenderer;
-    public Renderer secondArrowrenderer;
-
+    public Renderer firstArrowRenderer;
+    public Renderer secondArrowRenderer;
+    public Renderer thirdArrowRenderer;
     public Bubble bubbleScript;
+    public BubbleClick BubbleClickScript;
+    public Babybottle BabybottleScript;
 
     // Use this for initialization
     void Start () {
         hideFirstArrow();
         hideSecondArrow();
+        hideThirdArrow();
     }
 	
 	// Update is called once per frame
@@ -23,31 +26,45 @@ public class ArrowClass : MonoBehaviour {
             revealFirstArrow();
 	    if (isTimeToActivateSecondArrow)
 	        revealSecondArrow();
-	    if (bubbleScript.isFirstBlueBubblePopped)
+	    if (BubbleClickScript.lastBubbleClicked)
+	        revealThirdArrow();
+
+        if (bubbleScript.isFirstBlueBubblePopped)
 	        hideFirstArrow();
 	    if (bubbleScript.isFirstPinkBubbleSecondClicked)
 	        hideSecondArrow();
+	    if (BubbleClickScript.lastBubbleClicked && BabybottleScript.FirstBottleClickAfterAllBubblesPopped)
+	        hideThirdArrow();
 
-
-    }
+	}
 
     void hideFirstArrow()
     {
-        firstArrowrenderer.enabled = false;
+        firstArrowRenderer.enabled = false;
     }
 
     void hideSecondArrow()
     {
-        secondArrowrenderer.enabled = false;
+        secondArrowRenderer.enabled = false;
+    }
+
+    void hideThirdArrow()
+    {
+        thirdArrowRenderer.enabled = false;
     }
 
     void revealFirstArrow()
     {
-        firstArrowrenderer.enabled = true;
+        firstArrowRenderer.enabled = true;
     }
 
     void revealSecondArrow()
     {
-        secondArrowrenderer.enabled = true;
+        secondArrowRenderer.enabled = true;
+    }
+
+    void revealThirdArrow()
+    {
+        thirdArrowRenderer.enabled = true;
     }
 }

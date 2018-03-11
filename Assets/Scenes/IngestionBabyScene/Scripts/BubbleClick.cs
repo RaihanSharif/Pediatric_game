@@ -20,6 +20,7 @@ public class BubbleClick : MonoBehaviour
     private Vector3 untoeth;
     private float secondsForOneLength = 24f;
     bool firstPopped;
+    public bool lastBubbleClicked;
 
     void Start()
     {
@@ -94,7 +95,9 @@ public class BubbleClick : MonoBehaviour
             if (countPinkBubble3Click == 2)
             {
                 bubbleScript.setTrueTheNthPinkBubble(2);
+                lastBubbleClicked = true;
             }
+           
         }
     }
 }

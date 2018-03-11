@@ -34,6 +34,7 @@ public class Bubble : MonoBehaviour
     public bool isFirstPinkBubbleFirstClicked;
     public bool isFirstPinkBubbleSecondClicked;
     public GameObject arrowObject;
+    
 
 
 

@@ -14,6 +14,8 @@ public class Babybottle : MonoBehaviour {
     public bool bottleEnabled;
     public bool gameWon;
     public Bubble bubbleScript;
+    public bool FirstBottleClickAfterAllBubblesPopped;
+    public BubbleClick BubbleClickScript;
 
 
     void Start(){
@@ -35,7 +37,9 @@ public class Babybottle : MonoBehaviour {
 
     void OnMouseDown()
     {
-		
+        if (BubbleClickScript.lastBubbleClicked)
+            FirstBottleClickAfterAllBubblesPopped = true;
+
         if (!gameOver && bottleEnabled && bubbleScript.isFirstPinkBubbleSecondClicked)
         {
             if (ctr <= 5)
