@@ -98,6 +98,7 @@ public class DragAndDrop : MonoBehaviour {
     /// </summary>
     private void DragOrPickUp()
     {
+
         var inputPosition = CurrentTouchPosition;
 
         if (isDragged)
@@ -110,7 +111,7 @@ public class DragAndDrop : MonoBehaviour {
             if (touches.Length > 0)
             {
                 var hit = touches[0];
-                if (hit.transform != null)
+                if (hit.transform != null && (hit.collider.name == "spoon"))
                 {
                     isDragged = true;
                     spoon = hit.transform.gameObject;
