@@ -12,6 +12,7 @@ public class playAnimationOnClick : MonoBehaviour {
     private int maxNumOfClicks = 0;
     public bool gameOver;
     public bool bottleEnabled;
+    public Bubble bubbleScript;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class playAnimationOnClick : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (maxNumOfClicks <= 6 && !gameOver && bottleEnabled)
+        if (maxNumOfClicks <= 5 && !gameOver && bottleEnabled && bubbleScript.isFirstPinkBubbleSecondClicked)
         {
             
             smileyAnimation.SetTrigger("smileyActive");

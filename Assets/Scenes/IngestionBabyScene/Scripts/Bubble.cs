@@ -79,13 +79,13 @@ public class Bubble : MonoBehaviour
             pinkBubbles[0].SetActive(true);
         }
 
-        if (timer > 6 && blueBubblesFinished[1] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
+        if (timer > 5 && blueBubblesFinished[1] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             blueBubbles[1].SetActive(true);
         }
 
 
-        if (timer > 8 && blueBubblesFinished[2] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
+        if (timer > 7 && blueBubblesFinished[2] == false && isFirstBlueBubblePopped && isFirstPinkBubbleSecondClicked)
         {
             blueBubbles[2].SetActive(true);
         }
