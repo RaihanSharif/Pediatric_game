@@ -7,15 +7,18 @@ using UnityEngine.UI;
 public class Bubble : MonoBehaviour
 {
 
-    public float timer = 0.0f;
+    public float timer = 0.0f; // timer which is used to display bubbles at certain times 
 
-    public GameObject[] blueBubbles;
+    public GameObject[] blueBubbles; 
     public GameObject[] pinkBubbles;
     public GameObject[] greenBubbles;
 
-    public Text losingText;
-    public Text winningText;
+    public Text losingText; // dispalyed when there are 3 any 3 bubbles on the screen at the same time 
+    public Text winningText;  // displayed when the baby bottle is empty ( all the milk is drunk ). Technically when the baby bottle is pressed 6 times 
 
+    private int totalUnPoppedBubbles = 0;
+
+    // array for each of the bubble colours which stores if the bubble is popped or not. This is done using one of the 3 functions setTrueTheNthBlueBubble, setTrueTheNthPinkBubble, setTrueTheNthGreenBubble
     [SerializeField]
     private bool[] blueBubblesFinished;
 
@@ -25,7 +28,7 @@ public class Bubble : MonoBehaviour
     [SerializeField]
     private bool[] greenBubblesFinished;
 
-    public Babybottle babyBottleScript;
+    public Babybottle babyBottleScript; 
     public playAnimationOnClick playAnimationOnClickScript;
     public ArrowClass arrowScript;
     public NumHit numHit1Script;
@@ -38,7 +41,9 @@ public class Bubble : MonoBehaviour
 
 
 
-    // Use this for initialization
+    /// <summary>
+    /// At the start of the game all the texts and all the bubbles are hidden 
+    /// </summary>
     void Start()
     {
         hideAllText();
@@ -59,6 +64,8 @@ public class Bubble : MonoBehaviour
         if (checkGameWon())
             gameWon();
 
+        if (totalUnPoppedBubbles == 0 && timer > 10)
+            enableBabyBottle();
     }
 
 
@@ -141,6 +148,9 @@ public class Bubble : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is called at the start of the game which goes through each array for each bubble colours and sets active of each bubble to false 
+    /// </summary>
     void hideAllBubbleAtStart()
     {
         foreach (GameObject bubble in blueBubbles)
@@ -159,48 +169,72 @@ public class Bubble : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is called at the start of the game where it set the enable function in each text to false 
+    /// </summary>
     void hideAllText()
     {
         losingText.enabled = false;
         winningText.enabled = false;
     }
 
+    /// <summary>
+    /// This is called whenever a blue bubble is being clicked, it takes int parameter which is the index of the bubble being clicked 
+    /// </summary>
+    /// <param name="n"></param>
     public void setTrueTheNthBlueBubble(int n)
     {
         blueBubblesFinished[n] = true;
     }
 
+    /// <summary>
+    /// This is called whenever a pink bubble is being clicked, it takes int parameter which is the index of the bubble being clicked 
+    /// </summary>
+    /// <param name="n"></param>
     public void setTrueTheNthPinkBubble(int n)
     {
         pinkBubblesFinished[n] = true;
     }
 
-    public void setTrueTheNthGreenBubble(int n)
-    {
-        greenBubblesFinished[n] = true;
-    }
+    /// <summary>
+    /// This is called whenever a green bubble is being clicked, it take int parameter which is the index of the bubble being clicked 
+    /// </summary>
+    /// <param name="n"></param>
+    /*
+        public void setTrueTheNthGreenBubble(int n)
+        {
+            greenBubblesFinished[n] = true;
+        }
 
-    //public GameObject getNthGreenBubble(int n)
-    //{
-    //    return blueBubbles[n];
-    //}
+        public GameObject getNthGreenBubble(int n)
+        {
+            return blueBubbles[n];
+        }
 
-    //public GameObject getNthPinkBubble(int n)
-    //{
-    //    return pinkBubbles[n];
-    //}
+        public GameObject getNthPinkBubble(int n)
+        {
+            return pinkBubbles[n];
+        }
 
-    //public GameObject getNthBlueBubble(int n)
-    //{
-    //    return blueBubbles[n];
-    //}
+        public GameObject getNthBlueBubble(int n)
+        {
+            return blueBubbles[n];
+        }
+    */
 
+    /// <summary>
+    /// This is called in the update method where it checks if the user lost the game or not. if there are 3 or more bubbles dispalyed on the screen 
+    /// at the same time then the user loses the game. 
+    /// </summary>
     public bool checkLostGame()
     {
         int unpoppedBlueBubbles = 0;
         int unpoppedPinkBubbles = 0;
         int unpoppedGreenBubbles = 0;
 
+        // going through each bubble in the blueBubbles array and checks if there is an active bubbles and if there are active bubbles 
+        // then for each active bubble it increments the unpoppedBlueBubbles
+        // Note that the same thing is being doen to other bubbles as well 
         foreach (GameObject blueBubble in blueBubbles)
         {
             if (blueBubble.activeSelf)
@@ -225,27 +259,48 @@ public class Bubble : MonoBehaviour
             }
         }
 
-        if (unpoppedBlueBubbles + unpoppedPinkBubbles + unpoppedGreenBubbles >= 3)
-        {
-            return true;
-        }
+        totalUnPoppedBubbles = unpoppedBlueBubbles + unpoppedPinkBubbles + unpoppedGreenBubbles;
 
+        // if the sum of the active bubbles in each array is more that 3 then returns true indicating that the user lost the game 
+        if (totalUnPoppedBubbles >= 3)
+            return true;
+
+        // otherwise the use has not lost the game yet 
         return false;
     }
 
+    void enableBabyBottle()
+    {
+        playAnimationOnClickScript.bottleEnabled = true;
+        babyBottleScript.bottleEnabled = true;
+        arrowScript.isTimeToActivateThirdArrow = true;
+    }
+
+
+    /// <summary>
+    /// This is called when checkLostGame returns true. 
+    /// </summary>
     public void gameOver()
     {
+        // sets the falg gameOver in babyBottleScript to true
         babyBottleScript.gameOver = true;
+        // sets the flag gameOver in playAnimaitonOnClickScript to true
         playAnimationOnClickScript.gameOver = true;
+        // removes the smiley object 
         Destroy(playAnimationOnClickScript.simleyObject);  
-        Debug.Log("game OVER");
+        // pauses the game 
         Time.timeScale = 0;
         timer = 0;
         hideAllBubbleAtStart();
         losingText.enabled = true;
 
     }
-    
+
+    /// <summary>
+    /// This is called in the update method where it checks if the user won the game or not. The user wons the game when all the milk is being drunk 
+    /// which means that the babyBottle is pressed 6 times when the baby bottle is enabled 
+    /// </summary>
+    /// <returns></returns>
     public bool checkGameWon()
     {
         if (babyBottleScript.gameWon)
@@ -254,12 +309,17 @@ public class Bubble : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// This is called when checkGameWon return true
+    /// </summary>
     public void gameWon()
     {
        
         winningText.enabled = true;
         hideAllBubbleAtStart();
     }
+
+
 
     
 }

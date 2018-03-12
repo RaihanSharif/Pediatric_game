@@ -8,10 +8,9 @@ public class DragAndDrop : MonoBehaviour {
     private GameObject spoon;   //holds a reference to an object being dragged
     private Vector2 touchOffset;    // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
 
-	// TODO: to be finished
     Animator anim; //Animator for the spoon
     public GameObject food; //Reference to the food
-    Animator spoonAnimation; //What's the fucking difference? Will se when we merge
+    Animator spoonAnimation; 
     public Sprite fullSpoon, emptySpoon; //References to the full and empty spoon images to render
     public GameObject kid; // Reference to the kid object
     private bool isRotated = false;
@@ -51,14 +50,12 @@ public class DragAndDrop : MonoBehaviour {
         float distance = Vector2.Distance(this.transform.position, kid.transform.position);
         if (distance < 6 )
         {
-            //anim.SetTrigger("Active");
             int hash = Animator.StringToHash("flipSpoon");
             anim.Play(hash, 0, 0.8F);
             isRotated = true;
         }
         else if ( distance > 6 && distance < 7 )
         {
-            // needs to search of how to only play it once. 
             anim.SetTrigger("Active");
         }
         else
