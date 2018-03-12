@@ -5,46 +5,61 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour {
 
-	public BoxCollider2D scoreIncrementCollider;
+	public BoxCollider2D scoreIncrementCollider; // collider object that checks if the paper ball entered the trash can
 	public int score;
-	public Text scoreText;
+	public Text scoreText; // text that displays the score on the screen
 
-	public System.Random rand = new System.Random();
+	public System.Random rand = new System.Random(); // random object used to generate a random number
 
 	void Start(){
 		score = 0;
-		setScoreText();
+		updateScoreText();
 	}
 
 	void Update(){
 	}
 
 	/// <summary>
-	/// Function that is executed when another collider collides with the score increment collider, which is located inside the trash can.
-	/// In this case, the "other" collider is the paper ball's collider.
-	/// It increments the score and updates the text displaying the score. After that it waits 2 seconds with 
-	/// "yield return new WaitForSeconds(2);", which is why the function is of type IEnumerator. This is so the ball does not respawn instantly.
-	/// Finally, it generates a random number between -200 and 250, which is the range of the x-axis within the screen, so the x position of the ball becomes that.
+	/// Updates the display of the score in the top left of the scene.
+	/// </summary>
+	void updateScoreText(){
+		scoreText.text = "Score: " + score.ToString();
+	}
+
+	/// <summary>
+	/// Produces a random number.
+	/// </summary>
+	/// <returns>The random number.</returns>
+	int getRandNum(){
+		int randInt = rand.Next(-200, 250);
+		return randInt;
+	}
+
+	/// <summary>
+	/// Translates the game object to which the collider belongs. In this case, the paper ball.
+	/// </summary>
+	/// <param name="toBeTranslated">Collider of the game object to be translated.</param>
+	void translatePaperBall(Collider2D toBeTranslated){
+		
+		toBeTranslated.gameObject.transform.Translate(new Vector3(getRandNum(), transform.position.y-90f), Space.World);
+
+	}
+
+	/// <summary>
+	/// Updates the score and display, then delays for 1.2 seconds so the ball does not respawn instantaneously.
+	/// Finally, it translates the paper ball by randInt in the x position and transform.position.y-90f in the y position, 
+	/// which are the values that put the ball randomly across the bottom of the scene.
 	/// </summary>
 	/// <param name="other">Other.</param>
 	IEnumerator OnTriggerEnter2D(Collider2D other){
 
 		score++;
-		setScoreText();
+		updateScoreText();
 
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1.2f); // wait 1.2 seconds
 
-		int randInt = rand.Next(-200, 250);
-		// translates the paper ball by randInt in the x position and transform.position.y-90f in the y position, which are the values that put the ball randomly across the bottom of the image
-		other.gameObject.transform.Translate(new Vector3(randInt, transform.position.y-90f), Space.World);
+		translatePaperBall(other);
 
-	}
-
-	/// <summary>
-	/// Updates the display of the score in the top left of the scene.
-	/// </summary>
-	void setScoreText(){
-		scoreText.text = "Score: " + score.ToString();
 	}
 
 }
