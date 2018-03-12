@@ -33,8 +33,8 @@ public class EventManager : MonoBehaviour {
 			chosenScene = "IngestionBaby";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("InjectionKid");
-			chosenScene = "InjectionKid";
+			LoadSceneByName("CremeApplication");
+			chosenScene = "CremeApplication";
 		}
 	}
 
@@ -46,8 +46,8 @@ public class EventManager : MonoBehaviour {
 			chosenScene = "IngestionKid";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("InjectionKid");
-			chosenScene = "InjectionKid";
+			LoadSceneByName("CremeApplication");
+			chosenScene = "CremeApplication";
 		}
 		
 	}
@@ -70,8 +70,8 @@ public class EventManager : MonoBehaviour {
 	public void injectionButtonPressed(){
 		procedureSelected = INJECTION;
 		if (ageSelected == BABY  || ageSelected == KID){
-			LoadSceneByName("InjectionKid");
-			chosenScene = "InjectionKid";
+			LoadSceneByName("CremeApplication");
+			chosenScene = "CremeApplication";
 		}
 		
 	}
