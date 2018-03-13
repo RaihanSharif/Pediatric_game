@@ -77,7 +77,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.babyButtonPressed ();
 		manager.injectionButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "InjectionKid");
+		Assert.AreEqual(manager.chosenScene, "CremeApplication");
 		yield return null;
 	}
 
@@ -92,7 +92,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.injectionButtonPressed ();
 		manager.babyButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "InjectionKid");
+		Assert.AreEqual(manager.chosenScene, "CremeApplication");
 		yield return null;
 	}
 
