@@ -13,13 +13,13 @@ public class RadialProgressBar : MonoBehaviour {
     private LevelFinishedMenu lvlFM;
 
     [SerializeField]
-    private float currentTimeAmount = 100f;    
+    private float currentBarAmount = 100f;    
 
     [SerializeField]
     private float speed = 1f;
 
-    private int MINIMUMTIMEPESENT = 0;  //ending time for gauge
-    private int REDZONETIME = 40;   //time below which loading bar becomes red
+    private int MINIMUMVALUE = 0;  //ending time for gauge
+    private int REDZONEVALUE = 40;   //time below which loading bar becomes red
 
 	// Update is called once per frame
 	void Update () {
@@ -32,11 +32,11 @@ public class RadialProgressBar : MonoBehaviour {
         {
             if (inRedZone()) {
                 changeLoadingBarColorToRed();
-                decrementCurrentTimeAmountBySpeed();
+                decrementCurrentBarAmountBySpeed();
                 displayCurrentTimeAmountOnGauge();
             } else
             {
-                decrementCurrentTimeAmountBySpeed();
+                decrementCurrentBarAmountBySpeed();
                 displayCurrentTimeAmountOnGauge();
             }
         } else
@@ -54,9 +54,9 @@ public class RadialProgressBar : MonoBehaviour {
     /// multiply speed by Time.deltaTime to move object by per second
     /// instead of by per frame
     /// </summary>
-    void decrementCurrentTimeAmountBySpeed()
+    void decrementCurrentBarAmountBySpeed()
     {
-        currentTimeAmount -= speed * Time.deltaTime;
+        currentBarAmount -= speed * Time.deltaTime;
     }
     
     /// <summary>
@@ -66,7 +66,7 @@ public class RadialProgressBar : MonoBehaviour {
     /// </summary>
     void displayCurrentTimeAmountOnGauge()
     {
-        TextIndicator.GetComponent<Text>().text = ((int)currentTimeAmount).ToString() + "s";
+        TextIndicator.GetComponent<Text>().text = ((int)currentBarAmount).ToString() + "s";
         TextTimeLeft.gameObject.SetActive(true);
     } 
 
@@ -82,7 +82,7 @@ public class RadialProgressBar : MonoBehaviour {
 
     void updateLoadingBar()
     {
-        LoadingBar.GetComponent<Image>().fillAmount = currentTimeAmount / 100;
+        LoadingBar.GetComponent<Image>().fillAmount = currentBarAmount / 100;
     }
 
     void changeLoadingBarColorToRed()
@@ -93,12 +93,12 @@ public class RadialProgressBar : MonoBehaviour {
 
     bool inRedZone()
     {
-        return currentTimeAmount < REDZONETIME;
+        return currentBarAmount < REDZONEVALUE;
     }
 
     bool timeStillRemaining()
     {
-        return currentTimeAmount > MINIMUMTIMEPESENT;
+        return currentBarAmount > MINIMUMVALUE;
     }
     #endregion
 
