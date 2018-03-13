@@ -21,12 +21,15 @@ public class WaitingRoomIntegrationTest {
 	// and allows you to yield null to skip a frame in EditMode
 	[UnityTest]
 	public IEnumerator WaitingRoomIntegrationTestWithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
-		LoadSceneByName("WaitingRoom");
+        // Use the Assert class to test conditions.
+        // yield to skip a frame
+        LoadSceneByName("WaitingRoom");
 		yield return null;
-		var play = GameObject.FindGameObjectWithTag("Trash").GetComponent<Button>();
 
-		Assert.AreEqual ("trashCanButton", play.name);
+        var play = GameObject.FindGameObjectWithTag("Trash").GetComponent<Button>();
+        play.onClick.Invoke();
+        yield return null;
+
+        Assert.AreEqual ("PaperTossScene", SceneManager.GetActiveScene().name);
 	}
 }
