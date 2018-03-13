@@ -12,7 +12,7 @@ public class PauseMenu : MonoBehaviour {
 	public GameObject pauseMenuUI;
 
 	//Constant for the scene number of the main menu
-	public const int MENUSCENE = 0;
+	public const string MENUSCENE = "MainMenu";
 
 	/// <summary>
 	/// Pauses the game by freezing game time and enables the pause menu
@@ -44,7 +44,6 @@ public class PauseMenu : MonoBehaviour {
 	/// Quits the game. Functional only once deployed
  	/// </summary>
 	public void ExitGame(){
-		Debug.Log("Exit press'd");
 		Application.Quit();
 	}
 
