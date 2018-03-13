@@ -12,17 +12,12 @@ public class WaitingRoomIntegrationTest {
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
 	}
 
-	[Test]
-	public void WaitingRoomIntegrationTestSimplePasses() {
-		// Use the Assert class to test conditions.
-	}
-
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	/// <summary>
+	/// Loads the waiting room scene, clicks on the trash can button,
+	/// then checks whether the trash can minigame has been opened.
+	/// </summary>
 	[UnityTest]
-	public IEnumerator WaitingRoomIntegrationTestWithEnumeratorPasses() {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
+	public IEnumerator WaitingRoomGoesToTrashCanReturnsTrue() {
         LoadSceneByName("WaitingRoom");
 		yield return null;
 
@@ -31,5 +26,21 @@ public class WaitingRoomIntegrationTest {
         yield return null;
 
         Assert.AreEqual ("PaperTossScene", SceneManager.GetActiveScene().name);
+	}
+
+	/// <summary>
+	/// Loads the waiting room scene, clicks on the reception button,
+	/// then checks whether the reception scene has been opened.
+	/// </summary>
+	[UnityTest]
+	public IEnumerator WaitingRoomGoesToReceptionReturnsTrue() {
+		LoadSceneByName("WaitingRoom");
+		yield return null;
+
+		var play = GameObject.FindGameObjectWithTag("Receptionn").GetComponent<Button>();
+		play.onClick.Invoke();
+		yield return null;
+
+		Assert.AreEqual ("Reception", SceneManager.GetActiveScene().name);
 	}
 }
