@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDropCameraRoom : MonoBehaviour {
-	
-	private bool draggingItem = false; //whether the player is currently dragging an item
-	private GameObject draggedObject;  //holds a reference to an object being dragged
-	private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
-    private string[] tags = {"Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom"};
+public class DragAndDropCameraRoom : MonoBehaviour
+{
+
+    private bool draggingItem = false; //whether the player is currently dragging an item
+    private GameObject draggedObject;  //holds a reference to an object being dragged
+    private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
+    private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
     private bool strap1inPlace = false;
     private bool strap2inPlace = false;
     private bool sandbag1inPlace = false;
@@ -22,7 +23,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 
     void Start()
     {
-        
+
     }
 
     void disableHitbox(string name)
@@ -42,48 +43,48 @@ public class DragAndDropCameraRoom : MonoBehaviour {
     /// he is, Drag or pick up the object, otherwise drop the item
     /// </summary>
     void Update()
-	{
-		if (HasInput)
-		{
-			DragOrPickUp();
-		}
-		else
-		{
-			if (draggingItem)
-				DropItem();
-		}
-	}
+    {
+        if (HasInput)
+        {
+            DragOrPickUp();
+        }
+        else
+        {
+            if (draggingItem)
+                DropItem();
+        }
+    }
 
-	/// <summary>
-	/// returns the position of a detected touch/mouse input
-	/// </summary>
-	Vector2 CurrentTouchPosition
-	{
-		get
-		{
-			Vector2 inputPos;
-			inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			return inputPos;
-		}
-	}
+    /// <summary>
+    /// returns the position of a detected touch/mouse input
+    /// </summary>
+    Vector2 CurrentTouchPosition
+    {
+        get
+        {
+            Vector2 inputPos;
+            inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            return inputPos;
+        }
+    }
 
-	/// <summary>
-	/// if an item is being dragged, move it with the input; 
-	/// if an object is not being dragged, pick up an object 
-	/// that’s being touched.
-	/// </summary>
-	private void DragOrPickUp()
-	{
+    /// <summary>
+    /// if an item is being dragged, move it with the input; 
+    /// if an object is not being dragged, pick up an object 
+    /// that’s being touched.
+    /// </summary>
+    private void DragOrPickUp()
+    {
 
-		var inputPosition = CurrentTouchPosition;
+        var inputPosition = CurrentTouchPosition;
 
-		if (draggingItem)
-		{
-			draggedObject.transform.position = inputPosition + touchOffset;
+        if (draggingItem)
+        {
+            draggedObject.transform.position = inputPosition + touchOffset;
             clickIntoPlace();
         }
-		else
-		{
+        else
+        {
             if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
             {
                 enableHitbox("Table");
@@ -92,22 +93,29 @@ public class DragAndDropCameraRoom : MonoBehaviour {
 
             }
 
-			RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
-			if (touches.Length > 0 )
-			{
-				var hit = touches[0];
+            RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
+            if (touches.Length > 0)
+            {
+                var hit = touches[0];
 
                 PickUp(tags, hit, inputPosition);
             }
-		}
-	}
+        }
+    }
+
+    void disableDragableItem(float x, float y)
+    {
+        DropItem();
+        draggedObject.transform.position = new Vector2(x, y);
+        draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
 
     void clickIntoPlace()
     {
         if (draggedObject.name.Equals("Table"))
         {
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
-            GameObject.FindWithTag("Strap1").transform.position = new Vector2(GameObject.FindWithTag("Strap1").transform.position.x, 0.0f);
+            GameObject.FindWithTag("Table").transform.position = new Vector2(GameObject.FindWithTag("Table").transform.position.x, 0.0f);
         }
         else if
             (draggedObject.name.Equals("Strap1") &&
@@ -115,9 +123,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
             && sandbag1inPlace && sandbag2inPlace)
         {
-            DropItem();
-            draggedObject.transform.position = new Vector2(-4.0f, 0.0f);
-            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            disableDragableItem(-4.0f, 0.0f);
             strap1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
@@ -127,9 +133,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
             && sandbag1inPlace && sandbag2inPlace)
         {
-            DropItem();
-            draggedObject.transform.position = new Vector2(0.0f, 0.0f);
-            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            disableDragableItem(0.0f, 0.0f);
             strap2inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
@@ -138,9 +142,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
             && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
         {
-            DropItem();
-            draggedObject.transform.position = new Vector2(-2.0f, -1.65f);
-            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            disableDragableItem(-2.0f, -1.65f);
             sandbag1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
@@ -149,9 +151,7 @@ public class DragAndDropCameraRoom : MonoBehaviour {
            draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
            && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
         {
-            DropItem();
-            draggedObject.transform.position = new Vector2(-2.0f, 1.65f);
-            draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+            disableDragableItem(-2.0f, 1.65f);
             sandbag2inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
 
@@ -162,11 +162,8 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
             if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
             {
-                DropItem();
-                draggedObject.transform.position = new Vector2(6.3f, 0f);
-                draggedObject.GetComponent<BoxCollider2D>().enabled = false;
+                disableDragableItem(6.3f, 0f);
                 camera1inPlace = true;
-                disableHitbox("CameraTop");
             }
 
         }
@@ -176,10 +173,8 @@ public class DragAndDropCameraRoom : MonoBehaviour {
             draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
             if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
             {
-                DropItem();
-                draggedObject.transform.position = new Vector2(6.3f, 0f);
-                draggedObject.GetComponent<BoxCollider2D>().enabled = false;
-                camera1inPlace = true;
+                disableDragableItem(6.3f, 0f);
+                camera2inPlace = true;
                 disableHitbox("CameraBottom");
             }
 
@@ -206,28 +201,28 @@ public class DragAndDropCameraRoom : MonoBehaviour {
         }
     }
 
-	/// <summary>
-	/// returns true when the player is currently
-	/// touching the screen/holding the mouse button
-	/// </summary>
-	private bool HasInput
-	{
-		get
-		{
-			// returns true if either the mouse button is down or at least one touch is felt on the screen
-			return Input.GetMouseButton(0);
-		}
-	}
+    /// <summary>
+    /// returns true when the player is currently
+    /// touching the screen/holding the mouse button
+    /// </summary>
+    private bool HasInput
+    {
+        get
+        {
+            // returns true if either the mouse button is down or at least one touch is felt on the screen
+            return Input.GetMouseButton(0);
+        }
+    }
 
-	/// <summary>
-	/// releases a picked up item
-	/// </summary>
-	void DropItem()
-	{
-		
-		draggingItem = false;
-		//draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
-	}
+    /// <summary>
+    /// releases a picked up item
+    /// </summary>
+    void DropItem()
+    {
+
+        draggingItem = false;
+        //draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
+    }
 
 
 
