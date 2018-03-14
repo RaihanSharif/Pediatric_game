@@ -87,9 +87,13 @@ public class DragAndDropCameraRoom : MonoBehaviour
         {
             if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
             {
-                enableHitbox("Table");
                 enableHitbox("CameraTop");
                 enableHitbox("CameraBottom");
+                
+                if (camera1inPlace && camera2inPlace && !tableInPLace)
+                {
+                    enableHitbox("Table");
+                }
 
             }
 
@@ -116,6 +120,12 @@ public class DragAndDropCameraRoom : MonoBehaviour
         {
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
             GameObject.FindWithTag("Table").transform.position = new Vector2(GameObject.FindWithTag("Table").transform.position.x, 0.0f);
+            if (GameObject.FindWithTag("Table").transform.position.x > 1.5f && GameObject.FindWithTag("Table").transform.position.x < 2.0f)
+            {
+                disableDragableItem(2.1f, 0.0f);
+                disableHitbox("Table");
+                tableInPLace = true;
+            }
         }
         else if
             (draggedObject.name.Equals("Strap1") &&
@@ -163,6 +173,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
             {
                 disableDragableItem(6.3f, 0f);
+                disableHitbox("CameraTop");
                 camera1inPlace = true;
             }
 
