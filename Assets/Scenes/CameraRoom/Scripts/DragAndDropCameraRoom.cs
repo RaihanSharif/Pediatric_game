@@ -17,6 +17,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool camera1inPlace = false;
     private bool camera2inPlace = false;
     private bool tableInPLace = false;
+    private bool zoomToLevel2 = false;
+    private float elapsed = 0.0f;
 
 
 
@@ -44,6 +46,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     /// </summary>
     void Update()
     {
+
         if (HasInput)
         {
             DragOrPickUp();
@@ -52,6 +55,23 @@ public class DragAndDropCameraRoom : MonoBehaviour
         {
             if (draggingItem)
                 DropItem();
+        }
+        if (zoomToLevel2)
+        {
+            cameraZoom();
+
+        }
+    }
+
+    private void cameraZoom()
+    {
+        elapsed += Time.deltaTime;
+        Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);
+        Camera.main.transform.position = new Vector3(Mathf.SmoothStep(0f, 2.1f, elapsed), 0f, -10f);
+
+        if (elapsed > 1.0f)
+        {
+            zoomToLevel2 = false;
         }
     }
 
@@ -85,16 +105,17 @@ public class DragAndDropCameraRoom : MonoBehaviour
         }
         else
         {
-            if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
+            if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace && !camera1inPlace && !camera2inPlace)
             {
                 enableHitbox("CameraTop");
                 enableHitbox("CameraBottom");
                 
-                if (camera1inPlace && camera2inPlace && !tableInPLace)
-                {
-                    enableHitbox("Table");
-                }
+               
 
+            }
+            if (camera1inPlace && camera2inPlace && !tableInPLace)
+            {
+                enableHitbox("Table");
             }
 
             RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
@@ -125,6 +146,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 disableDragableItem(2.1f, 0.0f);
                 disableHitbox("Table");
                 tableInPLace = true;
+                zoomToLevel2 = true;
             }
         }
         else if
