@@ -7,34 +7,22 @@ using UnityEngine.SceneManagement;
 public class WaitingTextImporterReception : MonoBehaviour {
 
 
-    private TextAsset textFile;
+    public TextAsset textFile;
     public string[] textLines;
-    public TextAsset waitingTextFile;
+    //public TextAsset waitingTextFile;
 
     private int currentLine = 0;
     private int endLine = -1;
 
     private Text TextBox;
-
-    private int procedureSelected = 1; //0 = Failed selection, 1 = Reception Dialog
+    public const string DIALOGUEFINISHED = "ARE YOU READY FOR NEW ADVENTURES?";
 
 	// Update is called once per frame
 	void Start () {
 
         //Check for a valid text file
 
-        switch (procedureSelected)
-        {
-            case 0:
-                textFile = null;
-                break;
-
-            case 1:
-                textFile = waitingTextFile;
-                break;
-
-
-        }
+        
         if(textFile != null)
         {
             //Create an array of dialog strings from a supplied newline-seperated text file
@@ -55,13 +43,13 @@ public class WaitingTextImporterReception : MonoBehaviour {
             currentLine++;
             if (currentLine >= endLine && endLine != -1)
             {
-                currentLine = 0;
-                SceneManager.LoadScene(0);
+                //currentLine = 0;
+                TextBox.text = DIALOGUEFINISHED;
             }
         }
             
         //Check and assign text on every frame refresh
-        if (endLine != -1 && TextBox != null && textFile != null)
+        if (endLine != -1 && TextBox != null && textFile != null && currentLine < endLine)
         {
             TextBox.text = textLines[currentLine];
             
