@@ -2,18 +2,43 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class InjectionUnitTest {
 
-	[Test]
-	public void InjectionUnitTestSimplePasses() {
-		// Use the Assert class to test conditions.
+	private void LoadSceneByName(string name){
+
+		SceneManager.LoadScene(name, LoadSceneMode.Single);
 	}
 
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	/// <summary>
+	/// Calls IncreaseProgress method once and checks whether it
+	/// has correctly incremented the value to CreamCurrentProgress
+	/// </summary>
 	[UnityTest]
-	public IEnumerator InjectionUnitTestWithEnumeratorPasses() {
+	public IEnumerator ArmProgressIncrementedOncePasses() {
+		var arm = new GameObject ().AddComponent<Arm> ();
 		yield return null;
+
+		arm.IncreaseProgress (arm.ProgressOffset);
+
+		Assert.AreEqual (arm.CreamCurrentProgress, arm.ProgressOffset);
+	}
+
+	/// <summary>
+	/// Calls IncreaseProgress method twice and checks whether it
+	/// has correctly incremented the value to the max. 
+	/// </summary>
+	/// <returns>The progress incremented twice passes.</returns>
+	[UnityTest]
+	public IEnumerator ArmProgressIncrementedTwicePasses() {
+		var arm = new GameObject ().AddComponent<Arm> ();
+		yield return null;
+
+		arm.IncreaseProgress (arm.ProgressOffset);
+		arm.IncreaseProgress (arm.ProgressOffset);
+
+		Assert.AreEqual (arm.CreamCurrentProgress, arm.CreamMaxProgress);
 	}
 }

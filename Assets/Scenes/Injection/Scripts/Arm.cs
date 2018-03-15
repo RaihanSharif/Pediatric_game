@@ -48,10 +48,10 @@ public class Arm : MonoBehaviour {
 	/// x is pressed
 	/// </summary>
 	/// <param name="progressOffset">the offset by which the current progress is increased</param>
-	void IncreaseProgress(int progressOffset)
+	public void IncreaseProgress(int progressOffset)
 	{
 		CreamCurrentProgress += progressOffset;
-		progressBar.value = CalculateProgress();
+//		progressBar.value = CalculateProgress();
 
 		if (CreamCurrentProgress >= CreamMaxProgress)
 		{

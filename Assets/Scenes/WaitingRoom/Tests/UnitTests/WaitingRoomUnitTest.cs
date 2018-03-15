@@ -17,10 +17,12 @@ public class WaitingRoomUnitTest {
 		// Use the Assert class to test conditions.
 	}
 
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	/// <summary>
+	/// Checks whether the value of the clock in 
+	/// the waiting room is superior to zero
+	/// </summary>
 	[UnityTest]
-	public IEnumerator WaitingRoomUnitTestWithEnumeratorPasses() {
+	public IEnumerator ClockValueSuperiorToZero() {
 		LoadSceneByName("WaitingRoom");
 		yield return null;
 
