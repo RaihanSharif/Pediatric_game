@@ -19,6 +19,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool tableInPLace = false;
     private bool zoomToLevel2 = false;
     private float elapsed = 0.0f;
+    private bool inLevel2 = false; 
 
 
 
@@ -59,7 +60,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (zoomToLevel2)
         {
             cameraZoom();
-
+            
         }
     }
 
@@ -72,6 +73,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (elapsed > 1.0f)
         {
             zoomToLevel2 = false;
+            inLevel2 = true;
         }
     }
 
@@ -117,7 +119,10 @@ public class DragAndDropCameraRoom : MonoBehaviour
             {
                 enableHitbox("Table");
             }
-
+            if (inLevel2)
+            {
+                enableHitbox("CameraTop");
+            }
             RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
             if (touches.Length > 0)
             {
@@ -191,13 +196,21 @@ public class DragAndDropCameraRoom : MonoBehaviour
         else if
             (draggedObject.name.Equals("CameraTop") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
         {
-            draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
-            if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
-            {
-                disableDragableItem(6.3f, 0f);
-                disableHitbox("CameraTop");
-                camera1inPlace = true;
+            if (!inLevel2)
+            { 
+                draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
+                if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
+                {
+                    disableDragableItem(6.3f, 0f);
+                    disableHitbox("CameraTop");
+                    camera1inPlace = true;
+                }
             }
+            else
+            {
+                draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+            }
+           
 
         }
         else if
