@@ -13,7 +13,7 @@ public class RadialProgressBar : MonoBehaviour {
     private LevelFinishedMenu lvlFM;
 
     [SerializeField]
-    private float currentBarAmount = 100f;    
+	public float currentBarAmount = 100f;    
 
     [SerializeField]
     private float speed = 1f;
@@ -26,7 +26,7 @@ public class RadialProgressBar : MonoBehaviour {
         doUpdate();
 	}
 
-    void doUpdate()
+    public void doUpdate()
     {
         if (timeStillRemaining())
         {

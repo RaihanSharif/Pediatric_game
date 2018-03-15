@@ -22,12 +22,6 @@ public class IngKidUnitTest {
 		Assert.AreEqual (false, kid.isMouthOpen);
 	}
 
-	[Test]
-	public void SpriteRendersCorrectlyOpenPasses() {
-//		var kid = new GameObject ().AddComponent<changeFoodOnContact> ();
-		Assert.AreEqual (false, false);
-	}
-
 	/// <summary>
 	/// Makes spoon and food collide, checks
 	/// whether kid's mouth opens as a result.

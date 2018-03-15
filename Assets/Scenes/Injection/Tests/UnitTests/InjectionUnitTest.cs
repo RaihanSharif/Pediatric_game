@@ -14,8 +14,6 @@ public class InjectionUnitTest {
 	// and allows you to yield null to skip a frame in EditMode
 	[UnityTest]
 	public IEnumerator InjectionUnitTestWithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
 		yield return null;
 	}
 }
