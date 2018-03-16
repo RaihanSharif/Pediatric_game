@@ -31,10 +31,10 @@ public class IngKidUnitTest {
 		LoadSceneByName("IngestionKid");
 		yield return null;
 
-		var kid = new GameObject ().AddComponent<changeFoodOnContact> ();
-		// call method to make them collide, not this
-		kid.isMouthOpen = true;
-		// then check whether the kid's mouth opens as a result of the collision
-		Assert.AreEqual(true, kid.isMouthOpen);
+
+		var play = GameObject.FindGameObjectWithTag("Spoon");
+		play.transform.position = new Vector3(-3.87f, 0.37f, 0f);
+
+		Assert.AreEqual ("spoon", play.name);
 	}
 }
