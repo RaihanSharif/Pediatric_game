@@ -32,9 +32,12 @@ public class IngKidUnitTest {
 		yield return null;
 
 
-		var play = GameObject.FindGameObjectWithTag("Spoon");
-		play.transform.position = new Vector3(-3.87f, 0.37f, 0f);
+		var spoon = GameObject.FindGameObjectWithTag("Spoon");
+		spoon.transform.position = new Vector3(-3.87f, 0.37f, 0f);
+//		yield return new WaitForSeconds (10);
+		var food = GameObject.Find ("food");
+		var script = food.GetComponent<changeFoodOnContact> ();
 
-		Assert.AreEqual ("spoon", play.name);
+		Assert.AreEqual (false, script.isMouthOpen);
 	}
 }
