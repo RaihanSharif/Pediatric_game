@@ -37,6 +37,7 @@ public class EventManager : MonoBehaviour {
 			chosenScene = "CremeApplication";
 		}
 	}
+		
 
 	//Sets age flag, checks if procedure has been selected and if yes loads appropriate level 
 	public void kidButtonPressed(){
