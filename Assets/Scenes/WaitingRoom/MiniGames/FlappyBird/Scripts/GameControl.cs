@@ -12,6 +12,8 @@ public class GameControl : MonoBehaviour
 	private int score = 0;						//The player's score.
 	public bool gameOver = false;				//Is the game over?
 	public float scrollSpeed = -1.5f;
+	public GameObject restartObject;
+	public GameObject moveToNextSceneObject;
 
 
 	void Awake()
@@ -26,13 +28,17 @@ public class GameControl : MonoBehaviour
 			Destroy (gameObject);
 	}
 
+
 	void Update()
 	{
 		//If the game is over and the player has pressed some input...
-		if (gameOver && Input.GetMouseButtonDown(0)) 
+		if (gameOver) 
 		{
+			restartObject.SetActive(true);
+			moveToNextSceneObject.SetActive(true);
+
 			//...reload the current scene.
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 

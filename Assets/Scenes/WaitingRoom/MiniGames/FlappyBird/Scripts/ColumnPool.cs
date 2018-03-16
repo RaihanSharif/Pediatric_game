@@ -4,10 +4,10 @@ using System.Collections;
 public class ColumnPool : MonoBehaviour 
 {
 	public GameObject columnPrefab;									//The column game object.
-	public int columnPoolSize = 5;									//How many columns to keep on standby.
+	public int columnPoolSize = 10;									//How many columns to keep on standby.
 	public float spawnRate = 3f;									//How quickly columns spawn.
 	public float columnMin = -1f;									//Minimum y value of the column position.
-	public float columnMax = 3.5f;									//Maximum y value of the column position.
+	public float columnMax = 3f;									//Maximum y value of the column position.
 
 	private GameObject[] columns;									//Collection of pooled columns.
 	private int currentColumn = 0;									//Index of the current column in the collection.
@@ -38,7 +38,7 @@ public class ColumnPool : MonoBehaviour
 	{
 		timeSinceLastSpawned += Time.deltaTime;
 
-		if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate) 
+		if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate/2) 
 		{	
 			timeSinceLastSpawned = 0f;
 
