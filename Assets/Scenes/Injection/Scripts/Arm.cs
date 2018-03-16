@@ -13,6 +13,7 @@ public class Arm : MonoBehaviour {
 	public Slider progressBar;
 	public CameraZoom cameraZoom;
 	public bool callZoomOnce = false;
+	public Sprite motherAndChildSmiling;
 
 	public AudioCremeApplication theAudio;
 
@@ -30,13 +31,15 @@ public class Arm : MonoBehaviour {
 		if (completed == true) {
 			timeCounter += Time.deltaTime;
 
-			if (timeCounter > 3.0) {
+			if (timeCounter > 5) {
 				fadeOut.SetTrigger ("fadeOutEnd");
-			}else if (callZoomOnce == false){
+			}else if (callZoomOnce == false && timeCounter > 1.5){
 				Debug.Log(" zoom call");
 				cameraZoom.zoomOut();
-				theAudio.MusicSource.Play();
+				theAudio.playSuccess();
 				callZoomOnce = true;
+				this.GetComponent<SpriteRenderer> ().sprite = motherAndChildSmiling;
+
 			}
 		}
 
