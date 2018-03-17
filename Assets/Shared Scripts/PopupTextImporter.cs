@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CameraTextImporter : GenericTextImporter {
+public class PopupTextImporter : GenericTextImporter {
 
 	void Start () {
 
