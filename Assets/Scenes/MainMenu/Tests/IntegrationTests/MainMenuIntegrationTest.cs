@@ -17,7 +17,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.babyButtonPressed ();
 		manager.ingestionButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "IngestionBaby");
+		Assert.AreEqual(EventManager.chosenScene, "IngestionBaby");
 		yield return null;
 	}
 
@@ -32,7 +32,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.ingestionButtonPressed ();
 		manager.babyButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "IngestionBaby");
+		Assert.AreEqual(EventManager.chosenScene, "IngestionBaby");
 		yield return null;
 	}
 
@@ -47,7 +47,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.kidButtonPressed ();
 		manager.ingestionButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "IngestionKid");
+		Assert.AreEqual(EventManager.chosenScene, "IngestionKid");
 		yield return null;
 	}
 
@@ -62,7 +62,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.ingestionButtonPressed ();
 		manager.kidButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "IngestionKid");
+		Assert.AreEqual(EventManager.chosenScene, "IngestionKid");
 		yield return null;
 	}
 
@@ -77,7 +77,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.babyButtonPressed ();
 		manager.injectionButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "CremeApplication");
+		Assert.AreEqual(EventManager.chosenScene, "CremeApplication");
 		yield return null;
 	}
 
@@ -92,7 +92,7 @@ public class MainMenuIntegrationTest {
 		var manager = new GameObject().AddComponent<EventManager>();
 		manager.injectionButtonPressed ();
 		manager.babyButtonPressed ();
-		Assert.AreEqual(manager.chosenScene, "CremeApplication");
+		Assert.AreEqual(EventManager.chosenScene, "CremeApplication");
 		yield return null;
 	}
 

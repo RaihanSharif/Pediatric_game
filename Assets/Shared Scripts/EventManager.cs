@@ -17,7 +17,7 @@ public class EventManager : MonoBehaviour {
 	public const int KID = 2;
 	//Flag for selecting the age
 	private int ageSelected;
-	public string chosenScene;
+	public static string chosenScene;
 
 	//Loads a scene with a specific name
 	public void LoadSceneByName(string name){

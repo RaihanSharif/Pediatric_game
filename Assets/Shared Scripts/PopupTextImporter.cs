@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PopupTextImporter : GenericTextImporter {
 
-	void Start () {
+	protected void Start () {
 
         //Check for a valid text file
 
@@ -14,11 +14,7 @@ public class PopupTextImporter : GenericTextImporter {
         if(textFile != null && nextDialogButton != null && dialogBox != null)
         {
 
-            //Assign TextBox to the text component of this game object and assign nextDialogButton to a child button and give it a on click action listener
-            //TextBox = this.gameObject.GetComponent<Text>();
-            //nextDialogButton = GameObject.FindGameObjectWithTag("NextButton").GetComponent<Button>();
             nextDialogButton.onClick.AddListener(PopUpNextLine);
-            //dialogBox = GameObject.FindGameObjectWithTag("DialogBox");
             dialogBox.SetActive(false);
         }
 
@@ -27,7 +23,7 @@ public class PopupTextImporter : GenericTextImporter {
     /***Increments Currentline, thusly scrolling through a supplied dialog text file
      */
 
-    void Update()
+    protected void Update()
     {
         //Check and assign text on every frame refresh
         if(endLine != -1 && textBox != null && textFile != null)
