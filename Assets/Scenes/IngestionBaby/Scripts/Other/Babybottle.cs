@@ -18,6 +18,9 @@ public class Babybottle : MonoBehaviour {
     public BubbleClick BubbleClickScript;
     public ArrowClass arrowClass;
 
+    [SerializeField]
+    private LevelFinishedMenu lvlFM;
+
 
     void Start(){
 
@@ -29,6 +32,9 @@ public class Babybottle : MonoBehaviour {
     void Update()
     {
         changeSprite();
+        if (gameWon){
+            lvlFM.OnLevelFinished();
+        }
     }
 
     void playSound()

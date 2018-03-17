@@ -9,7 +9,8 @@ public class LevelFinishedMenu : MonoBehaviour {
 	public static bool isFinished = false;
 
 	//Reference to the menu panel that will have to be toggled 
-	public GameObject levelFinishedMenuUI;
+	[SerializeField]
+	private GameObject levelFinishedMenuUI;
 
 	//Constant for the scene number of the main menu
 	public const string MENUSCENE = "MainMenu";
