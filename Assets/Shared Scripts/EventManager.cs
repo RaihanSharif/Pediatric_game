@@ -75,10 +75,8 @@ public class EventManager : MonoBehaviour {
 	
 	public void injectionButtonPressed(){
 		procedureSelected = INJECTION;
-		if (ageSelected == BABY  || ageSelected == KID){
-			LoadSceneByName("ProcedureExplanation");
-			chosenScene = "CremeApplication";
-		}
+		LoadSceneByName("ProcedureExplanation");
+		chosenScene = "CremeApplication";
 		
 	}
 
