@@ -8,20 +8,26 @@ public class GenericTextImporter : MonoBehaviour {
 
     //Reference to the text file in Unity inspector
     [SerializeField]
-    private TextAsset textFile;
+    protected TextAsset textFile;
 
     //Array to load dialogue lines into
-    private string[] textLines;
+    protected string[] textLines;
    
     //Indices to keep track of line indes
-    private int currentLine = 0;
-    private int endLine = -1;
+    protected int currentLine = 0;
+    protected int endLine = -1;
 
     //Reference to the component in the scene. Drag an drop from inspector
     [SerializeField]
-    private Text textBox;
+    protected Text textBox;
+
+    [SerializeField]
+    protected Button nextDialogButton;
+    
+    [SerializeField]
+    protected GameObject dialogBox;
 	
-	void Start() {
+	protected void Start() {
 
         //Check for a valid text file
        
@@ -36,19 +42,39 @@ public class GenericTextImporter : MonoBehaviour {
     }
 
 
-    void Update()
+    protected void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            currentLine++;
-            if (currentLine >= endLine && endLine != -1)
-            {
-
-                textBox.text = textLines[endLine-1];
-            }
+          SimpleNextLine();
         }
             
         //Check and assign text on every frame refresh
+        CheckAssignOnRefresh();
+        
+    }
+
+    protected void SimpleNextLine(){
+
+         currentLine++;
+            if (currentLine >= endLine && endLine != -1)
+            {
+                textBox.text = textLines[endLine-1];
+            }
+    }
+
+    protected void PopUpNextLine(){
+        
+        currentLine++;
+        if (currentLine >= endLine && endLine != -1)
+        {
+            currentLine = 0;
+            dialogBox.SetActive(true);
+            nextDialogButton.gameObject.SetActive(false);
+        }
+    }
+
+    protected void CheckAssignOnRefresh(){
         if (endLine != -1 && textBox != null && textFile != null && currentLine < endLine)
         {
             textBox.text = textLines[currentLine];
