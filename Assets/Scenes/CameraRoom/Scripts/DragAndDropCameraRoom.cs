@@ -69,6 +69,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
         elapsed += Time.deltaTime;
         Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);
         Camera.main.transform.position = new Vector3(Mathf.SmoothStep(0f, 2.1f, elapsed), 0f, -10f);
+        GameObject.FindGameObjectWithTag("CameraTop").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, elapsed));
+
 
         if (elapsed > 1.0f)
         {
