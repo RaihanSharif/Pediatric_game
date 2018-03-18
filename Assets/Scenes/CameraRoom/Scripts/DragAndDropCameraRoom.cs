@@ -19,7 +19,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool tableInPLace = false;
     private bool zoomToLevel2 = false;
     private float elapsed = 0.0f;
-    private bool inLevel2 = false; 
+    private bool inLevel2 = false;
+    public int score = 0;
 
 
 
@@ -37,6 +38,24 @@ public class DragAndDropCameraRoom : MonoBehaviour
     void enableHitbox(string name)
     {
         GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    void cameraOverTarget()
+    {
+        float x = GameObject.FindGameObjectWithTag("CameraTop").transform.position.x;
+        if (x <= 3 && x >= 0.2)
+        {
+            score++;
+        }
+        else
+        {
+            score++;
+        }
+    }
+
+    void gameCleared()
+    {
+
     }
 
 
@@ -60,7 +79,19 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (zoomToLevel2)
         {
             cameraZoom();
-            
+        }
+
+        if (score >= 100)
+        {
+            gameCleared();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (inLevel2)
+        {
+            cameraOverTarget();
         }
     }
 
