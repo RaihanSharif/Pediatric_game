@@ -10,6 +10,7 @@ public class InjectionUnitTest {
 	private void LoadSceneByName(string name){
 
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
+
 	}
 
 	/// <summary>
@@ -18,12 +19,7 @@ public class InjectionUnitTest {
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedOncePasses() {
-		var arm = new GameObject ().AddComponent<Arm> ();
 		yield return null;
-
-		arm.IncreaseProgress (arm.ProgressOffset);
-
-		Assert.AreEqual (arm.CreamCurrentProgress, arm.ProgressOffset);
 	}
 
 	/// <summary>
@@ -33,12 +29,6 @@ public class InjectionUnitTest {
 	/// <returns>The progress incremented twice passes.</returns>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedTwicePasses() {
-		var arm = new GameObject ().AddComponent<Arm> ();
 		yield return null;
-
-		arm.IncreaseProgress (arm.ProgressOffset);
-		arm.IncreaseProgress (arm.ProgressOffset);
-
-		Assert.AreEqual (arm.CreamCurrentProgress, arm.CreamMaxProgress);
 	}
 }

@@ -17,6 +17,8 @@ public class CremeSpotCollision : MonoBehaviour {
 	public Sprite spriteToRenderWhenExit; // when the injection is done, we replace the empty syringe with the filled one  
 
 	public AudioCremeApplication theAudio;
+	private int cremeCounter = 0;
+
 
 
 
@@ -59,6 +61,7 @@ public class CremeSpotCollision : MonoBehaviour {
 	/// <param name="theStar">star for which animation will be triggered</param>
 	void injectionIsDone(Smiley theSmiley){
 
+		theAudio.playSuccessForInjectionSpot();
 		timeCounter = 0.0f;// reset the time counter
 		arm.startProcess ();// update the slider
 		this.GetComponent<SpriteRenderer>().enabled = false; // make the creme spot disappear
@@ -92,7 +95,8 @@ public class CremeSpotCollision : MonoBehaviour {
 
 		}else if (other.GetType () == typeof(PolygonCollider2D) && other.tag == "CremeTube") { // if the creme spot is in collision with a polygon collider (syringe needle)
 
-			//theAudio.MusicSource.Play();
+			playCremeSound();
+			cremeCounter++;
 
 			cremeTube.GetComponent<Animator> ().enabled = true;
 			cremeTube.GetComponent<SpriteRenderer> ().sprite = cremeTube.openCremeTube;
@@ -110,6 +114,13 @@ public class CremeSpotCollision : MonoBehaviour {
 			//cremeTube.GetComponent<Animator>().enabled = true;
 
 
+		}
+	}
+
+
+	public void playCremeSound(){
+		if (cremeCounter % 120 == 0) {
+			theAudio.playCremeOnSpot();
 		}
 	}
 
@@ -136,7 +147,7 @@ public class CremeSpotCollision : MonoBehaviour {
 
 
 			//cremeTube.GetComponent<SpriteRenderer> ().sprite = cremeTube.closedCremeTube;
-			this.GetComponent<SpriteRenderer>().color = Color.grey;
+			//this.GetComponent<SpriteRenderer>().color = Color.grey;
 			this.GetComponent<Animator>().Play("Idle");
 			//this.GetComponent<Animator> ().ResetTrigger("makeItWhite");
 			cremeTube.GetComponent<Animator>().enabled = false;
@@ -149,7 +160,7 @@ public class CremeSpotCollision : MonoBehaviour {
 	void finishCremeApplication(){
 
 		
-
+		theAudio.playCremeSpotBecomesWhite();
 		this.GetComponent<Animator>().enabled = false;
 		this.GetComponent<PolygonCollider2D>().enabled = false;
 		cremeTube.GetComponent<BoxCollider2D> ().enabled = true;
