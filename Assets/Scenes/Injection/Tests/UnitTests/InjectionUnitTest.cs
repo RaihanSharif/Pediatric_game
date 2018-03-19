@@ -10,6 +10,7 @@ public class InjectionUnitTest {
 	private void LoadSceneByName(string name){
 
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
+
 	}
 
 	/// <summary>
