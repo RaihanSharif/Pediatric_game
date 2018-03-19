@@ -17,7 +17,7 @@ public class EventManager : MonoBehaviour {
 	public const int KID = 2;
 	//Flag for selecting the age
 	private int ageSelected;
-	public string chosenScene;
+	public static string chosenScene;
 
 	//Loads a scene with a specific name
 	public void LoadSceneByName(string name){
@@ -25,15 +25,21 @@ public class EventManager : MonoBehaviour {
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
 	}
 
+	//Loads the scene chosen in the main menu
+	public void LoadChosenScene(){
+
+		SceneManager.LoadScene(chosenScene, LoadSceneMode.Single);
+	}
+
 	//Sets age flag, checks if procedure has been selected and if yes loads appropriate level 
 	public void babyButtonPressed(){
 		ageSelected = BABY;
 		if (procedureSelected == INGESTION){
-			LoadSceneByName("IngestionBaby");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "IngestionBaby";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("CremeApplication");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "CremeApplication";
 		}
 	}
@@ -43,11 +49,11 @@ public class EventManager : MonoBehaviour {
 	public void kidButtonPressed(){
 		ageSelected = KID;
 		if (procedureSelected == INGESTION){
-			LoadSceneByName("IngestionKid");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "IngestionKid";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("CremeApplication");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "CremeApplication";
 		}
 		
@@ -57,11 +63,11 @@ public class EventManager : MonoBehaviour {
 	public void ingestionButtonPressed(){
 		procedureSelected = INGESTION;
 		if (ageSelected == BABY){
-			LoadSceneByName("IngestionBaby");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "IngestionBaby";
 		}
 		if (ageSelected == KID){
-			LoadSceneByName("IngestionKid");
+			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "IngestionKid";
 		}
 	}
@@ -70,10 +76,8 @@ public class EventManager : MonoBehaviour {
 	
 	public void injectionButtonPressed(){
 		procedureSelected = INJECTION;
-		if (ageSelected == BABY  || ageSelected == KID){
-			LoadSceneByName("CremeApplication");
-			chosenScene = "CremeApplication";
-		}
+		LoadSceneByName("ProcedureExplanation");
+		chosenScene = "CremeApplication";
 		
 	}
 
