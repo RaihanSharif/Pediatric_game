@@ -20,14 +20,20 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool zoomToLevel2 = false;
     private float elapsed = 0.0f;
     private bool inLevel2 = false;
-    public int score = 0;
+    private bool levelOver = false;
+    private int score = 0;
 
 
 
 
     void Start()
     {
+        makeTargetRed();
+    }
 
+    void makeTargetRed()
+    {
+        GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
     }
 
     void disableHitbox(string name)
@@ -46,16 +52,13 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (x <= 3 && x >= 0.2)
         {
             score++;
+            float targetR = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.r;
+            float targetG = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.g;
+            if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
+            {
+                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.005f, targetG + 0.005f, 0, 1);
+            }
         }
-        else
-        {
-            score++;
-        }
-    }
-
-    void gameCleared()
-    {
-
     }
 
 
@@ -81,9 +84,9 @@ public class DragAndDropCameraRoom : MonoBehaviour
             cameraZoom();
         }
 
-        if (score >= 100)
+        if (score >= 200 && !levelOver)
         {
-            gameCleared();
+            levelCleared();
         }
     }
 
@@ -107,6 +110,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         {
             zoomToLevel2 = false;
             inLevel2 = true;
+            elapsed = 0f;
         }
     }
 
@@ -305,4 +309,9 @@ public class DragAndDropCameraRoom : MonoBehaviour
 
 
 
+    void levelCleared()
+    {
+        levelOver = true; //Signals to the script that the game has ended
+        //TODO: Alex's transition work
+    }
 }
