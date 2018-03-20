@@ -11,7 +11,6 @@ public class Fading : MonoBehaviour {
 
 	public void moveToNextScene(){
 		if (SceneManager.GetActiveScene ().name == "CremeApplication") {
-			//Application.LoadLevel(9);
             SceneManager.LoadScene("InjectionBaby", LoadSceneMode.Single);
 
         }
