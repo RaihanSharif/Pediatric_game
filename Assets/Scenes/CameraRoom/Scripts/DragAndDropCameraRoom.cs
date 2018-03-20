@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class DragAndDropCameraRoom : MonoBehaviour
 {
-
-    private bool draggingItem = false; //whether the player is currently dragging an item
-    private GameObject draggedObject;  //holds a reference to an object being dragged
-    private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
-    private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
     private bool strap1inPlace = false;
     private bool strap2inPlace = false;
     private bool sandbag1inPlace = false;
@@ -18,10 +13,15 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool camera2inPlace = false;
     private bool tableInPLace = false;
     private bool zoomToLevel2 = false;
-    private float elapsed = 0.0f;
     private bool inLevel2 = false;
     private bool levelOver = false;
+    private bool draggingItem = false; //whether the player is currently dragging an item
+    private GameObject draggedObject;  //holds a reference to an object being dragged
+    private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
+    private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
+
     private int score = 0;
+    private float elapsed = 0.0f;
 
 
 
@@ -148,8 +148,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
             {
                 enableHitbox("CameraTop");
                 enableHitbox("CameraBottom");
-                
-               
+
+
 
             }
             if (camera1inPlace && camera2inPlace && !tableInPLace)
@@ -177,7 +177,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         draggedObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    void clickIntoPlace()
+   public void clickIntoPlace()
     {
         if (draggedObject.name.Equals("Table"))
         {
@@ -234,7 +234,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             (draggedObject.name.Equals("CameraTop") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
         {
             if (!inLevel2)
-            { 
+            {
                 draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
                 if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
                 {
@@ -247,7 +247,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             {
                 draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
             }
-           
+
 
         }
         else if
@@ -307,6 +307,60 @@ public class DragAndDropCameraRoom : MonoBehaviour
         //draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
+    public void setDraggedObject(GameObject draggedComponent)
+    {
+        draggedObject = draggedComponent;
+    }
+
+    #region
+    /// <summary>
+    /// Getters for all booleans, for testing
+    /// </summary>
+    public bool getstrap1inPlace()
+    {
+        return strap1inPlace;
+    }
+    public bool getstrap2inPlace()
+    {
+        return strap2inPlace;
+    }
+    public bool getsandbag1inPlace()
+    {
+        return sandbag1inPlace;
+    }
+    public bool getsandbag2inPlace()
+    {
+        return sandbag2inPlace;
+    }
+    public bool getcamera1inPlace()
+    {
+        return camera1inPlace;
+    }
+    public bool getcamera2inPlace()
+    {
+        return camera2inPlace;
+    }
+    public bool gettableInPLace()
+    {
+        return tableInPLace;
+    }
+    public bool getzoomToLevel2()
+    {
+        return zoomToLevel2;
+    }
+    public bool getinLevel2()
+    {
+        return inLevel2;
+    }
+    public bool getlevelOver()
+    {
+        return levelOver;
+    }
+    public bool getdraggingItem()
+    {
+        return draggingItem;
+    }
+    #endregion
 
 
     void levelCleared()
