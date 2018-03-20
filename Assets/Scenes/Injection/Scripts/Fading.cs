@@ -11,12 +11,13 @@ public class Fading : MonoBehaviour {
 
 	public void moveToNextScene(){
 		if (SceneManager.GetActiveScene ().name == "CremeApplication") {
-			Application.LoadLevel(9);
+            SceneManager.LoadScene("InjectionBaby", LoadSceneMode.Single);
 
-		}else if(SceneManager.GetActiveScene ().name == "InjectionBaby"){
-			Application.LoadLevel(10);
+        }
+        else if(SceneManager.GetActiveScene ().name == "InjectionBaby"){
+            SceneManager.LoadScene("BabyInjectionGameCompleted", LoadSceneMode.Single);
 
-		}
+        }
 
-	}
+    }
 }
