@@ -312,6 +312,16 @@ public class DragAndDropCameraRoom : MonoBehaviour
         draggedObject = draggedComponent;
     }
 
+    public void setSandbag1(bool setBool)
+    {
+        sandbag1inPlace = setBool;
+    }
+
+    public void setSandbag2(bool setBool)
+    {
+        sandbag2inPlace = setBool;
+    }
+
     #region
     /// <summary>
     /// Getters for all booleans, for testing

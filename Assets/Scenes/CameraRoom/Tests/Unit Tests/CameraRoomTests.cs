@@ -62,4 +62,51 @@ public class CameraRoomUnitTests
 
     }
 
+
+    [UnityTest]
+    public IEnumerator PositionOfStrap1()
+    {
+        // Use the Assert class to test conditions.
+        // yield to skip a frame
+
+        findScene("CameraRoom");
+        yield return null;
+        var strap1 = GameObject.FindGameObjectWithTag(tags[0]);
+        strap1.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[0]));
+        strap1.transform.position = new Vector2(-4, 0.2f);
+        yield return null;
+        yield return new WaitForSeconds(1);
+        var testingScript = strap1.GetComponent<DragAndDropCameraRoom>();
+        testingScript.setSandbag1(true);
+        testingScript.setSandbag2(true);
+        testingScript.clickIntoPlace();
+        yield return new WaitForSeconds(1);
+        var testStrap1 = strap1.GetComponent<DragAndDropCameraRoom>().getstrap1inPlace();
+        Assert.AreEqual(testStrap1, true);
+
+    }
+
+    [UnityTest]
+    public IEnumerator PositionOfStrap2()
+    {
+        // Use the Assert class to test conditions.
+        // yield to skip a frame
+
+        findScene("CameraRoom");
+        yield return null;
+        var strap2 = GameObject.FindGameObjectWithTag(tags[1]);
+        strap2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[1]));
+        strap2.transform.position = new Vector2(0f, 0.2f);
+        yield return null;
+        yield return new WaitForSeconds(1);
+        var testingScript = strap2.GetComponent<DragAndDropCameraRoom>();
+        testingScript.setSandbag1(true);
+        testingScript.setSandbag2(true);
+        testingScript.clickIntoPlace();
+        yield return new WaitForSeconds(1);
+        var testStrap2 = strap2.GetComponent<DragAndDropCameraRoom>().getstrap2inPlace();
+        Assert.AreEqual(testStrap2, true);
+
+    }
+
 }
