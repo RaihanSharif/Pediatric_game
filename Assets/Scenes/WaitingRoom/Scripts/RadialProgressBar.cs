@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class RadialProgressBar : MonoBehaviour {
     public Transform LoadingBar;    //variable for filling loading bar
-    public Transform TextIndicator; //shows text in the center of the loading bar
     public Transform TextTimeLeft;   //represents the "TimeLeft..." text in the center
     public Image loadingBarImage;   //image of the loading bar in the canvas   
 
@@ -17,12 +16,17 @@ public class RadialProgressBar : MonoBehaviour {
 
     [SerializeField]
     private float speed = 1f;
+    private float MaxBarAmount = 100f;
 
     private int MINIMUMVALUE = 0;  //ending time for gauge
-    private int REDZONEVALUE = 40;   //time below which loading bar becomes red
+    private int REDZONEVALUE = 60;   //time below which loading bar becomes red
+    private int DECREASEBARAMOUNT = 34;
 
-	// Update is called once per frame
-	void Update () {
+    [SerializeField]
+    private bool decreaseBar = false;
+
+    // Update is called once per frame
+    void Update () {
         doUpdate();
 	}
 
@@ -30,22 +34,25 @@ public class RadialProgressBar : MonoBehaviour {
     {
         if (timeStillRemaining())
         {
-            if (inRedZone()) {
-                changeLoadingBarColorToRed();
-                decrementCurrentBarAmountBySpeed();
-                displayCurrentTimeAmountOnGauge();
-            } else
+            if (decreaseBar)
             {
-                decrementCurrentBarAmountBySpeed();
-                displayCurrentTimeAmountOnGauge();
+                if (inRedZone())
+                {
+                    changeLoadingBarColorToRed();
+                    decrementCurrentBarAmountBySpeed();
+                }
+                else
+                {
+                    decrementCurrentBarAmountBySpeed();
+                }
             }
-        } else
+            updateLoadingBar();
+        }
+        else
         {
-            displayDoneTextOnGauge();
             lvlFM.OnLevelFinished();
         }
 
-        updateLoadingBar();
     }
 
     #region MethodsUsedInDoUpdate
@@ -56,7 +63,8 @@ public class RadialProgressBar : MonoBehaviour {
     /// </summary>
     void decrementCurrentBarAmountBySpeed()
     {
-        currentBarAmount -= speed * Time.deltaTime;
+        currentBarAmount -= DECREASEBARAMOUNT;
+        decreaseBar = false;
     }
     
     /// <summary>
@@ -64,21 +72,22 @@ public class RadialProgressBar : MonoBehaviour {
     /// value to a string and then setting the TextLoading 
     /// Game object to true
     /// </summary>
-    void displayCurrentTimeAmountOnGauge()
+    /*void displayCurrentTimeAmountOnGauge()
     {
         TextIndicator.GetComponent<Text>().text = ((int)currentBarAmount).ToString() + "s";
         TextTimeLeft.gameObject.SetActive(true);
-    } 
+    } */
 
     /// <summary>
     /// set the loading text on the gauge to be false 
     /// and get the TextIndecator Transform to display the done text
     /// </summary>
-    void displayDoneTextOnGauge()
+   /* void displayDoneTextOnGauge()
     {
         TextTimeLeft.gameObject.SetActive(false);
         TextIndicator.GetComponent<Text>().text = "DONE!";
     }
+    */
 
     void updateLoadingBar()
     {
@@ -93,7 +102,7 @@ public class RadialProgressBar : MonoBehaviour {
 
     bool inRedZone()
     {
-        return currentBarAmount < REDZONEVALUE;
+        return currentBarAmount <= REDZONEVALUE;
     }
 
     bool timeStillRemaining()
