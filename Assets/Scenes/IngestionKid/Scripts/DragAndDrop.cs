@@ -11,7 +11,7 @@ public class DragAndDrop : MonoBehaviour {
 	// TODO: to be finished
     Animator anim; //Animator for the spoon
     public GameObject food; //Reference to the food
-    Animator spoonAnimation; //What's the fucking difference? Will se when we merge
+    Animator spoonAnimation; //What's the fucking difference? Will see when we merge
     public Sprite fullSpoon, emptySpoon; //References to the full and empty spoon images to render
     public GameObject kid; // Reference to the kid object
     private bool isRotated = false;

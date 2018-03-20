@@ -39,7 +39,11 @@ public class IngKidIntegrationTest {
 		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 	}
 
-
+	/// <summary>
+	/// Integration test that checks whether we can script the 
+	/// completion of the scene and move along to the main menu
+	/// </summary>
+	/// <returns>The eats all and moves to main menu passes.</returns>
 	[UnityTest]
 	public IEnumerator KidEatsAllAndMovesToMainMenuPasses() {
 		LoadSceneByName ("IngestionKid");
