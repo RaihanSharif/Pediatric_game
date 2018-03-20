@@ -307,6 +307,10 @@ public class DragAndDropCameraRoom : MonoBehaviour
         //draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
+    /// <summary>
+    /// Setters for booleans, for testing purposes
+    /// </summary>
+    #region
     public void setDraggedObject(GameObject draggedComponent)
     {
         draggedObject = draggedComponent;
@@ -322,10 +326,33 @@ public class DragAndDropCameraRoom : MonoBehaviour
         sandbag2inPlace = setBool;
     }
 
-    #region
+    public void setStrap1(bool setBool)
+    {
+        strap1inPlace = setBool;
+    }
+
+    public void setStrap2(bool setBool)
+    {
+        strap2inPlace = setBool;
+    }
+
+    public void setCameraTop(bool setBool)
+    {
+        camera1inPlace = setBool;
+    }
+
+    public void setCameraBottom(bool setBool)
+    {
+        camera2inPlace = setBool;
+    }
+
+
+    #endregion
+
     /// <summary>
-    /// Getters for all booleans, for testing
+    /// Getters for booleans, for testing purposes
     /// </summary>
+    #region
     public bool getstrap1inPlace()
     {
         return strap1inPlace;
