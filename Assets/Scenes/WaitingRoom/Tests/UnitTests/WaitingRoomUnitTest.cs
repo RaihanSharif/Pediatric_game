@@ -17,41 +17,42 @@ public class WaitingRoomUnitTest {
 	public void WaitingRoomUnitTestSimplePasses() {
 		// Use the Assert class to test conditions.
 	}
-    
+
     /// <summary>
     /// Check if the finish menu bar apprears if the 
     /// progress bar value goes to 0 and the finished
     /// menu pops up
     /// </summary>
-	[UnityTest]
-	public IEnumerator TimeGaugeUnitTestToPassIfProgressBarValueGoesTo0AndDisplaysFinishMenu() {
+    [UnityTest]
+    public IEnumerator TimeGaugeUnitTestToPassIfProgressBarValueGoesTo0AndDisplaysFinishMenu() {
         LoadSceneByName("WaitingRoom");
         yield return null;
-
-        GameObject menu = GameObject.Find("LevelFinishedMenu");
-        menu.SetActive(false);
 
         RadialProgressBar progressBarScript = GameObject.Find("RadialProgressBar").GetComponent<RadialProgressBar>();
 
         progressBarScript.setCurrentBarValue(10);
-        //yield return new WaitForSeconds(3);
-
-        //bool menuActiveState = GameObject.Find("LevelFinishedMenu").activeSelf;
+        yield return new WaitForSeconds(2);
 
         progressBarScript.setDecreaseBar(true);
-        //yield return new WaitForSeconds(4);
 
-        Assert.AreEqual(true, menu.activeSelf);
+        GameObject gameFinishMenu = GameObject.Find("LevelFinishedMenu");
+        GameObject blurPanel = gameFinishMenu.transform.Find("BlurPanel").gameObject;
+
+        if (blurPanel.activeSelf) {
+            Assert.AreEqual(true, blurPanel.activeSelf);
+        }
 	}
 
+    /// <summary>
+    /// Check if the progress bar does not finish,
+    /// the blur panel state should return a false
+    /// </summary>
+    /// <returns></returns>
     [UnityTest]
     public IEnumerator TestToPassIfFinishMenuNotDesplayedIfTimeStillRemaining()
     {
          LoadSceneByName("WaitingRoom");
          yield return null;
-
-         GameObject menu = GameObject.Find("LevelFinishedMenu");
-         menu.SetActive(false);
 
          RadialProgressBar progressBarScript = GameObject.Find("RadialProgressBar").GetComponent<RadialProgressBar>();
 
@@ -59,6 +60,10 @@ public class WaitingRoomUnitTest {
 
          progressBarScript.setDecreaseBar(true);
 
-         Assert.AreNotEqual(true, menu.activeSelf);
+        GameObject gameFinishMenu = GameObject.Find("LevelFinishedMenu");
+        GameObject blurPanel = gameFinishMenu.transform.Find("BlurPanel").gameObject;
+        bool blurPanelState = blurPanel.activeSelf;
+
+        Assert.AreNotEqual(true, blurPanelState);
     }
 }
