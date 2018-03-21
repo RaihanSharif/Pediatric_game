@@ -14,10 +14,18 @@ public class GameManager : MonoBehaviour
     private bool _init = false;
     private int _matches = 6;
 
+    public bool finishedTutorial;
+
+    void Start()
+    {
+        cards[0].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+    }
+
     void Update()
     {
         if (!_init) { initializeCards(); }
-        if (Input.GetMouseButtonUp(0)) checkCards();
+        if (Input.GetMouseButtonUp(0))
+            checkCards();
     }
 
     void initializeCards()
@@ -58,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     void checkCards()
     {
+
         List<int> c = new List<int>();
         for (int i = 0; i < cards.Length; i++)
         {
@@ -87,5 +96,24 @@ public class GameManager : MonoBehaviour
         { cards[c[i]].GetComponent<Card>().state = x;
             cards[c[i]].GetComponent<Card>().falseCheck();
         }
+    }
+
+    public int getIndexOfMatchingFirstCard(string cardSpriteName)
+    {
+        int index = 0;
+        Debug.Log("passed value: " + cardSpriteName);
+
+        foreach (GameObject card in cards)
+        {
+            index++;
+            Debug.Log("card sprite name: " + card.GetComponent<Image>().sprite.name + " ,at index: " + index);
+            if (card.GetComponent<Image>().sprite.name == cardSpriteName && index != 1)
+            {
+                break;
+            }
+        }
+
+        Debug.Log("this is i : " + index);
+        return index;
     }
 }

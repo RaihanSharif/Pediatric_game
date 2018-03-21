@@ -17,10 +17,18 @@ public class Card : MonoBehaviour
 
     private GameObject _manager;
 
+    [SerializeField]
+    private GameManager gameManagerScript;
+
+    private bool firstCardClicked;
+
+    Animator animator;
+
     void Start()
     {
         _state = 1;
         _manager = GameObject.FindGameObjectWithTag("Manager");
+        animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -36,9 +44,9 @@ public class Card : MonoBehaviour
     public void flipCard()
     {
 
-        if (_state == 0)
+        if (_state == 0 && gameManagerScript.finishedTutorial)
             _state = 1;
-        else if (_state == 1)
+        else if (_state == 1 && gameManagerScript.finishedTutorial)
             _state = 0;
 
         // if state = 0 ( means card is faced up ) then flip it back
@@ -77,5 +85,15 @@ public class Card : MonoBehaviour
         if (_state == 0) GetComponent<Image>().sprite = _cardBack;
         else if (_state == 1) GetComponent<Image>().sprite = _cardFace;
         DO_NOT = false;
+    }
+
+    public void firstCard()
+    {
+        firstCardClicked = true;
+        GetComponent<Image>().sprite = _manager.GetComponent<GameManager>().getCardFace(_cardValue);
+        animator.SetTrigger("OriginalCardState");
+        Debug.Log(GetComponent<Image>().sprite);
+        int matchedIndex = gameManagerScript.getIndexOfMatchingFirstCard(GetComponent<Image>().sprite.name);
+        Debug.Log(matchedIndex);
     }
 }
