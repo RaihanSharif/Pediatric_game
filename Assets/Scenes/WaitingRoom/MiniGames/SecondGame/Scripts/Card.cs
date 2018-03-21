@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
 public class Card : MonoBehaviour
 {
     // holts all fliping cards process 
@@ -22,10 +23,18 @@ public class Card : MonoBehaviour
 
     private bool firstCardClicked;
 
+    private bool playedAnimationForCorrect;
+
     Animator animator;
+
+    AudioSource sound;
+
+    public AudioClip winning;
+    public AudioClip losing;
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         _state = 1;
         _manager = GameObject.FindGameObjectWithTag("Manager");
         animator = GetComponent<Animator>();
@@ -43,10 +52,10 @@ public class Card : MonoBehaviour
 
     public void flipCard()
     {
-
-        if (_state == 0 && gameManagerScript.finishedTutorial)
+        // && gameManagerScript.finishedTutorial
+        if (_state == 0 )
             _state = 1;
-        else if (_state == 1 && gameManagerScript.finishedTutorial)
+        else if (_state == 1 )
             _state = 0;
 
         // if state = 0 ( means card is faced up ) then flip it back
@@ -87,13 +96,64 @@ public class Card : MonoBehaviour
         DO_NOT = false;
     }
 
+    
     public void firstCard()
     {
         firstCardClicked = true;
         GetComponent<Image>().sprite = _manager.GetComponent<GameManager>().getCardFace(_cardValue);
         animator.SetTrigger("OriginalCardState");
         Debug.Log(GetComponent<Image>().sprite);
-        int matchedIndex = gameManagerScript.getIndexOfMatchingFirstCard(GetComponent<Image>().sprite.name);
-        Debug.Log(matchedIndex);
+        int indexOfMatchingCard = gameManagerScript.getIndexOfMatchingFirstCard(_cardFace.name);
+    }
+
+   
+    
+    
+    
+    public void stopAnimation()
+    {
+
+        if (gameManagerScript.cards[0].GetComponent<Image>().sprite.name == GetComponent<Image>().sprite.name)
+        {
+            sound.PlayOneShot(winning);
+            animator.SetTrigger("OriginalCardState");
+        }
+        else if (GetComponent<Animator>().GetBool("changeColourNEnlarge") == false && gameManagerScript.cards[0].GetComponent<Image>() != GetComponent<Image>())
+        {
+            animator.SetTrigger("OriginalCardState");
+            sound.PlayOneShot(losing);
+            Debug.Log("first is : " + gameManagerScript.cards[0].GetComponent<Image>().sprite.name);
+            Debug.Log("current is : " + GetComponent<Image>().sprite.name);
+        }
+
+        if (!playedAnimationForCorrect)
+        {
+            playedAnimationForCorrect = true;
+            gameManagerScript.playAnimationForCorrectgMatch();
+        }
+
+
+
+    }
+
+
+    void playLosingSound()
+    {
+        sound.PlayOneShot(losing);
+    }
+
+    void playWinningSound()
+    {
+        sound.PlayOneShot(winning);
+    }
+
+    public Sprite getCardFace()
+    {
+        return _cardFace;
+    }
+
+    public Sprite getCardBack()
+    {
+        return _cardBack;
     }
 }

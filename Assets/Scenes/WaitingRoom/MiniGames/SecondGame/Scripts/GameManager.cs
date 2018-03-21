@@ -98,22 +98,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int indexForMatchingCard = 0;
+
     public int getIndexOfMatchingFirstCard(string cardSpriteName)
     {
-        int index = 0;
+        
         Debug.Log("passed value: " + cardSpriteName);
 
         foreach (GameObject card in cards)
         {
-            index++;
-            Debug.Log("card sprite name: " + card.GetComponent<Image>().sprite.name + " ,at index: " + index);
-            if (card.GetComponent<Image>().sprite.name == cardSpriteName && index != 1)
+            indexForMatchingCard++;
+            Debug.Log("card sprite name: " + card.GetComponent<Card>().getCardFace().name + " ,at index: " + indexForMatchingCard);
+            if (card.GetComponent<Card>().getCardFace().name == cardSpriteName && indexForMatchingCard != 1)
             {
                 break;
             }
         }
 
-        Debug.Log("this is i : " + index);
-        return index;
+        Debug.Log("this is i : " + indexForMatchingCard);
+        playAnimationForWrongMatch();
+        return indexForMatchingCard;
     }
+
+    public void playAnimationForCorrectgMatch()
+    {
+        cards[indexForMatchingCard-1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+    }
+
+    public void playAnimationForWrongMatch()
+    {
+        Debug.Log("^^^^^^^^^^^^^^^^^^^^^^  " + indexForMatchingCard + "  ^^^^^^^^^^^^^^^^^^^^");
+        if (indexForMatchingCard > 0 && indexForMatchingCard < cards.Length)
+        {
+            cards[indexForMatchingCard].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+        }
+        else if (indexForMatchingCard <= cards.Length)
+        {
+            cards[indexForMatchingCard + 1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+        }
+    }
+
 }
