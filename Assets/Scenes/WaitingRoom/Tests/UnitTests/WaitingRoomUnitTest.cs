@@ -66,4 +66,26 @@ public class WaitingRoomUnitTest {
 
         Assert.AreNotEqual(true, blurPanelState);
     }
+
+    [UnityTest]
+    public IEnumerator TestToPassIfNinjaAttacksWhenPressed()
+    {
+        LoadSceneByName("WaitingRoom");
+        yield return null;
+        GameObject ninja = GameObject.Find("Ninja");
+        Animator ninAnim = ninja.GetComponent<Animator>();
+
+        yield return new WaitForSeconds(2);
+        ninAnim.Play("NinjaAttack");
+        yield return new WaitForSeconds(2);
+
+        if (ninAnim.GetCurrentAnimatorStateInfo(0).IsName("NinjaAttack"))
+        {
+            Assert.AreEqual(true, true);
+        } else
+        {
+            Assert.AreNotEqual(true, true);
+        }
+        
+    }
 }
