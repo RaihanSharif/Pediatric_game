@@ -19,7 +19,7 @@ public class RadialProgressBar : MonoBehaviour {
     private float MaxBarAmount = 100f;
 
     private int MINIMUMVALUE = 0;  //ending time for gauge
-    private int REDZONEVALUE = 60;   //time below which loading bar becomes red
+    private int REDZONEVALUE = 80;   //time below which loading bar becomes red
     private int DECREASEBARAMOUNT = 34;
 
     [SerializeField]
@@ -111,4 +111,25 @@ public class RadialProgressBar : MonoBehaviour {
     }
     #endregion
 
+    #region Get&SetMethods
+    public float getCurrentBarValue()
+    {
+        return currentBarAmount;
+    }
+
+    public void setCurrentBarValue(float val)
+    {
+        currentBarAmount = val;
+    }
+
+    public void setDecreaseBar(bool boolVal)
+    {
+        decreaseBar = boolVal;
+    }
+
+    public LevelFinishedMenu getLevlFinishedMenu()
+    {
+        return lvlFM;
+    }
+    #endregion
 }
