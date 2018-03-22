@@ -13,6 +13,7 @@ public class Arm : MonoBehaviour {
 	public Slider progressBar;
 	public CameraZoom cameraZoom;
 	public bool callZoomOnce = false;
+	public Sprite motherAndChildSmiling;
 
 	public AudioCremeApplication theAudio;
 
@@ -30,13 +31,15 @@ public class Arm : MonoBehaviour {
 		if (completed == true) {
 			timeCounter += Time.deltaTime;
 
-			if (timeCounter > 3.0) {
+			if (timeCounter > 5) {
 				fadeOut.SetTrigger ("fadeOutEnd");
-			}else if (callZoomOnce == false){
-				Debug.Log(" zoom call");
+			}else if (callZoomOnce == false && timeCounter > 1.5){
+				Debug.Log("zoom call");
 				cameraZoom.zoomOut();
-				theAudio.MusicSource.Play();
+				theAudio.playSuccess();
 				callZoomOnce = true;
+				this.GetComponent<SpriteRenderer> ().sprite = motherAndChildSmiling;
+
 			}
 		}
 
@@ -48,10 +51,10 @@ public class Arm : MonoBehaviour {
 	/// x is pressed
 	/// </summary>
 	/// <param name="progressOffset">the offset by which the current progress is increased</param>
-	void IncreaseProgress(int progressOffset)
+	public void IncreaseProgress(int progressOffset)
 	{
 		CreamCurrentProgress += progressOffset;
-		progressBar.value = CalculateProgress();
+//		progressBar.value = CalculateProgress();
 
 		if (CreamCurrentProgress >= CreamMaxProgress)
 		{
@@ -89,6 +92,12 @@ public class Arm : MonoBehaviour {
 //		if syringe.position about the same as button...
 		IncreaseProgress (ProgressOffset);
 	}
+
+	public bool getCompleted()
+	{
+		return completed;
+	}
+
 
 
 

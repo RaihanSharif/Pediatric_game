@@ -9,17 +9,17 @@ public class LevelFinishedMenu : MonoBehaviour {
 	public static bool isFinished = false;
 
 	//Reference to the menu panel that will have to be toggled 
-	public GameObject levelFinishedMenuUI;
+	[SerializeField]
+	private GameObject levelFinishedMenuUI;
 
 	//Constant for the scene number of the main menu
 	public const string MENUSCENE = "MainMenu";
 
 	/// <summary>
-	/// Pauses the game by freezing game time and enables the level finished menu
+	/// Pauses the game enables the level finished menu
  	/// </summary>
 	public void OnLevelFinished(){
 		levelFinishedMenuUI.SetActive(true);
-		Time.timeScale = 0f;
 		isFinished = true;
 	}
 

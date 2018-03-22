@@ -21,7 +21,7 @@ public class WaitingRoomIntegrationTest {
         LoadSceneByName("WaitingRoom");
 		yield return null;
 
-        var play = GameObject.FindGameObjectWithTag("Trash").GetComponent<Button>();
+		var play = GameObject.Find("trashCanButton").GetComponent<Button>();
         play.onClick.Invoke();
         yield return null;
 
@@ -37,10 +37,26 @@ public class WaitingRoomIntegrationTest {
 		LoadSceneByName("WaitingRoom");
 		yield return null;
 
-		var play = GameObject.FindGameObjectWithTag("Receptionn").GetComponent<Button>();
+		var play = GameObject.Find("ReceptionB").GetComponent<Button>();
 		play.onClick.Invoke();
 		yield return null;
 
 		Assert.AreEqual ("Reception", SceneManager.GetActiveScene().name);
 	}
+
+    [UnityTest]
+    public IEnumerator WaitingRoomGoesToFlappyBirdReturnsTrue()
+    {
+        LoadSceneByName("WaitingRoom");
+        yield return null;
+
+        var birdObj = GameObject.Find("TheBird");
+        TheBird birdScript = birdObj.GetComponent<TheBird>();
+
+        yield return new WaitForSeconds(2);
+        birdScript.OnMouseDown();
+        yield return null;
+
+        Assert.AreEqual("FlappyBird", SceneManager.GetActiveScene().name);
+    }
 }
