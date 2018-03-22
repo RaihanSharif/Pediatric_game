@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class TheBird : MonoBehaviour {
 
 	public void OnMouseDown(){
-		SceneManager.LoadScene("FlappyBird");
+        SceneManager.LoadScene("FlappyBird");
+        WaitingRoomData.currentBarAmount -= RadialProgressBar.DECREASEBARAMOUNT;
 
-	}
+    }
 }

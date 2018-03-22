@@ -16,11 +16,10 @@ public class LevelFinishedMenu : MonoBehaviour {
 	public const string MENUSCENE = "MainMenu";
 
 	/// <summary>
-	/// Pauses the game by freezing game time and enables the level finished menu
+	/// Pauses the game enables the level finished menu
  	/// </summary>
 	public void OnLevelFinished(){
 		levelFinishedMenuUI.SetActive(true);
-		Time.timeScale = 0f;
 		isFinished = true;
 	}
 
