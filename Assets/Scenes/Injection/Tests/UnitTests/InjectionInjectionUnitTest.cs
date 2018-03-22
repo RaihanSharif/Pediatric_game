@@ -183,10 +183,9 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Click on the white circle and check 
-	/// that we zoom into the injection scene
+	/// Click on the syringe and check
+	/// whether it stops rotating
 	/// </summary>
-	/// <returns>The is ready.</returns>
 	[UnityTest]
 	public IEnumerator SyringeStopsRotatingPasses() {
 		LoadSceneByName ("InjectionBaby");
