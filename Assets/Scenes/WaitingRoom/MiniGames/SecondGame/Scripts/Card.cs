@@ -22,8 +22,10 @@ public class Card : MonoBehaviour
     private GameManager gameManagerScript;
 
     private bool firstCardClicked;
+    private bool firstCardClickedSecondTime;
 
     private bool playedAnimationForCorrect;
+    private bool runnedOnce;
 
     Animator animator;
 
@@ -31,6 +33,8 @@ public class Card : MonoBehaviour
 
     public AudioClip winning;
     public AudioClip losing;
+
+    public int numOfClicksForFirstCard = 0;
 
     void Start()
     {
@@ -96,45 +100,51 @@ public class Card : MonoBehaviour
         DO_NOT = false;
     }
 
-    
+    private bool runned;
     public void firstCard()
     {
         firstCardClicked = true;
         GetComponent<Image>().sprite = _manager.GetComponent<GameManager>().getCardFace(_cardValue);
         animator.SetTrigger("OriginalCardState");
-        Debug.Log(GetComponent<Image>().sprite);
         int indexOfMatchingCard = gameManagerScript.getIndexOfMatchingFirstCard(_cardFace.name);
+        if (!runned)
+            gameManagerScript.playAnimationForWrongMatch();
+        runned = true;
+
+
     }
 
-   
     
-    
-    
-    public void stopAnimation()
+    public void setFirstCardClickedSecondTimeToTrue()
     {
+        numOfClicksForFirstCard++;
+        
+        if (numOfClicksForFirstCard == 2)
+            gameManagerScript.playAnimationForCorrectgMatch();
+    }
+
+
+    public void stopAndPlayAnimation()
+    {
+
 
         if (gameManagerScript.cards[0].GetComponent<Image>().sprite.name == GetComponent<Image>().sprite.name)
         {
+            gameManagerScript.finishedTutorial = true;
             sound.PlayOneShot(winning);
             animator.SetTrigger("OriginalCardState");
         }
-        else if (GetComponent<Animator>().GetBool("changeColourNEnlarge") == false && gameManagerScript.cards[0].GetComponent<Image>() != GetComponent<Image>())
+
+        if ( (gameManagerScript.cards[0].GetComponent<Image>().sprite.name != GetComponent<Image>().sprite.name) && (!gameManagerScript.finishedTutorial) )
         {
             animator.SetTrigger("OriginalCardState");
             sound.PlayOneShot(losing);
-            Debug.Log("first is : " + gameManagerScript.cards[0].GetComponent<Image>().sprite.name);
-            Debug.Log("current is : " + GetComponent<Image>().sprite.name);
+            gameManagerScript.playAnimationForOriginalCard();
         }
-
-        if (!playedAnimationForCorrect)
-        {
-            playedAnimationForCorrect = true;
-            gameManagerScript.playAnimationForCorrectgMatch();
-        }
-
 
 
     }
+
 
 
     void playLosingSound()

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public bool finishedTutorial;
 
+    public int indexForMatchingCard = 0;
+
     void Start()
     {
         cards[0].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
@@ -98,25 +100,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int indexForMatchingCard = 0;
+    
 
     public int getIndexOfMatchingFirstCard(string cardSpriteName)
     {
         
-        Debug.Log("passed value: " + cardSpriteName);
 
         foreach (GameObject card in cards)
         {
             indexForMatchingCard++;
-            Debug.Log("card sprite name: " + card.GetComponent<Card>().getCardFace().name + " ,at index: " + indexForMatchingCard);
             if (card.GetComponent<Card>().getCardFace().name == cardSpriteName && indexForMatchingCard != 1)
             {
                 break;
             }
         }
 
-        Debug.Log("this is i : " + indexForMatchingCard);
-        playAnimationForWrongMatch();
         return indexForMatchingCard;
     }
 
@@ -125,17 +123,22 @@ public class GameManager : MonoBehaviour
         cards[indexForMatchingCard-1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
     }
 
+    public void playAnimationForOriginalCard()
+    {
+        cards[0].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+    }
+
     public void playAnimationForWrongMatch()
     {
-        Debug.Log("^^^^^^^^^^^^^^^^^^^^^^  " + indexForMatchingCard + "  ^^^^^^^^^^^^^^^^^^^^");
-        if (indexForMatchingCard > 0 && indexForMatchingCard < cards.Length)
+        if (indexForMatchingCard == cards.Length-1 || indexForMatchingCard == cards.Length+1 || indexForMatchingCard == cards.Length)
+        {
+            cards[indexForMatchingCard - 3].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+        }
+        else 
         {
             cards[indexForMatchingCard].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
         }
-        else if (indexForMatchingCard <= cards.Length)
-        {
-            cards[indexForMatchingCard + 1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
-        }
+        
     }
 
 }
