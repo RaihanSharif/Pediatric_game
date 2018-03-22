@@ -14,13 +14,14 @@ public class InjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Calls IncreaseProgress method once and checks whether it
-	/// has correctly incremented the value to CreamCurrentProgress
+	/// Fills up first creme spot and checks whether it has correctly
+	/// incremented the value of CreamCurrentProgress inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedOncePasses() {
-		var arm = new GameObject ().AddComponent<Arm> ();
+		LoadSceneByName ("CremeApplication");
 		yield return null;
+		var arm = GameObject.FindGameObjectWithTag("Arm").GetComponent<Arm>();
 		arm.IncreaseProgress(arm.ProgressOffset);
 
 		Assert.AreEqual (arm.ProgressOffset, arm.CreamCurrentProgress);
@@ -28,13 +29,14 @@ public class InjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Calls IncreaseProgress method once and checks whether it
-	/// has changed the value of the variable complete to true
+	/// Fills up first creme spot and checks whether it has changed the
+	/// value of the variable complete to true inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedOnceCompleteIsTrueFails() {
-		var arm = new GameObject ().AddComponent<Arm> ();
+		LoadSceneByName ("CremeApplication");
 		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.IncreaseProgress(arm.ProgressOffset);
 
 		Assert.AreNotEqual (true, arm.getCompleted());
@@ -42,28 +44,84 @@ public class InjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Calls start method twice and checks whether it
-	/// has correctly incremented the value to the max. 
+	/// Fills up first and second creme spot and checks whether it has correctly
+	/// incremented the value of CreamCurrentProgress inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedTwicePasses() {
-		var arm = new GameObject ().AddComponent<Arm> ();
+		LoadSceneByName ("CremeApplication");
 		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
 		arm.startProcess ();
+
 		Assert.AreEqual (arm.CreamMaxProgress, arm.CreamCurrentProgress);
 	}
 
 	/// <summary>
-	/// Calls start method twice and checks whether the
-	/// variable completed has been changed to true. 
+	/// Fills up first and second creme spot and checks whether it has changed
+	/// the value of the variable complete to true inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedTwiceCompletedIsTruePasses() {
-		var arm = new GameObject ().AddComponent<Arm> ();
+		LoadSceneByName ("CremeApplication");
 		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
 		arm.startProcess ();
+
 		Assert.AreEqual (true, arm.getCompleted());
 	}
+
+	/// <summary>
+	/// Fills up only the first creme spot and checks whether it is possible
+	/// to change scenes once this has been done (it shouldn't be)
+	/// </summary>
+	[UnityTest]
+	public IEnumerator CremeNotCompletedCanMoveToNextSceneFails() {
+		LoadSceneByName ("CremeApplication");
+		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+		arm.startProcess ();
+		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
+		yield return new WaitForSeconds (3);
+
+		if (arm.getCompleted()) {
+			fader.moveToNextScene ();
+			yield return null;
+		}
+
+		Assert.AreNotEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
+
+	}
+
+
+
+	/// <summary>
+	/// Fills up first and second creme spot and checks whether it is 
+	/// possible to change scenes once this has been done
+	/// </summary>
+	[UnityTest]
+	public IEnumerator CremeCompletedCanMoveToNextScenePasses() {
+		LoadSceneByName ("CremeApplication");
+		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+		arm.startProcess ();
+		arm.startProcess ();
+		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
+		yield return new WaitForSeconds (3);
+
+		if (arm.getCompleted()) {
+			fader.moveToNextScene ();
+			yield return null;
+		}
+
+		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
+
+	}
+
+
+
+
+
 }
