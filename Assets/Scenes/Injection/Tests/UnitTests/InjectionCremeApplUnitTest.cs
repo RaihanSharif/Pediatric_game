@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InjectionUnitTest {
+public class InjectionCremeApplUnitTest {
 
 	private void LoadSceneByName(string name){
 
@@ -119,9 +119,6 @@ public class InjectionUnitTest {
 		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
 
 	}
-
-
-
 
 
 }
