@@ -36,11 +36,6 @@ public class RadialProgressBar : MonoBehaviour {
                 if (inRedZone())
                 {
                     changeLoadingBarColorToRed();
-                    decrementCurrentBarAmountBySpeed();
-                }
-                else
-                {
-                    decrementCurrentBarAmountBySpeed();
                 }
             }
             updateLoadingBar();
@@ -53,7 +48,7 @@ public class RadialProgressBar : MonoBehaviour {
     }
 
     #region MethodsUsedInDoUpdate
-
+        /*
     /// <summary>
     /// multiply speed by Time.deltaTime to move object by per second
     /// instead of by per frame
@@ -62,7 +57,7 @@ public class RadialProgressBar : MonoBehaviour {
     {
         WaitingRoomData.currentBarAmount -= DECREASEBARAMOUNT;
         decreaseBar = false;
-    }
+    }*/
     
     /// <summary>
     /// display the current time by converting the float
