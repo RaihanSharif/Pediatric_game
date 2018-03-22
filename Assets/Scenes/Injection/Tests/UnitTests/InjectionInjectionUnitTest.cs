@@ -13,6 +13,7 @@ public class InjectionInjectionUnitTest {
 
 	}
 
+
 	/// <summary>
 	/// Injects first arm spot and checks whether it has correctly
 	/// incremented the value of CreamCurrentProgress inside the Arm script
@@ -179,6 +180,28 @@ public class InjectionInjectionUnitTest {
 
 		Assert.AreEqual ("BabyInjectionGameCompleted", SceneManager.GetActiveScene().name);
 
+	}
+
+	/// <summary>
+	/// Click on the white circle and check 
+	/// that we zoom into the injection scene
+	/// </summary>
+	/// <returns>The is ready.</returns>
+	[UnityTest]
+	public IEnumerator SyringeStopsRotatingPasses() {
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return null;
+
+		yield return new WaitForSeconds (2);
+		var syringe = GameObject.FindGameObjectWithTag ("Syringe").GetComponent<Syringe> ();
+		syringe.OnMouseDown ();
+		yield return null;
+		yield return new WaitForSeconds (3);
+
+		Assert.AreEqual (syringe.resize, false);
 	}
 
 

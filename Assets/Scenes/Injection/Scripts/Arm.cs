@@ -34,7 +34,7 @@ public class Arm : MonoBehaviour {
 			if (timeCounter > 5) {
 				fadeOut.SetTrigger ("fadeOutEnd");
 			}else if (callZoomOnce == false && timeCounter > 1.5){
-				Debug.Log(" zoom call");
+				Debug.Log("zoom call");
 				cameraZoom.zoomOut();
 				theAudio.playSuccess();
 				callZoomOnce = true;
