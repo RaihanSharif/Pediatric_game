@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Text matchText;
 
     private bool _init = false;
-    private int _matches = 6;
+    public int _matches = 8;
 
     public bool finishedTutorial;
 
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         // every card has a match 
         for (int id = 0; id < 2; id++)
         {
-            for (int i = 1; i < 7 ; i++)
+            for (int i = 1; i < 9 ; i++)
             {
                 bool test = false;
                 int choice = 0;

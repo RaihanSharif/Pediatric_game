@@ -12,7 +12,7 @@ public class MenuBehavior : MonoBehaviour {
             // by default case is 0
             default:
             case (0):
-                SceneManager.LoadScene("Level");
+                SceneManager.LoadScene("SecondGame");
                 break;
 
             case (1):

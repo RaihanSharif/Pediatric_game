@@ -135,7 +135,9 @@ public class Card : MonoBehaviour
             animator.SetTrigger("OriginalCardState");
         }
 
-        if ( (gameManagerScript.cards[0].GetComponent<Image>().sprite.name != GetComponent<Image>().sprite.name) && (!gameManagerScript.finishedTutorial) )
+        if ( (gameManagerScript.cards[0].GetComponent<Image>().sprite.name != GetComponent<Image>().sprite.name) && 
+            (!gameManagerScript.finishedTutorial) && 
+            (gameManagerScript._matches == gameManagerScript.cards.Length/2))
         {
             animator.SetTrigger("OriginalCardState");
             sound.PlayOneShot(losing);
@@ -144,7 +146,6 @@ public class Card : MonoBehaviour
 
 
     }
-
 
 
     void playLosingSound()
