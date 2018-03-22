@@ -10,8 +10,17 @@ public class ComeBackSprite : MonoBehaviour {
 	/// Go back to waiting room when button is clicked 
 	/// </summary>
 	void OnMouseDown(){
-		SceneManager.LoadScene("WaitingRoom");
-		this.GetComponent<GameObject> ().SetActive (false);
+		goBackToWaitingRoom();
+		disableBackButton();
+	}
 
+
+	public void goBackToWaitingRoom(){
+		SceneManager.LoadScene("WaitingRoom");
+	}
+
+
+	public void disableBackButton(){
+		this.GetComponent<GameObject> ().SetActive (false);
 	}
 }

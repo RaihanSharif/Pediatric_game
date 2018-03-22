@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class Bird : MonoBehaviour 
 {
 	public float upForce;					//Upward force of the "flap".
-	private bool isDead = false;			//Has the player collided with a wall?
+	public bool isDead = false;			//Has the player collided with a wall?
 
-	private Animator anim;					//Reference to the Animator component.
+	public Animator anim;					//Reference to the Animator component.
 	private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
 
 	void Start()
