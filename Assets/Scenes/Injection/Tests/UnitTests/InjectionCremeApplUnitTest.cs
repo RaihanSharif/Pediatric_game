@@ -21,8 +21,11 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator ArmProgressIncrementedOncePasses() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
-		var arm = GameObject.FindGameObjectWithTag("Arm").GetComponent<Arm>();
-		arm.IncreaseProgress(arm.ProgressOffset);
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 
 		Assert.AreEqual (arm.ProgressOffset, arm.CreamCurrentProgress);
 
@@ -36,8 +39,11 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator ArmProgressIncrementedOnceCompleteIsTrueFails() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.IncreaseProgress(arm.ProgressOffset);
 
 		Assert.AreNotEqual (true, arm.getCompleted());
 
@@ -51,9 +57,15 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator ArmProgressIncrementedTwicePasses() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
+
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (5);
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.startProcess ();
-		arm.startProcess ();
 
 		Assert.AreEqual (arm.CreamMaxProgress, arm.CreamCurrentProgress);
 	}
@@ -66,9 +78,15 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator ArmProgressIncrementedTwiceCompletedIsTruePasses() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
+
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (5);
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.startProcess ();
-		arm.startProcess ();
 
 		Assert.AreEqual (true, arm.getCompleted());
 	}
@@ -81,10 +99,14 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator CremeNotCompletedCanMoveToNextSceneFails() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
-		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.startProcess ();
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
+
 		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
-		yield return new WaitForSeconds (3);
+		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 
 		if (arm.getCompleted()) {
 			fader.moveToNextScene ();
@@ -105,15 +127,23 @@ public class InjectionCremeApplUnitTest {
 	public IEnumerator CremeCompletedCanMoveToNextScenePasses() {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
-		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.startProcess ();
-		arm.startProcess ();
+
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (5);
+
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (5);
+
 		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
-		yield return new WaitForSeconds (3);
+		yield return null;
+		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 
 		if (arm.getCompleted()) {
 			fader.moveToNextScene ();
 			yield return null;
+			yield return new WaitForSeconds (5);
 		}
 
 		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
