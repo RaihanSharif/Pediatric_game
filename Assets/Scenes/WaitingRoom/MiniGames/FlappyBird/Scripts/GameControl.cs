@@ -26,11 +26,18 @@ public class GameControl : MonoBehaviour
 		else if(instance != this)
 			//...destroy this one because it is a duplicate.
 			Destroy (gameObject);
+		
+	}
+
+	void Start(){
+		Time.timeScale = 0f;
 	}
 
 
 	void Update()
 	{
+		if(Input.GetMouseButtonDown(0)) 
+			Time.timeScale = 1f;
 		//If the game is over and the player has pressed some input...
 		if (gameOver) 
 		{
@@ -60,4 +67,6 @@ public class GameControl : MonoBehaviour
 		//Set the game to be over.
 		gameOver = true;
 	}
+
+
 }
