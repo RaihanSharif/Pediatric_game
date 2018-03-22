@@ -14,12 +14,16 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Fills up first creme spot and checks whether it has correctly
+	/// Injects first arm spot and checks whether it has correctly
 	/// incremented the value of CreamCurrentProgress inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedOncePasses() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag("Arm").GetComponent<Arm>();
 		arm.IncreaseProgress(arm.ProgressOffset);
@@ -29,12 +33,16 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Fills up first creme spot and checks whether it has changed the
+	/// Injects first arm spot and checks whether it has changed the
 	/// value of the variable complete to true inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedOnceCompleteIsTrueFails() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.IncreaseProgress(arm.ProgressOffset);
@@ -44,12 +52,16 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Fills up first and second creme spot and checks whether it has correctly
+	/// Injects first and second arm spot and checks whether it has correctly
 	/// incremented the value of CreamCurrentProgress inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedTwicePasses() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
@@ -59,12 +71,16 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Fills up first and second creme spot and checks whether it has changed
+	/// Injects first and second arm spot and checks whether it has changed
 	/// the value of the variable complete to true inside the Arm script
 	/// </summary>
 	[UnityTest]
 	public IEnumerator ArmProgressIncrementedTwiceCompletedIsTruePasses() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
@@ -74,12 +90,16 @@ public class InjectionInjectionUnitTest {
 	}
 
 	/// <summary>
-	/// Fills up only the first creme spot and checks whether it is possible
+	/// Injects only the first arm spot and checks whether it is possible
 	/// to change scenes once this has been done (it shouldn't be)
 	/// </summary>
 	[UnityTest]
 	public IEnumerator CremeNotCompletedCanMoveToNextSceneFails() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
@@ -91,19 +111,23 @@ public class InjectionInjectionUnitTest {
 			yield return null;
 		}
 
-		Assert.AreNotEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
+		Assert.AreNotEqual ("BabyInjectionGameCompleted", SceneManager.GetActiveScene().name);
 
 	}
 
 
 
 	/// <summary>
-	/// Fills up first and second creme spot and checks whether it is 
+	/// Injects first and second arm spot and checks whether it is 
 	/// possible to change scenes once this has been done
 	/// </summary>
 	[UnityTest]
 	public IEnumerator CremeCompletedCanMoveToNextScenePasses() {
-		LoadSceneByName ("CremeApplication");
+		LoadSceneByName ("InjectionBaby");
+		yield return null;
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return new WaitForSeconds (3);
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
 		arm.startProcess ();
@@ -116,7 +140,7 @@ public class InjectionInjectionUnitTest {
 			yield return null;
 		}
 
-		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene().name);
+		Assert.AreEqual ("BabyInjectionGameCompleted", SceneManager.GetActiveScene().name);
 
 	}
 
