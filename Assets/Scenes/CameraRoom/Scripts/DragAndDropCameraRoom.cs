@@ -23,8 +23,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private int score = 0;
     private float elapsed = 0.0f;
 
-
-
+    [SerializeField]
+    private LevelFinishedMenu lvlFM;
 
     void Start()
     {
@@ -403,6 +403,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
     void levelCleared()
     {
         levelOver = true; //Signals to the script that the game has ended
-        //TODO: Alex's transition work
+        lvlFM.OnLevelFinished();
     }
 }
