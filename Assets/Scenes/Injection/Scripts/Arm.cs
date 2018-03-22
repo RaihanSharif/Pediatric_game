@@ -93,6 +93,12 @@ public class Arm : MonoBehaviour {
 		IncreaseProgress (ProgressOffset);
 	}
 
+	public bool getCompleted()
+	{
+		return completed;
+	}
+
+
 
 
 }
