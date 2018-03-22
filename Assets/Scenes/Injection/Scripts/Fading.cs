@@ -9,13 +9,20 @@ public class Fading : MonoBehaviour {
 	/// move to the next scene (success is displayed)
 	/// </summary>
 
+	[SerializeField]
+	private LevelFinishedMenu lvlFM;
+
+	[SerializeField]
+	private GameObject scoreSlider;
+
 	public void moveToNextScene(){
 		if (SceneManager.GetActiveScene ().name == "CremeApplication") {
             SceneManager.LoadScene("InjectionBaby", LoadSceneMode.Single);
 
         }
         else if(SceneManager.GetActiveScene ().name == "InjectionBaby"){
-            SceneManager.LoadScene("BabyInjectionGameCompleted", LoadSceneMode.Single);
+        	scoreSlider.SetActive(false);
+            lvlFM.OnLevelFinished();
 
         }
 
