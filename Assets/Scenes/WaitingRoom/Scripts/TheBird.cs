@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TheBird : MonoBehaviour {
 
-	void OnMouseDown(){
+	public void OnMouseDown(){
 		SceneManager.LoadScene("FlappyBird");
 
 	}

@@ -43,4 +43,20 @@ public class WaitingRoomIntegrationTest {
 
 		Assert.AreEqual ("Reception", SceneManager.GetActiveScene().name);
 	}
+
+    [UnityTest]
+    public IEnumerator WaitingRoomGoesToFlappyBirdReturnsTrue()
+    {
+        LoadSceneByName("WaitingRoom");
+        yield return null;
+
+        var birdObj = GameObject.Find("TheBird");
+        TheBird birdScript = birdObj.GetComponent<TheBird>();
+
+        yield return new WaitForSeconds(2);
+        birdScript.OnMouseDown();
+        yield return null;
+
+        Assert.AreEqual("FlappyBird", SceneManager.GetActiveScene().name);
+    }
 }
