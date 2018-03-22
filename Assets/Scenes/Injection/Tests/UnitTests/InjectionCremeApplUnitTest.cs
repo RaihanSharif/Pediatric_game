@@ -143,6 +143,7 @@ public class InjectionCremeApplUnitTest {
 		if (arm.getCompleted()) {
 			fader.moveToNextScene ();
 			yield return null;
+			yield return new WaitForSeconds (5);
 		}
 
 		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene().name);

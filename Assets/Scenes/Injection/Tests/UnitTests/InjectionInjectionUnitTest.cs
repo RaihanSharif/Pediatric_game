@@ -23,10 +23,14 @@ public class InjectionInjectionUnitTest {
 		yield return null;
 		var circle = GameObject.Find ("Button").GetComponent<Button> ();
 		circle.onClick.Invoke ();
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (1);
 		yield return null;
+
+		var cremeSpot = GameObject.FindGameObjectWithTag ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		var smiley = GameObject.Find ("Smiley1").GetComponent<Smiley>();
+		cremeSpot.injectionIsDone (smiley);
+		yield return new WaitForSeconds (5);
 		var arm = GameObject.FindGameObjectWithTag("Arm").GetComponent<Arm>();
-		arm.IncreaseProgress(arm.ProgressOffset);
 
 		Assert.AreEqual (arm.ProgressOffset, arm.CreamCurrentProgress);
 
@@ -42,10 +46,14 @@ public class InjectionInjectionUnitTest {
 		yield return null;
 		var circle = GameObject.Find ("Button").GetComponent<Button> ();
 		circle.onClick.Invoke ();
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (1);
 		yield return null;
+	
+		var cremeSpot = GameObject.FindGameObjectWithTag ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		var smiley = GameObject.Find ("Smiley1").GetComponent<Smiley> ();
+		cremeSpot.injectionIsDone (smiley);
+		yield return new WaitForSeconds (5);
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.IncreaseProgress(arm.ProgressOffset);
 
 		Assert.AreNotEqual (true, arm.getCompleted());
 
