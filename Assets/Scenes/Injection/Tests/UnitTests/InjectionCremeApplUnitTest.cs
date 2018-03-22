@@ -22,7 +22,11 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag("Arm").GetComponent<Arm>();
+
 		arm.IncreaseProgress(arm.ProgressOffset);
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (4);
 
 		Assert.AreEqual (arm.ProgressOffset, arm.CreamCurrentProgress);
 
@@ -37,7 +41,11 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+
 		arm.IncreaseProgress(arm.ProgressOffset);
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (4);
 
 		Assert.AreNotEqual (true, arm.getCompleted());
 
@@ -52,8 +60,16 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+
 		arm.startProcess ();
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (4);
+
 		arm.startProcess ();
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (4);
 
 		Assert.AreEqual (arm.CreamMaxProgress, arm.CreamCurrentProgress);
 	}
@@ -67,8 +83,16 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+
 		arm.startProcess ();
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (4);
+
 		arm.startProcess ();
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (4);
 
 		Assert.AreEqual (true, arm.getCompleted());
 	}
@@ -82,10 +106,18 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
-		arm.startProcess ();
-		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
-		yield return new WaitForSeconds (3);
 
+		arm.startProcess ();
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (3);
+		Debug.Log (arm.getCompleted ());
+
+		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
+		yield return null;
+
+		Debug.Log (arm.getCompleted ());
+//
 		if (arm.getCompleted()) {
 			fader.moveToNextScene ();
 			yield return null;
@@ -106,10 +138,19 @@ public class InjectionCremeApplUnitTest {
 		LoadSceneByName ("CremeApplication");
 		yield return null;
 		var arm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+
 		arm.startProcess ();
+		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
+		yield return new WaitForSeconds (4);
+
 		arm.startProcess ();
+		var otherCremeSpot = GameObject.Find ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		otherCremeSpot.GetComponent<Animator> ().Play("CremeSpot2ChangeColor");
+		yield return new WaitForSeconds (4);
+
 		var fader = GameObject.Find ("fadeImage").GetComponent<Fading> ();
-		yield return new WaitForSeconds (3);
+		yield return null;
 
 		if (arm.getCompleted()) {
 			fader.moveToNextScene ();
