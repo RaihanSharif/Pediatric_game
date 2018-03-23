@@ -137,7 +137,7 @@ public class InjectionInjectionUnitTest {
 		yield return new WaitForSeconds (3);
 
 		if (arm.getCompleted()) {
-			fader.moveToNextScene ();
+			LoadSceneByName ("BabyInjectionGameCompleted");
 			yield return null;
 		}
 
@@ -174,7 +174,7 @@ public class InjectionInjectionUnitTest {
 		yield return new WaitForSeconds (3);
 
 		if (arm.getCompleted()) {
-			fader.moveToNextScene ();
+			LoadSceneByName ("BabyInjectionGameCompleted");
 			yield return null;
 		}
 
