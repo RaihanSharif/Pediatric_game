@@ -13,25 +13,35 @@ public class AudioCremeApplication : MonoBehaviour {
 
 	// Use this for initialization
 	void Start (){
-		//MusicSource.clip = success;
-//		MusicSource.Play();
-		//MusicSource.PlayOneShot(success);
 
-		
 	}
 
+	/// <summary>
+	/// Plays the success.
+	/// </summary>
 	public void playSuccess(){
 		MusicSource.PlayOneShot(success);
 	}
 
+	/// <summary>
+	/// Plays the creme on spot.
+	/// </summary>
 	public void playCremeOnSpot(){
 		MusicSource.PlayOneShot(cremeSound);
 	}
 
+
+	/// <summary>
+	/// Plays the creme spot becomes white.
+	/// </summary>
 	public void playCremeSpotBecomesWhite(){
 		MusicSource.PlayOneShot(CremeSpotBecomesWhite);
 	}
 
+
+	/// <summary>
+	/// Plays the success for injection spot.
+	/// </summary>
 	public void playSuccessForInjectionSpot(){
 		MusicSource.PlayOneShot(successForInjectionSpot);
 	}

@@ -29,6 +29,7 @@ public class Bird : MonoBehaviour
 			{
 				//...tell the animator about it and then...
 				anim.SetTrigger("Flap");
+				AudioSourceBird.instance.playFlap();
 				//...zero out the birds current y velocity before...
 				rb2d.velocity = Vector2.zero;
 				//	new Vector2(rb2d.velocity.x, 0);
