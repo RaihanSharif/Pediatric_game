@@ -31,7 +31,7 @@ public class playAnimationOnClick : MonoBehaviour {
     /// <summary>
     /// This is called everytime the baby bottle is clicked
     /// </summary>
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         // checks if the number of clicks is less than or equal to 5 ( as we are starting to count from 0 but the baby bottle can be clicked 6 times )
         // and checks if the baby bottle is enabled and checks if the first pink bubble is clicked for the second time 

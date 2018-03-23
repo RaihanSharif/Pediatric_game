@@ -12,17 +12,44 @@ public class IngBabyUnitTest {
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
 	}
 
-	[Test]
-	public void IngBabyUnitTestSimplePasses() {
-		// Use the Assert class to test conditions.
-	}
-
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	/// <summary>
+	/// Clicks on the first bubble and checks whether it has 
+	/// changed the firstPopped variable to true in the script
+	/// </summary>
+	/// <returns>The baby unit test with enumerator passes.</returns>
 	[UnityTest]
-	public IEnumerator IngBabyUnitTestWithEnumeratorPasses() {
+	public IEnumerator A_FirstBubblePoppedPasses() {
 		LoadSceneByName ("IngestionBaby");
 		yield return null;
 
+		yield return new WaitForSeconds (3);
+		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
+		bubble.OnMouseDown ();
+
+		Assert.AreEqual (bubble.getFirstPopped (), true);
+
 	}
+
+	/// <summary>
+	/// Clicks on the first, second and third bubble and 
+	/// checks whether they have all been clicked
+	/// </summary>
+	/// <returns>The baby unit test with enumerator passes.</returns>
+	[UnityTest]
+	public IEnumerator B_ThreeFirstBubblesPoppedPasses() {
+		LoadSceneByName ("IngestionBaby");
+		yield return null;
+
+		yield return new WaitForSeconds (3);
+		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
+		bubble.OnMouseDown ();
+		yield return new WaitForSeconds (3);
+		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (3);
+		otherBubble.OnMouseDown ();
+
+		Assert.AreEqual (otherBubble.bubbleNum-1, 3);
+	}
+
 }

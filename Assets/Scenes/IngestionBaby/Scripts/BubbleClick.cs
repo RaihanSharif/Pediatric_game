@@ -65,7 +65,7 @@ public class BubbleClick : MonoBehaviour
     /// when a pink bubbles are being pressed then the clicking counter for that pink bubble will be incremented and if the num of clicks is 2 then 
     /// setTrueTheNthPinkBubble will be called and the index of the pink bubble is being passed 
     /// </summary>
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         // if the first bubble is being clicked ( popped ) then change the boolean flag in bubbleScript and the firstPoopped flag to true 
         if (bubbleNum == 1)
@@ -118,4 +118,8 @@ public class BubbleClick : MonoBehaviour
            
         }
     }
+
+	public bool getFirstPopped() {
+		return firstPopped;
+	}
 }
