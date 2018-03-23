@@ -29,7 +29,7 @@ public class changeFoodOnContact : MonoBehaviour {
         isMouthOpen = true;
         // for the first 24 "bites" the sprite changes to the next one in the multisprite,
         // then on the 24th instance, the sprite renderer is switched off, i.e. "Food finished"
-        if (frame < 10 && spoonScript.isFull) 
+        if (frame < 10 && !spoonScript.isFull) 
 		{
 			this.GetComponent<SpriteRenderer>().sprite = mySprites[frame++];
             isMouthOpen = true;
