@@ -16,7 +16,6 @@ public class RadialProgressBar : MonoBehaviour {
     private float MaxBarAmount = 100f;
 
     private int MINIMUMVALUE = 0;  //ending time for gauge
-    private int REDZONEVALUE = 60;   //time below which loading bar becomes red
     private int REDZONEVALUE = 80;   //time below which loading bar becomes red
     public static int DECREASEBARAMOUNT = 34;
 
