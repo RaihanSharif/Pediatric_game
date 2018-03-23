@@ -1,2 +1,4 @@
-This is the first test
-This is the second test
+Welcome to the injection game. Click the button on the right to go to the next step.
+Before we do your scan today, you must get a little injection in your arm. This is important for your scan to work.
+Here's a simple game that shows you what happens. Firstly, you drag the Magic Cream tube to the spots to apply it on the arm, and then drag the syringe to the spots to apply the injection.
+Keep the syringe steady on the spot, or it doesn't count. Good Luck!
