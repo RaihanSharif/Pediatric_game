@@ -10,9 +10,9 @@ public class RestartFlappyBird : MonoBehaviour {
 	/// <summary>
 	/// make the restart button non functional 
 	/// </summary>
-	void OnMouseDown(){
-		disableRestartButton ();
+	void OnMouseDown(){	
 		restartTheGame ();
+		disableRestartButton ();
 	}
 		
 
