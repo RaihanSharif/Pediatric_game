@@ -24,16 +24,17 @@ public class changeFoodOnContact : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D col)
-    {
+    {   
+
         isMouthOpen = true;
         // for the first 24 "bites" the sprite changes to the next one in the multisprite,
         // then on the 24th instance, the sprite renderer is switched off, i.e. "Food finished"
-        if (frame < 24 && !spoonScript.isFull) 
+        if (frame < 10 && spoonScript.isFull) 
 		{
 			this.GetComponent<SpriteRenderer>().sprite = mySprites[frame++];
             isMouthOpen = true;
 
-        } else if (frame == 24) {
+        } else if (frame == 10) {
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			frame++;
             lvlFM.OnLevelFinished();
