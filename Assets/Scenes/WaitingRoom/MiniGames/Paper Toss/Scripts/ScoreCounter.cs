@@ -40,7 +40,7 @@ public class ScoreCounter : MonoBehaviour {
 	/// </summary>
 	/// <param name="toBeTranslated">Collider of the game object to be translated.</param>
 	void translatePaperBall(Collider2D toBeTranslated){
-		
+
 		toBeTranslated.gameObject.transform.Translate(new Vector3(getRandNum(), transform.position.y-90f), Space.World);
 
 	}
