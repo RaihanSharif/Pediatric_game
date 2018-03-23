@@ -19,6 +19,14 @@ public class EventManager : MonoBehaviour {
 	private int ageSelected;
 	public static string chosenScene;
 
+	[SerializeField]
+	private GameObject foodSelection;
+
+	// Use this for initialization
+	void Start () {
+		foodSelection.SetActive(false);
+	}
+
 	//Loads a scene with a specific name
 	public void LoadSceneByName(string name){
 
@@ -62,6 +70,7 @@ public class EventManager : MonoBehaviour {
 	//Sets procedure flag, checks if age has been selected and if yes loads appropriate level 
 	public void ingestionButtonPressed(){
 		procedureSelected = INGESTION;
+		foodSelection.SetActive(true);
 		if (ageSelected == BABY){
 			LoadSceneByName("ProcedureExplanation");
 			chosenScene = "IngestionBaby";
