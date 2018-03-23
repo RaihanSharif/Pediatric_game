@@ -67,6 +67,8 @@ public class BubbleClick : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+		BubbleSourceSound.instance.playBubbleSound();
+
         // if the first bubble is being clicked ( popped ) then change the boolean flag in bubbleScript and the firstPoopped flag to true 
         if (bubbleNum == 1)
         {

@@ -119,7 +119,7 @@ public class CremeSpotCollision : MonoBehaviour {
 
 
 	public void playCremeSound(){
-		if (cremeCounter % 120 == 0) {
+		if (cremeCounter % 60 == 0) {
 			theAudio.playCremeOnSpot();
 		}
 	}

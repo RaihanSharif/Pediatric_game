@@ -8,7 +8,9 @@ public class AudioSourceBird : MonoBehaviour {
 
 	public AudioClip success;
 	public AudioClip flap;
+	public AudioClip collision;
 	public AudioSource MusicSource;
+
 
 
 
@@ -25,13 +27,27 @@ public class AudioSourceBird : MonoBehaviour {
 
 	}
 
+
+	/// <summary>
+	/// Plays the success sound.
+	/// </summary>
 	public void playSuccess(){
 		MusicSource.PlayOneShot(success);
 	}
 
+	/// <summary>
+	/// Plays the flap sound.
+	/// </summary>
 	public void playFlap(){
 		MusicSource.PlayOneShot(flap);
 	}
 
+
+	/// <summary>
+	/// Plays the collision sound.
+	/// </summary>
+	public void playCollision(){
+		MusicSource.PlayOneShot(collision);
+	}
 
 }
