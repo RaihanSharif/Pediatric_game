@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 34684cf52ab2643b3871210adb1ea346
-timeCreated: 1519221259
+timeCreated: 1521817991
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -28,6 +28,16 @@ TextureImporter:
     21300042: v
     21300044: w
     21300046: x
+    21300048: food_0
+    21300050: food_1
+    21300052: food_2
+    21300054: food_3
+    21300056: food_4
+    21300058: food_5
+    21300060: food_6
+    21300062: food_7
+    21300064: food_8
+    21300066: food_9
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -134,337 +144,141 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: a
+      name: food_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 6205.2085
-        width: 550
-        height: 269.79166
+        y: 6858.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: b
+      name: food_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 5936.2085
-        width: 550
-        height: 269.79166
+        y: 6096.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: c
+      name: food_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 5667.2085
-        width: 550
-        height: 269.79166
+        y: 5334.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: d
+      name: food_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 5398.2085
-        width: 550
-        height: 269.79166
+        y: 4572.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: e
+      name: food_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 5129.2085
-        width: 550
-        height: 269.79166
+        y: 3810.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: f
+      name: food_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 4860.2085
-        width: 550
-        height: 269.79166
+        y: 3048.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: g
+      name: food_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 4591.2085
-        width: 550
-        height: 269.79166
+        y: 2286.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: h
+      name: food_7
       rect:
         serializedVersion: 2
         x: 0
-        y: 4322.2085
-        width: 550
-        height: 269.79166
+        y: 1524.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: i
+      name: food_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 4053.2083
-        width: 550
-        height: 269.79166
+        y: 762.9
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: j
+      name: food_9
       rect:
         serializedVersion: 2
         x: 0
-        y: 3784.2083
-        width: 550
-        height: 269.79166
+        y: 0.9000244
+        width: 1416
+        height: 762.1
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: k
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3515.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: l
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 3246.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: m
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2977.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: n
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2708.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: o
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2439.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: p
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2170.2083
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: q
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1901.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: r
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1632.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: s
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1363.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: t
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1094.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: u
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 825.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: v
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 556.2084
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: w
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 287.20834
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: x
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 18.208344
-        width: 550
-        height: 269.79166
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -6,7 +6,7 @@ public class DragAndDrop : MonoBehaviour {
 
     private bool isDragged = false; //whether the player is currently dragging an item
     private GameObject spoon;   //holds a reference to an object being dragged
-    private Vector2 touchOffset;    // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
+    private Vector2 touchOffset;    //allows a grabbed object to stick realistically to the player’s touch position (more about this later).
 
 	// TODO: to be finished
     Animator anim; //Animator for the spoon
@@ -149,7 +149,7 @@ public class DragAndDrop : MonoBehaviour {
     {   
 		//if the spoon touches the food, check the food is not finished
 		//and display full spoon
-		if (col == food.GetComponent<Collider2D>() && (foodScript.frame <= 24))
+		if (col == food.GetComponent<Collider2D>() && (foodScript.frame <= 10))
 		{ 
 			this.GetComponent<SpriteRenderer>().sprite = fullSpoon;
 			//Flag spoon as full
