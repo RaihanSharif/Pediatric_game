@@ -108,4 +108,80 @@ public class IngBabyUnitTest {
 		Assert.AreEqual (thirdBlue.bubbleNum, 3);
 	}
 
+
+	/// <summary>
+	/// Es the third blue bubble popped passes.
+	/// </summary>
+	[UnityTest]
+	public IEnumerator E_SecondPinkBubblePoppedPasses() {
+		LoadSceneByName ("IngestionBaby");
+		yield return null;
+
+		yield return new WaitForSeconds (3);
+		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
+		bubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (1);
+
+		var secondBlue = GameObject.Find ("BlueBubble2").GetComponent<BubbleClick> ();
+		secondBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var thirdBlue = GameObject.Find ("BlueBubble3").GetComponent<BubbleClick> ();
+		thirdBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var secondPurple = GameObject.Find ("PinkBubble2").GetComponent<BubbleClick> ();
+		secondPurple.OnMouseDown ();
+		secondPurple.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		Assert.AreEqual (secondPurple.bubbleNum, 5);
+
+	}
+
+	/// <summary>
+	/// Es the third blue bubble popped passes.
+	/// </summary>
+	[UnityTest]
+	public IEnumerator F_ThirdPinkBubblePoppedPasses() {
+		LoadSceneByName ("IngestionBaby");
+		yield return null;
+
+		yield return new WaitForSeconds (3);
+		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
+		bubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (1);
+
+		var secondBlue = GameObject.Find ("BlueBubble2").GetComponent<BubbleClick> ();
+		secondBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var thirdBlue = GameObject.Find ("BlueBubble3").GetComponent<BubbleClick> ();
+		thirdBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var secondPurple = GameObject.Find ("PinkBubble2").GetComponent<BubbleClick> ();
+		secondPurple.OnMouseDown ();
+		secondPurple.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var thirdPurple = GameObject.Find ("PinkBubble3").GetComponent<BubbleClick> ();
+		thirdPurple.OnMouseDown ();
+		thirdPurple.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		Assert.AreEqual (thirdPurple.bubbleNum, 6);
+
+	}
+
 }
