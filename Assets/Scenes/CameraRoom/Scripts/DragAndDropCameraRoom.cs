@@ -26,70 +26,66 @@ public class DragAndDropCameraRoom : MonoBehaviour
     [SerializeField]
     private LevelFinishedMenu lvlFM;
 
+    /// <summary>
+    /// Start is called at the beginning of a scene.
+    /// This is used to change the colour of the target as the start.
+    /// </summary>
     void Start()
     {
         makeTargetRed();
     }
 
+    /// <summary>
+    /// Makes the target red; used to set the target's
+    /// colour at the start of the game.
+    /// </summary>
     void makeTargetRed()
     {
         GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
     }
 
-    void disableHitbox(string name)
-    {
-        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = false;
-    }
-
-    void enableHitbox(string name)
-    {
-        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    void cameraOverTarget()
-    {
-        float x = GameObject.FindGameObjectWithTag("CameraTop").transform.position.x;
-        if (x <= 3 && x >= 0.2)
-        {
-            score++;
-            float targetR = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.r;
-            float targetG = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.g;
-            if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
-            {
-                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.005f, targetG + 0.005f, 0, 1);
-            }
-        }
-    }
-
-
     /// <summary>
-    /// calls the methods DropItems() and DragOrPickup() when required
-    /// checks if the player is currently touching the screen and if 
-    /// he is, Drag or pick up the object, otherwise drop the item
+    /// Update runs each frame.
+    /// Calls the methods DropItems() and DragOrPickup() when required.
+    /// Checks if the player is currently touching the screen and, 
+    /// if so, drags or picks up the object; 
+    /// otherwise, drop the object that was being moved.
     /// </summary>
     void Update()
     {
-
+        //Check for input and move objects if there is input.
         if (HasInput)
         {
             DragOrPickUp();
         }
-        else
+        else    //Drop items if input is witdrawn and something was being dragged.
         {
             if (draggingItem)
+            {
                 DropItem();
+            }
         }
+
+        //If the boolean for zooming to the second half of the level is true, zoom the camera.
         if (zoomToLevel2)
         {
             cameraZoom();
         }
 
+        //If the player has scanned the target and won the game, end the level.
         if (score >= 200 && !levelOver)
         {
             levelCleared();
         }
     }
 
+    /// <summary>
+    /// FixedUpdate after a set amount of time in the real world.
+    /// Checks if the camera is over the target,
+    /// and changes the target's colour and the score variable
+    /// if so. FixedUpdate is used so that score and colour change
+    /// happen at a predictable rate.
+    /// </summary>
     void FixedUpdate()
     {
         if (inLevel2)
@@ -98,14 +94,39 @@ public class DragAndDropCameraRoom : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Check whether the camera is over the target,
+    /// and change the target's colour if so.
+    /// Also increment the score.
+    /// </summary>
+    void cameraOverTarget()
+    {
+        //If the camera is in a region that sees the target...
+        float x = GameObject.FindGameObjectWithTag("CameraTop").transform.position.x;
+        if (x <= 3 && x >= 0.2)
+        {
+            score++;    //...increment the score...
+            float targetR = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.r;
+            float targetG = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.g;
+            if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
+            {
+                //...and fade the target from red towards green.
+                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.005f, targetG + 0.005f, 0, 1);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Zooms the camera smoothly to the position required in the second level.
+    /// </summary>
     private void cameraZoom()
     {
-        elapsed += Time.deltaTime;
-        Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);
-        Camera.main.transform.position = new Vector3(Mathf.SmoothStep(0f, 2.1f, elapsed), 0f, -10f);
-        GameObject.FindGameObjectWithTag("CameraTop").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, elapsed));
+        elapsed += Time.deltaTime;  //Keep track of the time elapsed during the zoom, using it to smoothly move the items.
+        Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);     //Zoom the camera smoothly
+        Camera.main.transform.position = new Vector3(Mathf.SmoothStep(0f, 2.1f, elapsed), 0f, -10f);    //Move the camera smoothly to the desired position.
+        GameObject.FindGameObjectWithTag("CameraTop").GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, elapsed));  //Make the top camera fade out.
 
-
+        //If the zoom process has completed, change boolean values and reset elapsed.
         if (elapsed > 1.0f)
         {
             zoomToLevel2 = false;
@@ -115,7 +136,54 @@ public class DragAndDropCameraRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// returns the position of a detected touch/mouse input
+    /// If an item is being dragged, move it with the input; 
+    /// if an object is not being dragged, 
+    /// pick up an object that’s being touched.
+    /// </summary>
+    private void DragOrPickUp()
+    {
+        //Keep track of the posistion that input is being recieved.
+        var inputPosition = CurrentTouchPosition;
+
+        //If there is an item being moved, change its position to the input position and click the object into place if necessary.
+        //TouchOffset is used to ensure that if the object is clicked at a specific position of its hitbox, move oriented to that position.
+        if (draggingItem)
+        {
+            draggedObject.transform.position = inputPosition + touchOffset;
+            clickIntoPlace();
+        }
+        else    //Otherwise, check boolean values to see the state of the level and enable hitboxes as necessary to move along the game.
+        {
+            if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace && !camera1inPlace && !camera2inPlace)
+            {
+                //When the sandbags and straps are in place, allow the cameras to move.
+                enableHitbox("CameraTop");
+                enableHitbox("CameraBottom");
+            }
+            if (camera1inPlace && camera2inPlace && !tableInPLace)
+            {
+                //When the cameras are in place, allow the table to move.
+                enableHitbox("Table");
+            }
+            if (inLevel2)
+            {
+                //When the table is in place, allow the top camera to move.
+                enableHitbox("CameraTop");
+            }
+
+            //Perform a raycast at at the input position.
+            RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
+            if (touches.Length > 0)
+            {
+                //If the raycast hit something, pick it up.
+                var hit = touches[0];
+                PickUp(tags, hit, inputPosition);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Returns the position of a detected touch/mouse input.
     /// </summary>
     Vector2 CurrentTouchPosition
     {
@@ -128,48 +196,25 @@ public class DragAndDropCameraRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// if an item is being dragged, move it with the input; 
-    /// if an object is not being dragged, pick up an object 
-    /// that’s being touched.
+    /// Disables the hitbox of an object with a given name.
     /// </summary>
-    private void DragOrPickUp()
+    void disableHitbox(string name)
     {
-
-        var inputPosition = CurrentTouchPosition;
-
-        if (draggingItem)
-        {
-            draggedObject.transform.position = inputPosition + touchOffset;
-            clickIntoPlace();
-        }
-        else
-        {
-            if (sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace && !camera1inPlace && !camera2inPlace)
-            {
-                enableHitbox("CameraTop");
-                enableHitbox("CameraBottom");
-
-
-
-            }
-            if (camera1inPlace && camera2inPlace && !tableInPLace)
-            {
-                enableHitbox("Table");
-            }
-            if (inLevel2)
-            {
-                enableHitbox("CameraTop");
-            }
-            RaycastHit2D[] touches = Physics2D.RaycastAll(inputPosition, inputPosition, 0.5f);
-            if (touches.Length > 0)
-            {
-                var hit = touches[0];
-
-                PickUp(tags, hit, inputPosition);
-            }
-        }
+        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = false;
     }
 
+    /// <summary>
+    /// Enables the hitbox of an object with a given name.
+    /// </summary>
+    void enableHitbox(string name)
+    {
+        GameObject.FindGameObjectWithTag(name).GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    /// <summary>
+    /// Drop an item that is being dragged, place it at (x, y), 
+    /// and disable its box collider component.
+    /// </summary>
     void disableDragableItem(float x, float y)
     {
         DropItem();
@@ -177,21 +222,39 @@ public class DragAndDropCameraRoom : MonoBehaviour
         draggedObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-   public void clickIntoPlace()
+    /// <summary>
+    /// Releases a picked up item.
+    /// </summary>
+    void DropItem()
     {
+        draggingItem = false;
+    }
+
+    /// <summary>
+    /// Ensures that objects move as desired, including
+    /// snapping them into place when they reach
+    /// their destination and moving along a certain
+    /// axis if necessary. Also edits boolean values to
+    /// keep track of how far along the game is.
+    /// </summary>
+    public void clickIntoPlace()
+    {
+        //If dragging the table...
         if (draggedObject.name.Equals("Table"))
         {
+            //...move the table to the mouse (or touch input) position .
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
-            GameObject.FindWithTag("Table").transform.position = new Vector2(GameObject.FindWithTag("Table").transform.position.x, 0.0f);
-            if (GameObject.FindWithTag("Table").transform.position.x > 1.5f && GameObject.FindWithTag("Table").transform.position.x < 2.0f)
+
+            //If the table reaches the necessary position...
+            if (draggedObject.transform.position.x > 1.5f && draggedObject.transform.position.x < 2.0f)
             {
+                //... move it to exactly (2.1, 0) and disable its hitbox.
                 disableDragableItem(2.1f, 0.0f);
-                disableHitbox("Table");
                 tableInPLace = true;
                 zoomToLevel2 = true;
             }
         }
-        else if
+        else if     //If Strap1 is in place and the sandbags are already in place, snap it into position.
             (draggedObject.name.Equals("Strap1") &&
             draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
             && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
@@ -201,7 +264,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             strap1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if
+        else if     //If Strap2 is in place and the sandbags are already in place, snap it into position.
             (draggedObject.name.Equals("Strap2") &&
             draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
             && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
@@ -211,7 +274,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             strap2inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if
+        else if     //If Sandbag1 is in place, snap it into position.
             (draggedObject.name.Equals("Sandbag1") &&
             draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
             && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
@@ -220,7 +283,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             sandbag1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if
+        else if     //If Sandbag2 is in place, snap it into position.
            (draggedObject.name.Equals("Sandbag2") &&
            draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
            && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
@@ -230,9 +293,10 @@ public class DragAndDropCameraRoom : MonoBehaviour
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
 
         }
-        else if
+        else if     //If the top camera is being moved and both the sandbags and straps are in place...
             (draggedObject.name.Equals("CameraTop") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
         {
+            //...and if still in the first half of the level, move the camera along the y axis until it snaps into place...
             if (!inLevel2)
             {
                 draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
@@ -243,16 +307,15 @@ public class DragAndDropCameraRoom : MonoBehaviour
                     camera1inPlace = true;
                 }
             }
-            else
+            else    //...else if in the second half of the level, move the camera along the x axis.
             {
                 draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
             }
-
-
         }
-        else if
+        else if     //If the bottom camera is being moved and both the sandbags and straps are in place...
             (draggedObject.name.Equals("CameraBottom") && sandbag1inPlace && sandbag2inPlace && strap1inPlace && strap2inPlace)
         {
+            //...slide it along the Y axis until it snaps into place.
             draggedObject.transform.position = new Vector2(6.3f, draggedObject.transform.position.y);
             if (draggedObject.transform.position.y > -0.5f && draggedObject.transform.position.y < 0.5f)
             {
@@ -260,24 +323,28 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 camera2inPlace = true;
                 disableHitbox("CameraBottom");
             }
-
         }
-
-
     }
 
+    /// <summary>
+    /// Method used to iterate through all the 
+    /// named & tagged items in the array 'tags', 
+    /// and check if the raycast has hit them.
+    /// </summary>
     void PickUp(string[] tags, RaycastHit2D hit, Vector2 inputPosition)
     {
+        //If the raycast has hit something...
         if (hit.transform != null)
         {
             foreach (string tag in tags)
             {
+                //...and the object that was hit matches one of the tagged objects...
                 if (hit.collider.name.Equals(tag))
                 {
-                    draggedObject = GameObject.FindGameObjectWithTag(tag);
+                    draggedObject = GameObject.FindGameObjectWithTag(tag);  //...grab the object...
                     Debug.Log("hit = :" + hit.collider.name);
                     draggingItem = true;
-                    touchOffset = (Vector2)hit.transform.position - inputPosition;
+                    touchOffset = (Vector2)hit.transform.position - inputPosition;  //...while keeping track of where the user clicked on the object.
                     break;
                 }
             }
@@ -285,8 +352,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// returns true when the player is currently
-    /// touching the screen/holding the mouse button
+    /// Returns true when the player is currently
+    /// touching the screen/holding the mouse button.
     /// </summary>
     private bool HasInput
     {
@@ -298,17 +365,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// releases a picked up item
-    /// </summary>
-    void DropItem()
-    {
-
-        draggingItem = false;
-        //draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
-    }
-
-    /// <summary>
-    /// Setters for booleans, for testing purposes
+    /// Setters for booleans, for testing purposes.
     /// </summary>
     #region
     public void setDraggedObject(GameObject draggedComponent)
@@ -350,7 +407,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     #endregion
 
     /// <summary>
-    /// Getters for booleans, for testing purposes
+    /// Getters for booleans, for testing purposes.
     /// </summary>
     #region
     public bool getstrap1inPlace()
@@ -399,7 +456,9 @@ public class DragAndDropCameraRoom : MonoBehaviour
     }
     #endregion
 
-
+    /// <summary>
+    /// Method called when the level is cleared, used to move to the next stage.
+    /// </summary>
     void levelCleared()
     {
         levelOver = true; //Signals to the script that the game has ended
