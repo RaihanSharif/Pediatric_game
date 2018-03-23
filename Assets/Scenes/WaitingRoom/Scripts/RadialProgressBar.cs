@@ -9,10 +9,7 @@ public class RadialProgressBar : MonoBehaviour {
     public Image loadingBarImage;   //image of the loading bar in the canvas   
 
     [SerializeField]
-    private LevelFinishedMenu lvlFM;
-
-    [SerializeField]
-    private float currentBarAmount = 100f;    
+    private LevelFinishedMenu lvlFM;    
 
     [SerializeField]
     private float speed = 1f;
@@ -20,7 +17,8 @@ public class RadialProgressBar : MonoBehaviour {
 
     private int MINIMUMVALUE = 0;  //ending time for gauge
     private int REDZONEVALUE = 60;   //time below which loading bar becomes red
-    private int DECREASEBARAMOUNT = 34;
+    private int REDZONEVALUE = 80;   //time below which loading bar becomes red
+    public static int DECREASEBARAMOUNT = 34;
 
     [SerializeField]
     private bool decreaseBar = false;
@@ -39,11 +37,6 @@ public class RadialProgressBar : MonoBehaviour {
                 if (inRedZone())
                 {
                     changeLoadingBarColorToRed();
-                    decrementCurrentBarAmountBySpeed();
-                }
-                else
-                {
-                    decrementCurrentBarAmountBySpeed();
                 }
             }
             updateLoadingBar();
@@ -56,16 +49,16 @@ public class RadialProgressBar : MonoBehaviour {
     }
 
     #region MethodsUsedInDoUpdate
-
+        /*
     /// <summary>
     /// multiply speed by Time.deltaTime to move object by per second
     /// instead of by per frame
     /// </summary>
     void decrementCurrentBarAmountBySpeed()
     {
-        currentBarAmount -= DECREASEBARAMOUNT;
+        WaitingRoomData.currentBarAmount -= DECREASEBARAMOUNT;
         decreaseBar = false;
-    }
+    }*/
     
     /// <summary>
     /// display the current time by converting the float
@@ -91,7 +84,7 @@ public class RadialProgressBar : MonoBehaviour {
 
     void updateLoadingBar()
     {
-        LoadingBar.GetComponent<Image>().fillAmount = currentBarAmount / 100;
+        LoadingBar.GetComponent<Image>().fillAmount = WaitingRoomData.currentBarAmount / 100;
     }
 
     void changeLoadingBarColorToRed()
@@ -102,13 +95,39 @@ public class RadialProgressBar : MonoBehaviour {
 
     bool inRedZone()
     {
-        return currentBarAmount <= REDZONEVALUE;
+        return WaitingRoomData.currentBarAmount <= REDZONEVALUE;
     }
 
     bool timeStillRemaining()
     {
-        return currentBarAmount > MINIMUMVALUE;
+        return WaitingRoomData.currentBarAmount > MINIMUMVALUE;
+    }
+
+    public void decreaseRadialBar()
+    {
+        WaitingRoomData.currentBarAmount -= DECREASEBARAMOUNT;
     }
     #endregion
 
+    #region Get&SetMethods
+    public float getCurrentBarValue()
+    {
+        return WaitingRoomData.currentBarAmount;
+    }
+
+    public void setCurrentBarValue(float val)
+    {
+        WaitingRoomData.currentBarAmount = val;
+    }
+
+    public void setDecreaseBar(bool boolVal)
+    {
+        decreaseBar = boolVal;
+    }
+
+    public LevelFinishedMenu getLevlFinishedMenu()
+    {
+        return lvlFM;
+    }
+    #endregion
 }

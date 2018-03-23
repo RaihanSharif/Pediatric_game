@@ -59,7 +59,7 @@ public class CremeSpotCollision : MonoBehaviour {
 	/// process to follow when the injection is done for one creme spot.
 	/// </summary>
 	/// <param name="theStar">star for which animation will be triggered</param>
-	void injectionIsDone(Smiley theSmiley){
+	public void injectionIsDone(Smiley theSmiley){
 
 		theAudio.playSuccessForInjectionSpot();
 		timeCounter = 0.0f;// reset the time counter
