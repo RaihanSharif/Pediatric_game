@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class FlappyBirdUnitTesting {
+public class FlappyBirdIntegrationTest {
 
 
 	[UnityTest]
@@ -13,11 +13,12 @@ public class FlappyBirdUnitTesting {
 
 		LoadSceneByName("FlappyBird");
 		yield return null;
+		var gameControlObject = GameObject.Find("GameControl");
+		gameControlObject.GetComponent<GameControl> ().setTimeTo1 ();
 		var restartObject = GameObject.Find("Restart");
 		yield return new WaitForSeconds(1.5f);
 		restartObject = GameObject.Find("Restart");
 		restartObject.GetComponent<RestartFlappyBird>().restartTheGame();
-		yield return new WaitForSeconds(1f);
 		Assert.AreEqual ("FlappyBird", SceneManager.GetActiveScene().name);
 		yield return null;
 	}
@@ -28,11 +29,13 @@ public class FlappyBirdUnitTesting {
 
 		LoadSceneByName("FlappyBird");
 		yield return null;
+		var gameControlObject = GameObject.Find("GameControl");
+		gameControlObject.GetComponent<GameControl>().setTimeTo1 ();
 		var backObject = GameObject.Find("BackButton");
 		yield return new WaitForSeconds(1.5f);
 		backObject = GameObject.Find("BackButton");
 		backObject.GetComponent<ComeBackSprite>().goBackToWaitingRoom();
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(2f);
 		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 		yield return null;
 	}

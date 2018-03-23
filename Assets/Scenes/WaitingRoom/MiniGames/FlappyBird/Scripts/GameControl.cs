@@ -30,14 +30,25 @@ public class GameControl : MonoBehaviour
 	}
 
 	void Start(){
+		setTimeTo0 ();
+	}
+
+
+	public void setTimeTo1(){
+		Time.timeScale = 1f;
+
+	}
+
+	public void setTimeTo0(){
 		Time.timeScale = 0f;
 	}
 
 
+
 	void Update()
 	{
-		if(Input.GetMouseButtonDown(0)) 
-			Time.timeScale = 1f;
+		if (Input.GetMouseButtonDown (0))
+			setTimeTo1 ();
 		//If the game is over and the player has pressed some input...
 		if (gameOver) 
 		{
