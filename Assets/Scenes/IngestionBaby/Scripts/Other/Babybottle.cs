@@ -42,7 +42,7 @@ public class Babybottle : MonoBehaviour {
         sound.PlayOneShot(win);
     }
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         if (arrowClass.isTimeToActivateThirdArrow)
             FirstBottleClickAfterAllBubblesPopped = true;
