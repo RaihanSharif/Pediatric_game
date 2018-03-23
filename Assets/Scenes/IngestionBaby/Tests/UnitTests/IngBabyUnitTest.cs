@@ -184,4 +184,53 @@ public class IngBabyUnitTest {
 
 	}
 
+	/// <summary>
+	/// Es the third blue bubble popped passes.
+	/// </summary>
+	[UnityTest]
+	public IEnumerator G_BottleDiminshesVolumePasses() {
+		LoadSceneByName ("IngestionBaby");
+		yield return null;
+
+		yield return new WaitForSeconds (3);
+		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
+		bubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+		otherBubble.OnMouseDown ();
+		yield return new WaitForSeconds (1);
+
+		var secondBlue = GameObject.Find ("BlueBubble2").GetComponent<BubbleClick> ();
+		secondBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var thirdBlue = GameObject.Find ("BlueBubble3").GetComponent<BubbleClick> ();
+		thirdBlue.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var secondPurple = GameObject.Find ("PinkBubble2").GetComponent<BubbleClick> ();
+		secondPurple.OnMouseDown ();
+		secondPurple.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var thirdPurple = GameObject.Find ("PinkBubble3").GetComponent<BubbleClick> ();
+		thirdPurple.OnMouseDown ();
+		thirdPurple.OnMouseDown ();
+		yield return new WaitForSeconds (2);
+
+		var bottle = GameObject.Find ("babyBottle").GetComponent<playAnimationOnClick> ();
+		bottle.OnMouseDown ();
+		var anim = GameObject.Find ("babyBottle").GetComponent<Animator> ();
+		anim.Play ("BabyBottleAnim");
+		var bottleScript = GameObject.Find ("babyBottle").GetComponent<Babybottle> ();
+		bottleScript.OnMouseDown ();
+		yield return null;
+		yield return new WaitForSeconds (0.5f);
+
+		Assert.AreEqual (1, bottleScript.ctr);
+
+	}
+
 }
