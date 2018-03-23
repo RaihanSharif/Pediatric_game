@@ -7,26 +7,24 @@ using UnityEngine.UI;
 
 public class IngBabyUnitTest {
 
-	private void LoadSceneByName(string name){
-
-		SceneManager.LoadScene(name, LoadSceneMode.Single);
+	private void LoadBabyIngestionScene() {
+		SceneManager.LoadScene("IngestionBaby", LoadSceneMode.Single);
 	}
 
 	/// <summary>
 	/// Clicks on the first bubble and checks whether it has 
 	/// changed the firstPopped variable to true in the script
 	/// </summary>
-	/// <returns>The baby unit test with enumerator passes.</returns>
 	[UnityTest]
 	public IEnumerator A_FirstBubblePoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
 		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
 		bubble.OnMouseDown ();
 
-		Assert.AreEqual (bubble.getFirstPopped (), true);
+		Assert.AreEqual (bubble.getFirstPopped(), true);
 
 	}
 
@@ -34,10 +32,9 @@ public class IngBabyUnitTest {
 	/// Clicks on the first, second and third bubble and 
 	/// checks whether they have all been clicked
 	/// </summary>
-	/// <returns>The baby unit test with enumerator passes.</returns>
 	[UnityTest]
 	public IEnumerator B_ThreeFirstBubblesPoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
@@ -59,10 +56,10 @@ public class IngBabyUnitTest {
 	/// </summary>
 	[UnityTest]
 	public IEnumerator C_SecondBlueBubblePoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (3);
 		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
 		bubble.OnMouseDown ();
 		yield return new WaitForSeconds (2);
@@ -80,14 +77,15 @@ public class IngBabyUnitTest {
 	}
 
 	/// <summary>
-	/// Cs the second blue bubble popped passes.
+	/// Click the three first bubbles then wait for the second and third blue
+	/// bubbles to appear, click them and check that they have been clicked
 	/// </summary>
 	[UnityTest]
 	public IEnumerator D_ThirdBlueBubblePoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (3);
 		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
 		bubble.OnMouseDown ();
 		yield return new WaitForSeconds (2);
@@ -110,11 +108,12 @@ public class IngBabyUnitTest {
 
 
 	/// <summary>
-	/// Es the third blue bubble popped passes.
+	/// Click the five first bubbles, then click on the first
+	/// pink moving bubble and check that it has been clicked
 	/// </summary>
 	[UnityTest]
 	public IEnumerator E_SecondPinkBubblePoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
@@ -145,11 +144,12 @@ public class IngBabyUnitTest {
 	}
 
 	/// <summary>
-	/// Es the third blue bubble popped passes.
+	/// Click the five first bubbles, then click on the first and second
+	/// pink moving bubbles and check that they have been clicked
 	/// </summary>
 	[UnityTest]
 	public IEnumerator F_ThirdPinkBubblePoppedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
@@ -185,11 +185,12 @@ public class IngBabyUnitTest {
 	}
 
 	/// <summary>
-	/// Es the third blue bubble popped passes.
+	/// Click past all the bubbles, then click once on the baby bottle
+	/// and check that the volume inside the bottle has diminished
 	/// </summary>
 	[UnityTest]
 	public IEnumerator G_BottleDiminshesVolumePasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
@@ -234,11 +235,12 @@ public class IngBabyUnitTest {
 	}
 
 	/// <summary>
-	/// Es the third blue bubble popped passes.
+	/// Click past all the bubbles, then click three times on the baby bottle
+	/// and check that the volume inside the bottle has diminished by half
 	/// </summary>
 	[UnityTest]
 	public IEnumerator H_BottleDiminshesByHalfPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
@@ -291,11 +293,12 @@ public class IngBabyUnitTest {
 	}
 
 	/// <summary>
-	/// Es the third blue bubble popped passes.
+	/// Click past all the bubbles, then click six times on
+	/// the baby bottleand check that the bottle is now empty
 	/// </summary>
 	[UnityTest]
 	public IEnumerator I_BottleEmptiedPasses() {
-		LoadSceneByName ("IngestionBaby");
+		LoadBabyIngestionScene ();
 		yield return null;
 
 		yield return new WaitForSeconds (3);
