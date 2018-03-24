@@ -19,6 +19,14 @@ public class EventManager : MonoBehaviour {
 	private int ageSelected;
 	public static string chosenScene;
 
+	[SerializeField]
+	private GameObject foodSelection;
+
+	// Use this for initialization
+	void Start () {
+		foodSelection.SetActive(false);
+	}
+
 	//Loads a scene with a specific name
 	public void LoadSceneByName(string name){
 
@@ -35,11 +43,11 @@ public class EventManager : MonoBehaviour {
 	public void babyButtonPressed(){
 		ageSelected = BABY;
 		if (procedureSelected == INGESTION){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("IngestionBaby");
 			chosenScene = "IngestionBaby";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("CremeApplication");
 			chosenScene = "CremeApplication";
 		}
 	}
@@ -49,11 +57,11 @@ public class EventManager : MonoBehaviour {
 	public void kidButtonPressed(){
 		ageSelected = KID;
 		if (procedureSelected == INGESTION){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("IngestionKid");
 			chosenScene = "IngestionKid";
 		}
 		if (procedureSelected == INJECTION){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("CremeApplication");
 			chosenScene = "CremeApplication";
 		}
 		
@@ -62,12 +70,13 @@ public class EventManager : MonoBehaviour {
 	//Sets procedure flag, checks if age has been selected and if yes loads appropriate level 
 	public void ingestionButtonPressed(){
 		procedureSelected = INGESTION;
+		foodSelection.SetActive(true);
 		if (ageSelected == BABY){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("IngestionBaby");
 			chosenScene = "IngestionBaby";
 		}
 		if (ageSelected == KID){
-			LoadSceneByName("ProcedureExplanation");
+			LoadSceneByName("IngestionKid");
 			chosenScene = "IngestionKid";
 		}
 	}
@@ -76,7 +85,7 @@ public class EventManager : MonoBehaviour {
 	
 	public void injectionButtonPressed(){
 		procedureSelected = INJECTION;
-		LoadSceneByName("ProcedureExplanation");
+		LoadSceneByName("CremeApplication");
 		chosenScene = "CremeApplication";
 		
 	}
