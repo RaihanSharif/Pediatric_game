@@ -23,12 +23,12 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall");
+		var ball = GameObject.Find("PaperBall");
 		ball.transform.position = new Vector3(238f, 100f, 0f);
 
 		yield return new WaitForSeconds(5f);
 
-		var collider = GameObject.Find("ScoreIncrementer");
+		var collider = GameObject.Find("ScoreIncrementerCollider");
 		var colliderscript = collider.GetComponent<ScoreCounter>();
 
 		Assert.AreEqual(1, colliderscript.score);
@@ -46,12 +46,12 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall");
+		var ball = GameObject.Find("PaperBall");
 		ball.transform.position = new Vector3(238f, 100f, 0f);
 
 		yield return new WaitForSeconds(5f);
 
-		var collider = GameObject.Find("ScoreIncrementer");
+		var collider = GameObject.Find("ScoreIncrementerCollider");
 		var colliderscript = collider.GetComponent<ScoreCounter>();
 
 		Assert.AreEqual("Score: 1", colliderscript.scoreText.text);
@@ -69,12 +69,12 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall");
+		var ball = GameObject.Find("PaperBall");
 		ball.transform.position = new Vector3(238f, 100f, 0f);
 
 		yield return new WaitForSeconds(0.75f);
 
-		var collider = GameObject.Find("ScoreIncrementer");
+		var collider = GameObject.Find("ScoreIncrementerCollider");
 		var colliderscript = collider.GetComponent<ScoreCounter>();
 
 		Assert.AreEqual(true, ball.transform.position.y > 50);
@@ -91,7 +91,7 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall").GetComponent<Rigidbody2D>();
+		var ball = GameObject.Find("PaperBall").GetComponent<Rigidbody2D>();
 		yield return new WaitForSeconds(2);
 
 		var firstPos = ball.transform.position;
@@ -115,7 +115,7 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall").GetComponent<Rigidbody2D>();
+		var ball = GameObject.Find("PaperBall").GetComponent<Rigidbody2D>();
 		yield return new WaitForSeconds(2);
 
 		var firstPos = ball.transform.position;
@@ -137,7 +137,7 @@ public class PaperTossTest {
 		LoadSceneByName("PaperTossScene");
 		yield return null;
 
-		var ball = GameObject.Find("paperBall").GetComponent<Rigidbody2D>();
+		var ball = GameObject.Find("PaperBall").GetComponent<Rigidbody2D>();
 		ball.transform.position = new Vector3(217f, 130f, -0.5f);
 		yield return new WaitForSeconds(2);
 
