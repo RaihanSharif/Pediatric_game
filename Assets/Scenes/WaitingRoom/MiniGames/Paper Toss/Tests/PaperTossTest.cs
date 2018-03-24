@@ -155,16 +155,17 @@ public class PaperTossTest {
 	/// Makes sure that the throw force (taken into account when 
 	/// calculating the movement of the ball) hasn't been changed.
 	/// </summary>
-	/// <returns>The constant does not change.</returns>
+	/// <returns>If the force is the expected constant.</returns>
 	[UnityTest]
 	public IEnumerator ForceConstantDoesNotChange() {
 
 		var thePaperBall = new GameObject().AddComponent<PaperBallBehaviour>();
 
-		Assert.AreEqual(2.2f, thePaperBall.throwForce);
+		Assert.AreEqual(3f, thePaperBall.throwForce);
 
 		yield return null;
 
 	}
 
 }
+	
