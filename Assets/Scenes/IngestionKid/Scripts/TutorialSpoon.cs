@@ -24,7 +24,7 @@ public class TutorialSpoon : MonoBehaviour {
     void Update ()
     {
         runTimer();
-        if (timer > 4)
+        if (timer > 8)
         {
             tutorialSpoon.SetActive(false);
             spoonScript.spoon.SetActive(true);
