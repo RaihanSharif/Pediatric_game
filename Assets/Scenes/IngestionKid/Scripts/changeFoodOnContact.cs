@@ -35,6 +35,7 @@ public class changeFoodOnContact : MonoBehaviour {
             isMouthOpen = true;
 
         } else if (frame == 10) {
+            spoonScript.enabled = false;
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			frame++;
             lvlFM.OnLevelFinished();
