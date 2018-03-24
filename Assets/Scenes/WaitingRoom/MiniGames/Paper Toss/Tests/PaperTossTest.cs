@@ -24,7 +24,7 @@ public class PaperTossTest {
 		yield return null;
 
 		var ball = GameObject.Find("PaperBall");
-		ball.transform.position = new Vector3(238f, 100f, 0f);
+		ball.transform.position = new Vector3(245f, 100f, -0.5f);
 
 		yield return new WaitForSeconds(5f);
 
@@ -47,7 +47,7 @@ public class PaperTossTest {
 		yield return null;
 
 		var ball = GameObject.Find("PaperBall");
-		ball.transform.position = new Vector3(238f, 100f, 0f);
+		ball.transform.position = new Vector3(245f, 100f, -0.5f);
 
 		yield return new WaitForSeconds(5f);
 
@@ -70,7 +70,7 @@ public class PaperTossTest {
 		yield return null;
 
 		var ball = GameObject.Find("PaperBall");
-		ball.transform.position = new Vector3(238f, 100f, 0f);
+		ball.transform.position = new Vector3(245f, 100f, -0.5f);
 
 		yield return new WaitForSeconds(0.75f);
 
@@ -138,7 +138,7 @@ public class PaperTossTest {
 		yield return null;
 
 		var ball = GameObject.Find("PaperBall").GetComponent<Rigidbody2D>();
-		ball.transform.position = new Vector3(217f, 130f, -0.5f);
+		ball.transform.position = new Vector3(214f, 130f, -0.5f);
 		yield return new WaitForSeconds(2);
 
 		var firstPos = ball.transform.position;
