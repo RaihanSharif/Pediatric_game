@@ -12,12 +12,13 @@ public class ScoreCounter : MonoBehaviour {
 	public System.Random rand = new System.Random(); // random object used to generate a random number
 
 	void Start(){
+
 		score = 0;
 		updateScoreText();
+
 	}
 
-	void Update(){
-	}
+	void Update(){}
 
 	/// <summary>
 	/// Updates the display of the score in the top left of the scene.
@@ -41,16 +42,16 @@ public class ScoreCounter : MonoBehaviour {
 	/// <param name="toBeTranslated">Collider of the game object to be translated.</param>
 	void translatePaperBall(Collider2D toBeTranslated){
 
-		toBeTranslated.gameObject.transform.Translate(new Vector3(getRandNum(), transform.position.y-90f), Space.World);
+		toBeTranslated.gameObject.transform.Translate(new Vector3(getRandNum(), -30f), Space.World);
 
 	}
 
 	/// <summary>
-	/// Updates the score and display, then delays for 1.2 seconds so the ball does not respawn instantaneously.
+	/// Updates the score and display, then delays for 1.2 seconds so the ball does not respawn instantly.
 	/// Finally, it translates the paper ball by randInt in the x position and transform.position.y-90f in the y position, 
 	/// which are the values that put the ball randomly across the bottom of the scene.
 	/// </summary>
-	/// <param name="other">Other.</param>
+	/// <param name="other">The other collider.</param>
 	IEnumerator OnTriggerEnter2D(Collider2D other){
 
 		score++;
@@ -63,3 +64,4 @@ public class ScoreCounter : MonoBehaviour {
 	}
 
 }
+		

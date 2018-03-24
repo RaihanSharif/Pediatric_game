@@ -12,13 +12,15 @@ public class PaperBallBehaviour : MonoBehaviour {
 	swipeEndTime, 			// time when the swipe ended
 	timeInterval; 			// how long the swipe took
 
-	[Range (0.05f, 2.2f)] public float throwForce = 2.2f; // value that is taken into account when calculating the total force applied to the paper ball
+	[Range (1f, 3f)] public float throwForce = 3f; // value that is taken into account when calculating the total force applied to the paper ball
 
 	int touchIndex = 0; // used to access a specific touch if there have been multiple ones. In this case the index is 0 because there will only be 1 touch
 	int maxThrowHeight = 115; // maximum height in the scene in which the ball can me manipulated with swipes. That's 115 in the y-axis
 
 	void Update() {
+
 		calculateSwipe();
+
 	}
 
 	/// <summary>
@@ -83,11 +85,13 @@ public class PaperBallBehaviour : MonoBehaviour {
 	/// That force is only added if the ball is below the maximum height for throwing.
 	/// </summary>
 	public void calculatePaperBallForce(){
+
 		timeInterval = swipeEndTime - swipeStartTime;
 		direction = swipeStartPos - swipeEndPos;
 
 		if (GetComponent<Rigidbody2D>().gameObject.transform.position.y < maxThrowHeight)
 			GetComponent<Rigidbody2D>().AddForce(-direction / timeInterval * throwForce);
+
 	}
 
 	/// <summary>
@@ -118,3 +122,4 @@ public class PaperBallBehaviour : MonoBehaviour {
 	}
 
 }
+		
