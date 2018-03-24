@@ -156,7 +156,7 @@ public class DragAndDrop : MonoBehaviour {
 			//Flag spoon as full
 			isFull = true;
 
-		} else if (col == kid.GetComponent<Collider2D>()) 
+		} else if (col == kid.GetComponent<Collider2D>() && spoon.GetComponent<SpriteRenderer>().sprite.name != "SpoonOfNothing") 
 		{ 
 			//if the spoon touches the kid, display empty spoon
 			//and flag spoon as empty
