@@ -48,7 +48,11 @@ public class DragAndDropCameraRoom : MonoBehaviour
         GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
     }
 
-
+    /// <summary>
+    /// Makes the guidance objects partially see-through by
+    /// iterating through all objects with the tag 'Guidance' and
+    /// changing their Alpha values.
+    /// </summary>
     void makeGuidanceObjectsTransparent()
     {
         foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
@@ -337,6 +341,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 disableHitbox("CameraBottom");
             }
         }
+
+        //Checks which stage the game is in and activates the necessary guidance using setGuidance.
         if (!sandbag1inPlace || !sandbag2inPlace)
         {
             setGuidance("Sandbag");
@@ -359,6 +365,12 @@ public class DragAndDropCameraRoom : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// A method used to activate the SpriteRenderer component
+    /// on certain guidance objects, and deactivate all other
+    /// guidance objects' SpriteRenderers. Used to make only
+    /// certain guidance objects visible.
+    /// </summary>
     void setGuidance(string contents)
     {
         foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
