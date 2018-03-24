@@ -12,7 +12,7 @@ public class MenuBehavior : MonoBehaviour {
             // by default case is 0
             default:
             case (0):
-                SceneManager.LoadScene("SecondGame");
+                SceneManager.LoadScene("CardMatchingGame");
                 break;
 
             case (1):
