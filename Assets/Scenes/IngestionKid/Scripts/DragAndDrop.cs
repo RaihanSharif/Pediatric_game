@@ -5,7 +5,7 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour {
 
     private bool isDragged = false; //whether the player is currently dragging an item
-    private GameObject spoon;   //holds a reference to an object being dragged
+    public GameObject spoon;   //holds a reference to an object being dragged
     private Vector2 touchOffset;    //allows a grabbed object to stick realistically to the player’s touch position (more about this later).
 
 	// TODO: to be finished
@@ -25,6 +25,7 @@ public class DragAndDrop : MonoBehaviour {
 
     void Start()
     {
+        spoon.SetActive(false);
 		//TODO: tbd when we merge
         anim = gameObject.GetComponent<Animator>();
         spoonAnimation = food.GetComponent<Animator>();
