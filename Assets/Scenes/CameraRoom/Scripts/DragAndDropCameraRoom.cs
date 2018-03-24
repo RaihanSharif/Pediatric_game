@@ -28,11 +28,15 @@ public class DragAndDropCameraRoom : MonoBehaviour
 
     /// <summary>
     /// Start is called at the beginning of a scene.
-    /// This is used to change the colour of the target as the start.
+    /// This is used to change the colour of the target
+    /// and guidance objects at the start.
+    /// Also initialises the guidance.
     /// </summary>
     void Start()
     {
         makeTargetRed();
+        makeGuidanceObjectsTransparent();
+        setGuidance("Sandbag");
     }
 
     /// <summary>
@@ -42,6 +46,15 @@ public class DragAndDropCameraRoom : MonoBehaviour
     void makeTargetRed()
     {
         GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+    }
+
+
+    void makeGuidanceObjectsTransparent()
+    {
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+        }
     }
 
     /// <summary>
@@ -73,7 +86,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         }
 
         //If the player has scanned the target and won the game, end the level.
-        if (score >= 200 && !levelOver)
+        if (score >= 160 && !levelOver)
         {
             levelCleared();
         }
@@ -111,7 +124,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
             {
                 //...and fade the target from red towards green.
-                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.005f, targetG + 0.005f, 0, 1);
+                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.0005f, targetG + 0.0005f, 0, 1);
             }
         }
     }
@@ -322,6 +335,41 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 disableDragableItem(6.3f, 0f);
                 camera2inPlace = true;
                 disableHitbox("CameraBottom");
+            }
+        }
+        if (!sandbag1inPlace || !sandbag2inPlace)
+        {
+            setGuidance("Sandbag");
+        }
+        else if (!strap1inPlace || !strap2inPlace)
+        {
+            setGuidance("Strap");
+        }
+        else if (!camera1inPlace || !camera2inPlace)
+        {
+            setGuidance("Camera");
+        }
+        else if (!tableInPLace)
+        {
+            setGuidance("Table");
+        }
+        else
+        {
+            setGuidance("Scan");
+        }
+    }
+
+    void setGuidance(string contents)
+    {
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
+        {
+            if (gameObject.name.Contains(contents))
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
     }
