@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
-
 
 public class TheBird : MonoBehaviour {
 
@@ -12,12 +10,10 @@ public class TheBird : MonoBehaviour {
 
 
 	public void OnMouseDown(){
-		if (!EventSystem.current.IsPointerOverGameObject()){
+		if (!PauseMenu.isPaused){
 			SceneManager.LoadScene("FlappyBird");
         	WaitingRoomData.currentBarAmount -= RadialProgressBar.DECREASEBARAMOUNT;
 		}
-        
-
     }
 
 
