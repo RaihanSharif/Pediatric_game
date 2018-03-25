@@ -114,7 +114,7 @@ public class Card : MonoBehaviour
     // gives a little buffer when the cards is flipped over and check if it is a match and how long the card should wait until flipped again
     IEnumerator pause()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         if (_state == 0) GetComponent<Image>().sprite = _cardBack;
         else if (_state == 1) GetComponent<Image>().sprite = _cardFace;
         DO_NOT = false;
