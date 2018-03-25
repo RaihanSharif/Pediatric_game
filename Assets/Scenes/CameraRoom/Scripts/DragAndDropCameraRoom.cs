@@ -336,7 +336,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
             {
                 if (draggedObject.transform.position.x > 1.5 && draggedObject.transform.position.x < 3)
                 {
-                    Debug.Log("Test1");
                     isScanning = true;
                     disableDragableItem(2.3f, 0f);
                     disableHitbox("CameraTop");
@@ -422,7 +421,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 if (hit.collider.name.Equals(tag))
                 {
                     draggedObject = GameObject.FindGameObjectWithTag(tag);  //...grab the object...
-                    Debug.Log("hit = :" + hit.collider.name);
                     draggingItem = true;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;  //...while keeping track of where the user clicked on the object.
                     break;
