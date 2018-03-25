@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class TheBird : MonoBehaviour {
 
 	public WaitingRoomSounds roomSounds;
@@ -11,9 +10,10 @@ public class TheBird : MonoBehaviour {
 
 
 	public void OnMouseDown(){
-        SceneManager.LoadScene("FlappyBird");
-        WaitingRoomData.currentBarAmount -= RadialProgressBar.DECREASEBARAMOUNT;
-
+		if (!PauseMenu.isPaused){
+			SceneManager.LoadScene("FlappyBird");
+        	WaitingRoomData.currentBarAmount -= RadialProgressBar.DECREASEBARAMOUNT;
+		}
     }
 
 

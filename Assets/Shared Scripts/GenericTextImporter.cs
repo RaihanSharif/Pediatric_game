@@ -44,7 +44,7 @@ public class GenericTextImporter : MonoBehaviour {
 
     protected void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !PauseMenu.isPaused)
         {
           SimpleNextLine();
         }
