@@ -6,13 +6,17 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
 
 	//Flag to keep track if game is paused
-	public static bool isPaused = false;
+	public static bool isPaused;
 
 	//Reference to the menu panel that will have to be toggled 
 	public GameObject pauseMenuUI;
 
 	//Constant for the scene number of the main menu
 	public const string MENUSCENE = "MainMenu";
+
+	void Awake(){
+		isPaused = false;
+	}
 
 	/// <summary>
 	/// Pauses the game by freezing game time and enables the pause menu
