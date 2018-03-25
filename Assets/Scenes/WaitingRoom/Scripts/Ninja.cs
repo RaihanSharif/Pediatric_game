@@ -7,6 +7,7 @@ public class Ninja : MonoBehaviour {
 
 	public WaitingRoomSounds roomSounds;
 
+
 	/// <summary>
 	/// Play Ninja Attack animation
 	/// </summary>

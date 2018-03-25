@@ -14,7 +14,7 @@ public class GameControl : MonoBehaviour
 	public float scrollSpeed = -1.5f;
 	public GameObject restartObject;
 	public GameObject moveToNextSceneObject;
-
+    public PauseMenu pauseMenu;
 
 	void Awake()
 	{
@@ -30,9 +30,8 @@ public class GameControl : MonoBehaviour
 	}
 
 	void Start(){
-		setTimeTo0 ();
+		setTimeTo0();
 	}
-
 
 	public void setTimeTo1(){
 		Time.timeScale = 1f;
@@ -47,10 +46,12 @@ public class GameControl : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetMouseButtonDown (0))
-			setTimeTo1 ();
-		//If the game is over and the player has pressed some input...
-		if (gameOver) 
+
+		if ( Input.GetMouseButtonDown (0))
+        {
+            setTimeTo1();
+        }
+        if (gameOver) 
 		{
 			restartObject.SetActive(true);
 			moveToNextSceneObject.SetActive(true);
@@ -58,7 +59,11 @@ public class GameControl : MonoBehaviour
 			//...reload the current scene.
 			//SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+
+			
+		
 	}
+
 
 	public void BirdScored()
 	{

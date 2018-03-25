@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RadialProgressBar : MonoBehaviour {
     public Transform LoadingBar;    //variable for filling loading bar
-    public Transform TextTimeLeft;   //represents the "TimeLeft..." text in the center
+    public Transform TextTimeLeft;  //represents the "TimeLeft..." text in the center
     public Image loadingBarImage;   //image of the loading bar in the canvas   
 
     [SerializeField]
@@ -14,18 +14,18 @@ public class RadialProgressBar : MonoBehaviour {
     [SerializeField]
     private float speed = 1f;
     private float MaxBarAmount = 100f;
-
     private int MINIMUMVALUE = 0;  //ending time for gauge
     private int REDZONEVALUE = 80;   //time below which loading bar becomes red
     public static int DECREASEBARAMOUNT = 34;
-
     [SerializeField]
     private bool decreaseBar = false;
 
+	 
     // Update is called once per frame
     void Update () {
         doUpdate();
 	}
+
 
     void doUpdate()
     {
