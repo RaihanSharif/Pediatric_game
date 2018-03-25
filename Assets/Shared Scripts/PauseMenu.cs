@@ -38,6 +38,14 @@ public class PauseMenu : MonoBehaviour {
 	public void RestartGame(){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(MENUSCENE);
+
+     	int numberOfScenes = SceneManager.sceneCount;
+     	for (int i = 0; i < numberOfScenes; i++) {
+	        Scene scene = SceneManager.GetSceneAt(i);
+	        if (scene.name != MENUSCENE) {
+	            SceneManager.UnloadSceneAsync(scene);
+	        }
+     	}
 	}
 
 	public void RestartLevel(){
