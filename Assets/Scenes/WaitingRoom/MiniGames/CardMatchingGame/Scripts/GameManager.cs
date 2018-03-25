@@ -25,13 +25,38 @@ public class GameManager : MonoBehaviour
     // this gets index of the matching card for the first card
     public int indexForMatchingCard = 0;
 
+    AudioSource sound;
+    public AudioClip match;
+
+
     /// <summary>
     /// At the start of the game we want the animation for the first card to be displayed
     /// </summary>
     void Start()
     {
         cards[0].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+        sound = GetComponent<AudioSource>();
+        disableAllCards();
     }
+
+    void disableAllCards()
+    {
+        foreach (GameObject card in cards)
+        {
+            if (card.GetComponent<Card>().name != "card 1")
+                card.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    void enableAllCards()
+    {
+        foreach (GameObject card in cards)
+        {
+            card.GetComponent<Button>().interactable = true;
+
+        }
+    }
+
 
     /// <summary>
     /// this checks if the cards are intialised or not 
@@ -42,6 +67,18 @@ public class GameManager : MonoBehaviour
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))
             checkCards();
+        if (_matches != cards.Length / 2)
+            stopAllAnimations();
+        if (finishedTutorial)
+            enableAllCards();
+    }
+
+    void stopAllAnimations()
+    {
+        foreach (GameObject card in cards)
+        {
+            card.GetComponent<Animator>().Play("Idle");
+        }
     }
 
     /// <summary>
@@ -52,7 +89,7 @@ public class GameManager : MonoBehaviour
         // every card has a match 
         for (int id = 0; id < 2; id++)
         {
-            for (int i = 1; i < 9 ; i++)
+            for (int i = 1; i < 9; i++)
             {
                 bool test = false;
                 int choice = 0;
@@ -130,9 +167,11 @@ public class GameManager : MonoBehaviour
             x = 2;
             _matches--;
             matchText.text = "Number of Matches: " + _matches;
+            sound.PlayOneShot(match);
             // if the number of matches is 0 then go to the menu scene 
             if (_matches == 0)
-                SceneManager.LoadScene("CardMatchingGameMenu");
+                SceneManager.LoadScene("SecondGameMenu");
+
         }
 
 
@@ -143,10 +182,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
     // gets the cardSpriteName for the first card then it goes through each card to check which card has the same sprite 
     public int getIndexOfMatchingFirstCard(string cardSpriteName)
     {
+
         foreach (GameObject card in cards)
         {
             indexForMatchingCard++;
@@ -164,7 +204,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void playAnimationForCorrectgMatch()
     {
-        cards[indexForMatchingCard-1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+        cards[indexForMatchingCard - 1].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
     }
 
     /// <summary>
@@ -181,18 +221,19 @@ public class GameManager : MonoBehaviour
     public void playAnimationForWrongMatch()
     {
         // checks if the match is the last card then the worng matching card will not be one after it but rather it will be 1 before it 
-        if (indexForMatchingCard == cards.Length-1 || indexForMatchingCard == cards.Length+1 || indexForMatchingCard == cards.Length)
+        if (indexForMatchingCard == cards.Length - 1 || indexForMatchingCard == cards.Length + 1 || indexForMatchingCard == cards.Length)
         {
             cards[indexForMatchingCard - 2].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+            cards[indexForMatchingCard - 2].GetComponent<Button>().interactable = true;
         }
         // else the wrong matching card will be the one after the right matching card
-        else 
+        else
         {
             cards[indexForMatchingCard].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
+            cards[indexForMatchingCard].GetComponent<Button>().interactable = true;
         }
-        
-    }
 
+    }
 
 
 }

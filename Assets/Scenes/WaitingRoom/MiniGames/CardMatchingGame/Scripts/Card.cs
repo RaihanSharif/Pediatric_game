@@ -74,9 +74,9 @@ public class Card : MonoBehaviour
     public void flipCard()
     {
         // && gameManagerScript.finishedTutorial
-        if (_state == 0 )
+        if (_state == 0)
             _state = 1;
-        else if (_state == 1 )
+        else if (_state == 1)
             _state = 0;
 
         // if state = 0 ( means card is faced up ) then flip it back
@@ -114,7 +114,7 @@ public class Card : MonoBehaviour
     // gives a little buffer when the cards is flipped over and check if it is a match and how long the card should wait until flipped again
     IEnumerator pause()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.4f);
         if (_state == 0) GetComponent<Image>().sprite = _cardBack;
         else if (_state == 1) GetComponent<Image>().sprite = _cardFace;
         DO_NOT = false;
@@ -124,12 +124,15 @@ public class Card : MonoBehaviour
     /// <summary>
     /// This is called using the Unity on click functin. This function is called when the first card is clicked. 
     /// </summary>
+    /// 
+    int indexOfMatchingCard;
+
     public void firstCard()
     {
         // stops the animation for the first card 
         animator.SetTrigger("OriginalCardState");
         // gets the index of the matching card 
-        int indexOfMatchingCard = gameManagerScript.getIndexOfMatchingFirstCard(_cardFace.name);
+        indexOfMatchingCard = gameManagerScript.getIndexOfMatchingFirstCard(_cardFace.name);
         // if the function runs for first time then 
         if (!runned)
             // display the animation for the worng matching card 
@@ -143,37 +146,40 @@ public class Card : MonoBehaviour
     public void setFirstCardClickedSecondTimeToTrue()
     {
         numOfClicksForFirstCard++;
-        
+
         if (numOfClicksForFirstCard == 2)
+        {
             // display the animation for the matching card
             gameManagerScript.playAnimationForCorrectgMatch();
+            gameManagerScript.cards[indexOfMatchingCard - 1].GetComponent<Button>().interactable = true;
+        }
     }
-
 
     /// <summary>
     /// This fucntion is called by all cards using Unity on click functionality 
     /// </summary>
     public void stopAndPlayAnimation()
     {
-        
+
         // if the sprite of the first card is the same as the sprite of the card which is being clicked AND the tutorial is not over then
         if (gameManagerScript.cards[0].GetComponent<Image>().sprite.name == GetComponent<Image>().sprite.name && !gameManagerScript.finishedTutorial)
         {
+
             // the tutorial is finished ( as this is the last stage which should be played after the wrong match card stage )
             gameManagerScript.finishedTutorial = true;
             sound.PlayOneShot(winning);
-            animator.SetTrigger("OriginalCardState");
         }
 
         // if the sprite of the first card is NOT the same as the sprite of the card which is being clicke AND tutorial is not over AND the number of matches is still half of all card ( which is 8 in this case )
         // so if the number of matches redued then it means that the kid figured out how to play the game and we don't want this to run
-        if ( (gameManagerScript.cards[0].GetComponent<Image>().sprite.name != GetComponent<Image>().sprite.name) && 
-            (!gameManagerScript.finishedTutorial) && 
-            (gameManagerScript._matches == gameManagerScript.cards.Length/2))
+        if (gameManagerScript.cards[0].GetComponent<Image>().sprite.name != GetComponent<Image>().sprite.name &&
+             !gameManagerScript.finishedTutorial)
         {
+
             animator.SetTrigger("OriginalCardState");
             sound.PlayOneShot(losing);
             gameManagerScript.playAnimationForFirstCard();
+            GetComponent<Button>().interactable = false;
         }
 
     }
