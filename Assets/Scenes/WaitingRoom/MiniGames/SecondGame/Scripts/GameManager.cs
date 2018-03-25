@@ -42,6 +42,16 @@ public class GameManager : MonoBehaviour
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))
             checkCards();
+        if (_matches != cards.Length / 2)
+            stopAllAnimations();
+    }
+
+    void stopAllAnimations()
+    {
+        foreach(GameObject card in cards)
+        {
+            card.GetComponent<Animator>().SetTrigger("OriginalCardState");
+        }
     }
 
     /// <summary>
