@@ -15,6 +15,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool zoomToLevel2 = false;
     private bool inLevel2 = false;
     private bool levelOver = false;
+    private bool currentlyScanning = false;
     private bool draggingItem = false; //whether the player is currently dragging an item
     private GameObject draggedObject;  //holds a reference to an object being dragged
     private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
@@ -22,6 +23,8 @@ public class DragAndDropCameraRoom : MonoBehaviour
 
     private int score = 0;
     private float elapsed = 0.0f;
+
+    public SpriteRenderer tableArrow;
 
     [SerializeField]
     private LevelFinishedMenu lvlFM;
@@ -86,6 +89,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         //If the boolean for zooming to the second half of the level is true, zoom the camera.
         if (zoomToLevel2)
         {
+            disableHitbox("Table");
             cameraZoom();
         }
 
@@ -120,7 +124,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     {
         //If the camera is in a region that sees the target...
         float x = GameObject.FindGameObjectWithTag("CameraTop").transform.position.x;
-        if (x <= 3 && x >= 0.2)
+        if (x <= 1.5 && x >= 0.2)
         {
             score++;    //...increment the score...
             float targetR = GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color.r;
@@ -128,6 +132,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
             {
                 //...and fade the target from red towards green.
+
                 GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.0005f, targetG + 0.0005f, 0, 1);
             }
         }
@@ -138,6 +143,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     /// </summary>
     private void cameraZoom()
     {
+        disableHitbox("Table");
         elapsed += Time.deltaTime;  //Keep track of the time elapsed during the zoom, using it to smoothly move the items.
         Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);     //Zoom the camera smoothly
         Camera.main.transform.position = new Vector3(Mathf.SmoothStep(0f, 2.1f, elapsed), 0f, -10f);    //Move the camera smoothly to the desired position.
@@ -177,15 +183,29 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 enableHitbox("CameraTop");
                 enableHitbox("CameraBottom");
             }
-            if (camera1inPlace && camera2inPlace && !tableInPLace)
+            if (camera1inPlace && camera2inPlace && !tableInPLace && !zoomToLevel2)
             {
                 //When the cameras are in place, allow the table to move.
                 enableHitbox("Table");
+                //make table arrow visible 
+                tableArrow.enabled = true;
             }
             if (inLevel2)
             {
+                //make table arrow invisible
+                tableArrow.enabled = false;
+                disableHitbox("Table");
+
                 //When the table is in place, allow the top camera to move.
-                enableHitbox("CameraTop");
+                if (currentlyScanning)
+                {
+                    disableHitbox("CameraTop");
+                }
+                else
+                {
+                    enableHitbox("CameraTop");
+                }
+
             }
 
             //Perform a raycast at at the input position.
@@ -260,13 +280,20 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (draggedObject.name.Equals("Table"))
         {
             //...move the table to the mouse (or touch input) position .
-            draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
+
+            
+                draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
+           
+           
 
             //If the table reaches the necessary position...
             if (draggedObject.transform.position.x > 1.5f && draggedObject.transform.position.x < 2.0f)
             {
                 //... move it to exactly (2.1, 0) and disable its hitbox.
                 disableDragableItem(2.1f, 0.0f);
+                
+                //draggedObject.transform.position = new Vector2(2.1f, 0.0f);
+                disableHitbox("Table");
                 tableInPLace = true;
                 zoomToLevel2 = true;
             }
@@ -326,7 +353,19 @@ public class DragAndDropCameraRoom : MonoBehaviour
             }
             else    //...else if in the second half of the level, move the camera along the x axis.
             {
-                draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                if (draggedObject.transform.position.x > -2 && draggedObject.transform.position.x< 1)
+                {
+                    Debug.Log("Test1");
+                    currentlyScanning = true;
+                    disableDragableItem(1f, 0f);
+                    disableHitbox("CameraTop");
+                    //draggedObject.transform.position = new Vector2(1f, 0f);
+
+                }
+                else
+                {
+                    draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                }
             }
         }
         else if     //If the bottom camera is being moved and both the sandbags and straps are in place...
@@ -402,7 +441,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 if (hit.collider.name.Equals(tag))
                 {
                     draggedObject = GameObject.FindGameObjectWithTag(tag);  //...grab the object...
-                    Debug.Log("hit = :" + hit.collider.name);
                     draggingItem = true;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;  //...while keeping track of where the user clicked on the object.
                     break;
