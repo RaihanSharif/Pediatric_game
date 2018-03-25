@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelFinishedMenu : MonoBehaviour {
+	private float counter;
 
 	//Flag to keep track if level is finished
 	public static bool isFinished = false;
@@ -12,6 +13,10 @@ public class LevelFinishedMenu : MonoBehaviour {
 	[SerializeField]
 	private GameObject levelFinishedMenuUI;
 
+	[SerializeField]
+	private static LevelFinishedMenu lvlFM;
+
+
 	//Constant for the scene number of the main menu
 	public const string MENUSCENE = "MainMenu";
 
@@ -19,8 +24,12 @@ public class LevelFinishedMenu : MonoBehaviour {
 	/// Pauses the game enables the level finished menu
  	/// </summary>
 	public void OnLevelFinished(){
-		levelFinishedMenuUI.SetActive(true);
-		isFinished = true;
+		if (counter > 0.1f) {
+			levelFinishedMenuUI.SetActive (true);
+			isFinished = true;
+			counter = 0f;
+		}
+		counter += Time.deltaTime;
 	}
 
 	/// <summary>
@@ -34,6 +43,9 @@ public class LevelFinishedMenu : MonoBehaviour {
 	public void LoadNextScene(string nextScene){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(nextScene);
+		WaitingRoomData.currentBarAmount = 100f;
+
+
 	}
 	
 
