@@ -22,8 +22,8 @@ public class Babybottle : MonoBehaviour {
     private LevelFinishedMenu lvlFM;
 
 
-    void Start(){
-
+    void Start()
+    {
     	this.GetComponent<SpriteRenderer>().sprite = P100;
         sound = GetComponent<AudioSource>();
     }
@@ -35,6 +35,9 @@ public class Babybottle : MonoBehaviour {
         if (gameWon){
             lvlFM.OnLevelFinished();
         }
+
+        if (bubbleScript.isFirstPinkBubbleSecondClicked)
+            bottleEnabled = true;
     }
 
     void playSound()
