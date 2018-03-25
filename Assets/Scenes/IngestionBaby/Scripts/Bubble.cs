@@ -11,10 +11,8 @@ public class Bubble : MonoBehaviour
 
     public GameObject[] blueBubbles; 
     public GameObject[] pinkBubbles;
-    public GameObject[] greenBubbles;
 
     public Text losingText; // dispalyed when there are 3 any 3 bubbles on the screen at the same time 
-    public Text winningText;  // displayed when the baby bottle is empty ( all the milk is drunk ). Technically when the baby bottle is pressed 6 times 
 
     private int totalUnPoppedBubbles = 0;
 
@@ -66,6 +64,7 @@ public class Bubble : MonoBehaviour
 
         if (checkAllBubblesPopped())
             enableBabyBottle();
+            playAnimationOnClickScript.bottleEnabled = true;
     }
 
     /// <summary>
@@ -210,10 +209,6 @@ public class Bubble : MonoBehaviour
             bubble.SetActive(false);
         }
 
-        foreach (GameObject bubble in greenBubbles)
-        {
-            bubble.SetActive(false);
-        }
     }
 
     /// <summary>
@@ -222,7 +217,6 @@ public class Bubble : MonoBehaviour
     void hideAllText()
     {
         losingText.enabled = false;
-        winningText.enabled = false;
     }
 
     /// <summary>
@@ -244,32 +238,6 @@ public class Bubble : MonoBehaviour
     }
 
     /// <summary>
-    /// This is called whenever a green bubble is being clicked, it take int parameter which is the index of the bubble being clicked 
-    /// </summary>
-    /// <param name="n"></param>
-    /*
-        public void setTrueTheNthGreenBubble(int n)
-        {
-            greenBubblesFinished[n] = true;
-        }
-
-        public GameObject getNthGreenBubble(int n)
-        {
-            return blueBubbles[n];
-        }
-
-        public GameObject getNthPinkBubble(int n)
-        {
-            return pinkBubbles[n];
-        }
-
-        public GameObject getNthBlueBubble(int n)
-        {
-            return blueBubbles[n];
-        }
-    */
-
-    /// <summary>
     /// This is called in the update method where it checks if the user lost the game or not. if there are 3 or more bubbles dispalyed on the screen 
     /// at the same time then the user loses the game. 
     /// </summary>
@@ -277,7 +245,6 @@ public class Bubble : MonoBehaviour
     {
         int unpoppedBlueBubbles = 0;
         int unpoppedPinkBubbles = 0;
-        int unpoppedGreenBubbles = 0;
 
         // going through each bubble in the blueBubbles array and checks if there is an active bubbles and if there are active bubbles 
         // then for each active bubble it increments the unpoppedBlueBubbles
@@ -298,15 +265,7 @@ public class Bubble : MonoBehaviour
             }
         }
 
-        foreach (GameObject blueBubble in greenBubbles)
-        {
-            if (blueBubble.activeSelf)
-            {
-                unpoppedGreenBubbles += 1;
-            }
-        }
-
-        totalUnPoppedBubbles = unpoppedBlueBubbles + unpoppedPinkBubbles + unpoppedGreenBubbles;
+        totalUnPoppedBubbles = unpoppedBlueBubbles + unpoppedPinkBubbles;
 
         // if the sum of the active bubbles in each array is more that 3 then returns true indicating that the user lost the game 
         if (totalUnPoppedBubbles >= 3)
@@ -363,9 +322,7 @@ public class Bubble : MonoBehaviour
     /// This is called when checkGameWon return true
     /// </summary>
     public void gameWon()
-    {
-       
-        winningText.enabled = true;
+    {       
         hideAllBubbleAtStart();
     }
 
