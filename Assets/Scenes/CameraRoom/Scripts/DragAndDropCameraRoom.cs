@@ -15,6 +15,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool zoomToLevel2 = false;
     private bool inLevel2 = false;
     private bool levelOver = false;
+    private bool isScanning = false;
     private bool draggingItem = false; //whether the player is currently dragging an item
     private GameObject draggedObject;  //holds a reference to an object being dragged
     private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
@@ -185,7 +186,14 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (inLevel2)
             {
                 //When the table is in place, allow the top camera to move.
-                enableHitbox("CameraTop");
+                if (isScanning)
+                {
+                    disableHitbox("CameraTop");
+                }
+                else
+                {
+                    enableHitbox("CameraTop");
+                }
             }
 
             //Perform a raycast at at the input position.
@@ -263,7 +271,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
 
             //If the table reaches the necessary position...
-            if (draggedObject.transform.position.x > 1.5f && draggedObject.transform.position.x < 2.0f)
+            if (draggedObject.transform.position.x > 1.5f )
             {
                 //... move it to exactly (2.1, 0) and disable its hitbox.
                 disableDragableItem(2.1f, 0.0f);
@@ -326,7 +334,19 @@ public class DragAndDropCameraRoom : MonoBehaviour
             }
             else    //...else if in the second half of the level, move the camera along the x axis.
             {
-                draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                if (draggedObject.transform.position.x > 1.5 && draggedObject.transform.position.x < 3)
+                {
+                    Debug.Log("Test1");
+                    isScanning = true;
+                    disableDragableItem(2.3f, 0f);
+                    disableHitbox("CameraTop");
+                                        //draggedObject.transform.position = new Vector2(1f, 0f);
+                    
+                }
+                else
+                {
+                    draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                                    }
             }
         }
         else if     //If the bottom camera is being moved and both the sandbags and straps are in place...
