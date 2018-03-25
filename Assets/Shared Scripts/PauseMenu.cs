@@ -35,9 +35,15 @@ public class PauseMenu : MonoBehaviour {
 	/// <summary>
 	/// Loads the menu scene, defined in MENUSCENE constant and unfreezes game time
  	/// </summary>
-	public void Restart(){
+	public void RestartGame(){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(MENUSCENE);
+	}
+
+	public void RestartLevel(){
+		Time.timeScale = 1f;
+		Scene loadedLevel = SceneManager.GetActiveScene();
+        SceneManager.LoadScene (loadedLevel.buildIndex);
 	}
 
 	/// <summary>
