@@ -18,6 +18,7 @@ public class RadialProgressBar : MonoBehaviour {
     private int MINIMUMVALUE = 0;  //ending time for gauge
     private int REDZONEVALUE = 80;   //time below which loading bar becomes red
     public static int DECREASEBARAMOUNT = 34;
+	private float counter;
 
     [SerializeField]
     private bool decreaseBar = false;
@@ -42,7 +43,11 @@ public class RadialProgressBar : MonoBehaviour {
         }
         else
         {
-            lvlFM.OnLevelFinished();
+			counter += Time.deltaTime;
+			if (counter > 0.1) {
+				lvlFM.OnLevelFinished();
+				counter = 0f;
+			}
         }
 
     }
