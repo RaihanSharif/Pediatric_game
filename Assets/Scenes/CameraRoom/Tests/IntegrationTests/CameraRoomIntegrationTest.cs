@@ -48,10 +48,29 @@ public class CameraRoomIntegrationTest {
 
 		var sandbag2 = GameObject.FindGameObjectWithTag(tags[3]);
 		sandbag2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[3]));
-		sandbag2.transform.position = new Vector2(-2f, 2f);
+		sandbag2.transform.position = new Vector2(-2f, 1.65f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		testingScript.clickIntoPlace();
+		var testScript = sandbag2.GetComponent<DragAndDropCameraRoom>();
+		testScript.clickIntoPlace();
+		yield return new WaitForSeconds(1);
+
+		var strap1 = GameObject.FindGameObjectWithTag(tags[0]);
+		strap1.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[0]));
+		strap1.transform.position = new Vector2(-4, 0.2f);
+		yield return null;
+		yield return new WaitForSeconds(1);
+		var theScript = strap1.GetComponent<DragAndDropCameraRoom>();
+		theScript.clickIntoPlace();
+		yield return new WaitForSeconds(1);
+
+		var strap2 = GameObject.FindGameObjectWithTag(tags[1]);
+		strap2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[1]));
+		strap2.transform.position = new Vector2(0f, 0.2f);
+		yield return null;
+		yield return new WaitForSeconds(1);
+		var aScript = strap1.GetComponent<DragAndDropCameraRoom>();
+		aScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
 
