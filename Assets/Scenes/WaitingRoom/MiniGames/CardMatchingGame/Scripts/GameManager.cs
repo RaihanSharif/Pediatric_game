@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
             sound.PlayOneShot(match);
             // if the number of matches is 0 then go to the menu scene 
             if (_matches == 0)
-                SceneManager.LoadScene("SecondGameMenu");
+                lvlFM.OnLevelFinished();
 
         }
 
