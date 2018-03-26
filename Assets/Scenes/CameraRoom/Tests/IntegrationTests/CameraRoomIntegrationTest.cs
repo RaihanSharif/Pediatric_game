@@ -73,6 +73,24 @@ public class CameraRoomIntegrationTest {
 		aScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
+		var cameraTop = GameObject.FindGameObjectWithTag(tags[5]);
+		cameraTop.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[5]));
+		cameraTop.transform.position = new Vector2(6.3f, 0f);
+		yield return null;
+		yield return new WaitForSeconds(1);
+		var someScript = cameraTop.GetComponent<DragAndDropCameraRoom>();
+		someScript.clickIntoPlace();
+		yield return new WaitForSeconds(1);
+
+		var cameraBottom = GameObject.FindGameObjectWithTag(tags[6]);
+		cameraBottom.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[6]));
+		cameraBottom.transform.position = new Vector2(6.3f, 0f);
+		yield return null;
+		yield return new WaitForSeconds(1);
+		var anotherScript = cameraBottom.GetComponent<DragAndDropCameraRoom>();
+		anotherScript.clickIntoPlace();
+		yield return new WaitForSeconds(1);
+
 
 	}
 }
