@@ -16,6 +16,15 @@ public class CameraRoomIntegrationTest {
 	public IEnumerator CameraRoomCanRestartLevelPasses() {
 		LoadSceneByName ("CameraRoom");
 		yield return null;
+
+		var pause = GameObject.Find ("PauseMenu").GetComponent<Button> ();
+		pause.onClick.Invoke ();
+
+		var restart = GameObject.Find ("RestartLevelButton").GetComponent<Button> ();
+		restart.onClick.Invoke ();
+
+		Assert.AreEqual ("CameraRoom", SceneManager.GetActiveScene ().name);
+
 	}
 
 	// A UnityTest behaves like a coroutine in PlayMode
