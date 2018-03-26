@@ -7,6 +7,7 @@ public class LevelFinishedMenu : MonoBehaviour {
 
 	//Flag to keep track if level is finished
 	public static bool isFinished = false;
+	private float counter = 0f;
 
 	//Reference to the menu panel that will have to be toggled 
 	[SerializeField]
@@ -19,6 +20,7 @@ public class LevelFinishedMenu : MonoBehaviour {
 	/// Pauses the game enables the level finished menu
  	/// </summary>
 	public void OnLevelFinished(){
+
 		levelFinishedMenuUI.SetActive(true);
 		isFinished = true;
 	}
@@ -27,13 +29,19 @@ public class LevelFinishedMenu : MonoBehaviour {
 	/// Loads the menu scene, defined in MENUSCENE constant and unfreezes game time
  	/// </summary>
 	public void Restart(){
+
 		Time.timeScale = 1f;
-		SceneManager.LoadScene(MENUSCENE);
+		SceneManager.LoadScene (MENUSCENE);
+		
+
+
 	}
 
 	public void LoadNextScene(string nextScene){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(nextScene);
+		WaitingRoomData.currentBarAmount = 100f;
+
 	}
 	
 
