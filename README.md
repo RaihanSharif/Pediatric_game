@@ -16,4 +16,4 @@ game for Chelsea and Westminster hospital nuclear medicine department
 * Rewaz Esmaeel
 * Stefan Colakovic
 
-![Alt text](./DocumentationAssets/mermaid-diagram-20180326071425.svg)
+![Alt text](./DocumentationAssets/Final.svg)
