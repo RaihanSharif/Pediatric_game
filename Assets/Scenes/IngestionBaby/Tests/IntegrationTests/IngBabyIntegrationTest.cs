@@ -65,6 +65,13 @@ public class IngBabyIntegrationTest {
 			yield return new WaitForSeconds (0.4f);
 		}
 
+		if (bottleScript.gameWon) {
+			LoadSceneByName ("MainMenu");
+			yield return null;
+		}
+
+		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ());
+
 	}
 
 	/// <summary>
@@ -119,6 +126,13 @@ public class IngBabyIntegrationTest {
 			yield return null;
 			yield return new WaitForSeconds (0.4f);
 		}
+
+		if (bottleScript.gameWon) {
+			LoadSceneByName ("WaitingRoom");
+			yield return null;
+		}
+
+		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene ());
 
 	}
 }
