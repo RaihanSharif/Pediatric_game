@@ -1,4 +1,7 @@
-![alt text](https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png)
+
+<p align="center">
+  <img src="https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png"/>
+</p>
 
 # Pediatric Hospital Game
 
