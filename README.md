@@ -5,13 +5,7 @@
   <img src="https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png"/>
 </p>
 
-<<<<<<< HEAD
-# Pediatric Hospital Game
-
 ### Objectives
-=======
-### Introduction
->>>>>>> MarkDownEditV2
 This is a game made for the **Westminister Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and examination for cancer in the hospital. The Design of each room of the application is based on the rooms in the actual hospital. The game is has been tried to be as realistic as possible by making use of staff members images and actors in the game so that the kids have an idea of what they will have to be going through.
 
 
