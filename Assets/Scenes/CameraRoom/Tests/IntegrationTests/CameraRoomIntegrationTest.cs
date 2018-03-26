@@ -17,7 +17,7 @@ public class CameraRoomIntegrationTest {
 		LoadSceneByName ("CameraRoom");
 		yield return null;
 
-		var pause = GameObject.Find ("PauseMenu").GetComponent<Button> ();
+		var pause = GameObject.FindGameObjectWithTag ("Pause").GetComponent<Button> ();
 		pause.onClick.Invoke ();
 
 		var restart = GameObject.Find ("RestartLevelButton").GetComponent<Button> ();
