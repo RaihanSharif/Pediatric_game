@@ -59,6 +59,16 @@ Assets
 	│
 	└───Shared Resources
 ```
+### Usage instructions
+Refer to the [Wiki](https://github.com/RaihanSharif/Pediatric_game/wiki) for instructions on how to use the framework.
+
+
+### Software Requirements
+Required: Any Unity 2017.2, or later version
+
+### Owner and Responsible Devs
+**Owner:** Westminister Hospital <br>
+**Responsible Devs:** Tennis Tooth
 
 ### Navigation Diagram Of Game
 ![Alt text](./DocumentationAssets/FinalTB.svg)
