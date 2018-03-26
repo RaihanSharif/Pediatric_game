@@ -59,10 +59,10 @@ Assets
 └───Shared Resources
 	│
 	│
-	└───Shared Resources
+	└───General Audio
     	│
 	│
-	└───Shared Resources
+	└───General Sprites
 ```
 ### Usage instructions
 Refer to the [Wiki](https://github.com/RaihanSharif/Pediatric_game/wiki) for instructions on how to install and run the application.
