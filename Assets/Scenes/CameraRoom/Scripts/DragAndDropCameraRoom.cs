@@ -38,6 +38,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         makeTargetRed();
         makeGuidanceObjectsTransparent();
         setGuidance("Sandbag");
+        setGuidanceColor("SandbagArrow", 1f, 0f, 0f);
     }
 
     /// <summary>
@@ -339,13 +340,12 @@ public class DragAndDropCameraRoom : MonoBehaviour
                     isScanning = true;
                     disableDragableItem(2.3f, 0f);
                     disableHitbox("CameraTop");
-                                        //draggedObject.transform.position = new Vector2(1f, 0f);
-                    
+                    //draggedObject.transform.position = new Vector2(1f, 0f);
                 }
                 else
                 {
                     draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
-                                    }
+                }
             }
         }
         else if     //If the bottom camera is being moved and both the sandbags and straps are in place...
@@ -373,14 +373,21 @@ public class DragAndDropCameraRoom : MonoBehaviour
         else if (!camera1inPlace || !camera2inPlace)
         {
             setGuidance("Camera");
+            setGuidanceColor("Camera", 1f, 0f, 0f);
         }
         else if (!tableInPLace)
         {
             setGuidance("Table");
+            setGuidanceColor("Table", 1f, 0f, 0f);
+        }
+        else if (!isScanning)
+        {
+            setGuidance("Scan");
+            setGuidanceColor("Scan", 1f, 0f, 0f);
         }
         else
         {
-            setGuidance("Scan");
+            setGuidance("None");
         }
     }
 
@@ -401,6 +408,17 @@ public class DragAndDropCameraRoom : MonoBehaviour
             else
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+
+    void setGuidanceColor(string contents, float r, float g, float b)
+    {
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
+        {
+            if (gameObject.name.Contains(contents))
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(r, g, b, 0.5f);
             }
         }
     }
