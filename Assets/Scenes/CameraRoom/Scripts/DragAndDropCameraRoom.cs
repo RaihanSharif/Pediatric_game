@@ -555,7 +555,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     /// <summary>
     /// Method called when the level is cleared, used to move to the next stage.
     /// </summary>
-    void levelCleared()
+    public void levelCleared()
     {
         levelOver = true; //Signals to the script that the game has ended
         lvlFM.OnLevelFinished();
