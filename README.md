@@ -6,7 +6,7 @@
 </p>
 
 ### Objectives
-This is a game made for the **Westminister Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and examination for cancer in the hospital. The Design of each room of the application is based on the rooms in the actual hospital. The game is has been tried to be as realistic as possible by making use of staff members images and actors in the game so that the kids have an idea of what they will have to be going through.
+This is a game made for the **Chelsea & Westminster Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and examination for cancer in the hospital. The Design of each room of the application is based on the rooms in the actual hospital. The game tries to be as realistic as possible by making use of staff members images and actors in the game so that the kids have an idea of what they will have to be going through.
 
 
 ### Tools used
@@ -72,7 +72,7 @@ Refer to the [Wiki](https://github.com/RaihanSharif/Pediatric_game/wiki) for ins
 Required: Any Unity 2017.2, or later version
 
 ### Owner and Responsible Devs
-**Owner:** Westminister Hospital <br>
+**Owner:** Chelsea & Westminster Hospital <br>
 **Responsible Devs:** Tennis Tooth
 
 ### Navigation Diagram Of Game
