@@ -15,12 +15,6 @@ public class CameraRoomUnitTests
         SceneManager.LoadScene(name, LoadSceneMode.Single);
     }
 
-    [Test]
-    public void CameraRoomUnitTestsSimplePasses()
-    {
-        // Use the Assert class to test conditions.
-    }
-
     // A UnityTest behaves like a coroutine in PlayMode
     // and allows you to yield null to skip a frame in EditMode
     [UnityTest]
@@ -90,8 +84,6 @@ public class CameraRoomUnitTests
     [UnityTest]
     public IEnumerator PositionOfStrap2()
     {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
 
         findScene("CameraRoom");
         yield return null;
@@ -113,8 +105,6 @@ public class CameraRoomUnitTests
     [UnityTest]
     public IEnumerator PositionOfCameraTop()
     {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
 
         findScene("CameraRoom");
         yield return null;
@@ -138,8 +128,6 @@ public class CameraRoomUnitTests
     [UnityTest]
     public IEnumerator PositionOfCameraBottom()
     {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
 
         findScene("CameraRoom");
         yield return null;
@@ -163,8 +151,6 @@ public class CameraRoomUnitTests
     [UnityTest]
     public IEnumerator PositionOfTable()
     {
-        // Use the Assert class to test conditions.
-        // yield to skip a frame
 
         findScene("CameraRoom");
         yield return null;
