@@ -15,3 +15,5 @@ game for Chelsea and Westminster hospital nuclear medicine department
 * Raihan Sharif
 * Rewaz Esmaeel
 * Stefan Colakovic
+
+![Alt text](./mermaid-diagram-20180326053240.svg)
