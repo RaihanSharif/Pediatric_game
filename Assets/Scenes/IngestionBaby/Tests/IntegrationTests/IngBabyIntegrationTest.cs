@@ -70,7 +70,7 @@ public class IngBabyIntegrationTest {
 			yield return null;
 		}
 
-		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ());
+		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene().name);
 
 	}
 
@@ -132,7 +132,7 @@ public class IngBabyIntegrationTest {
 			yield return null;
 		}
 
-		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene ());
+		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 
 	}
 }
