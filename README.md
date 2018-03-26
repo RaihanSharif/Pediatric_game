@@ -16,4 +16,4 @@ game for Chelsea and Westminster hospital nuclear medicine department
 * Rewaz Esmaeel
 * Stefan Colakovic
 
-![Alt text](./DocumentationAssets/NavigationGraph.svg)
+![Alt text](./DocumentationAssets/NavigationGraphLR.svg)
