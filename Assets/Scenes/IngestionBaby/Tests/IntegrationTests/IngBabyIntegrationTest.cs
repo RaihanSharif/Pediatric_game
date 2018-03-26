@@ -2,20 +2,35 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class IngBabyIntegrationTest {
 
-	[Test]
-	public void IngBabyIntegrationTestSimplePasses() {
-		// Use the Assert class to test conditions.
+	private void LoadSceneByName(string name){
+
+		SceneManager.LoadScene(name, LoadSceneMode.Single);
+	}
+		
+	/// <summary>
+	/// Baby drinks all the menu and moves to main menu
+	/// </summary>
+	[UnityTest]
+	public IEnumerator BabyDrinksAllAndMovesToMainMenuPasses() {
+		LoadSceneByName ("IngestionBaby");
+		yield return null;
+
+
 	}
 
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	/// <summary>
+	/// Baby drinks all the milk and moves on to the next scene
+	/// </summary>
 	[UnityTest]
-	public IEnumerator IngBabyIntegrationTestWithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
+	public IEnumerator BabyDrinksAllAndMovesToWaitingRoomPasses() {
+		LoadSceneByName ("IngestionBaby");
 		yield return null;
+
+
 	}
 }
