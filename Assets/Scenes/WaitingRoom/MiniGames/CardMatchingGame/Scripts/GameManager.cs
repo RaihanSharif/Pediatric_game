@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     AudioSource sound;
     public AudioClip match;
 
+    [SerializeField]
+    private LevelFinishedMenu lvlFM;
 
     /// <summary>
     /// At the start of the game we want the animation for the first card to be displayed
@@ -64,6 +66,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (_matches == 0)
+            lvlFM.OnLevelFinished();
+
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))
             checkCards();
