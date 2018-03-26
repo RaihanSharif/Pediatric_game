@@ -21,7 +21,7 @@ public class WaitingRoomIntegrationTest {
         LoadSceneByName("WaitingRoom");
 		yield return null;
 
-		var play = GameObject.Find("trashCanButton").GetComponent<Button>();
+		var play = GameObject.Find("TrashCanButton").GetComponent<Button>();
         play.onClick.Invoke();
         yield return null;
 
@@ -37,7 +37,7 @@ public class WaitingRoomIntegrationTest {
 		LoadSceneByName("WaitingRoom");
 		yield return null;
 
-		var play = GameObject.Find("ReceptionB").GetComponent<Button>();
+		var play = GameObject.Find("Reception").GetComponent<Button>();
 		play.onClick.Invoke();
 		yield return null;
 

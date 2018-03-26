@@ -48,7 +48,7 @@ public class InjectionInjectionUnitTest {
 		var circle = GameObject.Find ("Button").GetComponent<Button> ();
 		circle.onClick.Invoke ();
 		yield return null;
-	
+
 		var cremeSpot = GameObject.FindGameObjectWithTag ("CremeSpot1").GetComponent<CremeSpotCollision> ();
 		var smiley = GameObject.Find ("Smiley1").GetComponent<Smiley> ();
 		cremeSpot.injectionIsDone (smiley);
@@ -137,11 +137,11 @@ public class InjectionInjectionUnitTest {
 		yield return new WaitForSeconds (3);
 
 		if (arm.getCompleted()) {
-			LoadSceneByName ("BabyInjectionGameCompleted");
+			LoadSceneByName ("WaitingRoom");
 			yield return null;
 		}
 
-		Assert.AreNotEqual ("BabyInjectionGameCompleted", SceneManager.GetActiveScene().name);
+		Assert.AreNotEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 
 	}
 
@@ -174,11 +174,11 @@ public class InjectionInjectionUnitTest {
 		yield return new WaitForSeconds (3);
 
 		if (arm.getCompleted()) {
-			LoadSceneByName ("BabyInjectionGameCompleted");
+			LoadSceneByName ("WaitingRoom");
 			yield return null;
 		}
 
-		Assert.AreEqual ("BabyInjectionGameCompleted", SceneManager.GetActiveScene().name);
+		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 
 	}
 

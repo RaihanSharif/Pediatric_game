@@ -49,6 +49,7 @@ public class CameraRoomUnitTests
         // yield to skip a frame
         findScene("CameraRoom");
         yield return null;
+		yield return new WaitForSeconds (10);
         var sandbag2 = GameObject.FindGameObjectWithTag(tags[3]);
         sandbag2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[3]));
         sandbag2.transform.position = new Vector2(-2f, 2f);
