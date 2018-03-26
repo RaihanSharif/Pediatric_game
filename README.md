@@ -1,3 +1,5 @@
+![alt text](https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png)
+
 # Pediatric Hospital Game
 
 ### Introduction
@@ -71,4 +73,5 @@ Required: Any Unity 2017.2, or later version
 **Responsible Devs:** Tennis Tooth
 
 ### Navigation Diagram Of Game
+The Diagram below shows the transition of one scene to another in the form of a flow diagram
 ![Alt text](./DocumentationAssets/FinalTB.svg)
