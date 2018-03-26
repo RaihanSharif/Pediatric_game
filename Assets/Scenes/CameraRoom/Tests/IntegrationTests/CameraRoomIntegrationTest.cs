@@ -91,6 +91,22 @@ public class CameraRoomIntegrationTest {
 		anotherScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
+		var table = GameObject.FindGameObjectWithTag(tags[4]);
+		table.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[4]));
+		table.transform.position = new Vector2(1.75f, 0f);
+		yield return null;
+		yield return new WaitForSeconds(1);
+		var lastScript = table.GetComponent<DragAndDropCameraRoom>();
+		lastScript.clickIntoPlace();
+		yield return new WaitForSeconds(1);
+
+		if (table.GetComponent<DragAndDropCameraRoom> ().gettableInPLace ()) {
+			LoadSceneByName ("MainMenu");
+			yield return null;
+		}
+
+		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ().name);
+
 
 	}
 }
