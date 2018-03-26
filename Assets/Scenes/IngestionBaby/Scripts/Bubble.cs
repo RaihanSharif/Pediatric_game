@@ -56,7 +56,6 @@ public class Bubble : MonoBehaviour
         if (checkLostGame()){
             
             losingText.enabled = true;
-            Debug.Log("asd");
             counter += Time.deltaTime;
             if (counter > 3) {
                 Scene loadedLevel = SceneManager.GetActiveScene();
