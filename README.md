@@ -28,7 +28,7 @@ Assets
 │	│   
 │	│   
 │	└───Scene Name
-│       │   
+│       	│   
 │		│   
 │		└───Animations
 │		│   
@@ -36,7 +36,7 @@ Assets
 │		└───Scripts
 │		│
 │		│
-│       └───Sprites
+│      	 	└───Sprites
 │		│
 │		│
 │		└───Tests
@@ -55,7 +55,7 @@ Assets
 	│
 	│
 	└───Shared Resources
-    │
+    	│
 	│
 	└───Shared Resources
 ```
