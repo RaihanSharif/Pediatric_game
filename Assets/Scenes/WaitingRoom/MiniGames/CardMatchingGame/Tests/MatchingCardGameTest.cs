@@ -14,13 +14,7 @@ public class MatchingCardGameTest {
 
 	}
 
-//	List<int> comparison = new List<int>();
-//	comparison.Add(card1);
-//	comparison.Add(card2);
-//
-//	yield return null;
-//
-//	gmscript.cardComparison(comparison);
+	//=================================== WHEN CARD VALUES ARE EQUAL =====================================\\
 
 	/// <summary>
 	/// Checks whether the first card stays up
@@ -35,10 +29,12 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		// name of variable is card1 but name of game object is not as to not trigger the tutorial, so I just used "card 3"
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -53,7 +49,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(1, card1script.state);
 
@@ -72,8 +68,9 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -86,7 +83,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(1, card2script.state);
 
@@ -105,10 +102,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -121,9 +119,9 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
-		Assert.AreEqual(false, card1script.enabled);
+		Assert.AreEqual(false, card1.GetComponent<Button>().enabled);
 
 	}
 
@@ -140,10 +138,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -156,9 +155,9 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
-		Assert.AreEqual(false, card2script.enabled);
+		Assert.AreEqual(false, card2.GetComponent<Button>().enabled);
 
 	}
 
@@ -175,10 +174,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -191,7 +191,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(7, gmscript._matches);
 
@@ -210,10 +210,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -226,7 +227,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return null;
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual("Number of Matches Left: 7", gmscript.matchText.text);
 
@@ -249,10 +250,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -265,7 +267,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(0, card1script.state);
 
@@ -284,10 +286,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -300,7 +303,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(0, card2script.state);
 
@@ -319,10 +322,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -335,9 +339,9 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
-		Assert.AreEqual(true, card1script.enabled);
+		Assert.AreEqual(true, card1.GetComponent<Button>().enabled);
 
 	}
 
@@ -354,10 +358,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -370,9 +375,9 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
-		Assert.AreEqual(true, card2script.enabled);
+		Assert.AreEqual(true, card2.GetComponent<Button>().enabled);
 
 	}
 
@@ -389,10 +394,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -405,7 +411,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual(8, gmscript._matches);
 
@@ -424,10 +430,11 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		gmscript.finishedTutorial = true;
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 1");
+		var card1 = GameObject.Find("card 3");
 		var card2 = GameObject.Find("card 2");
 
 		var card1script = card1.GetComponent<Card>();
@@ -440,7 +447,7 @@ public class MatchingCardGameTest {
 		yield return null;
 
 		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(2);
 
 		Assert.AreEqual("Number of Matches Left: 8", gmscript.matchText.text);
 
