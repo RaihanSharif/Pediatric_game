@@ -2,13 +2,19 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraRoomIntegrationTest {
 
+	private void LoadSceneByName(string name){
+
+		SceneManager.LoadScene(name, LoadSceneMode.Single);
+	}
+
 	[UnityTest]
 	public IEnumerator CameraRoomCanRestartLevelPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
+		LoadSceneByName ("CameraRoom");
 		yield return null;
 	}
 
@@ -16,8 +22,7 @@ public class CameraRoomIntegrationTest {
 	// and allows you to yield null to skip a frame in EditMode
 	[UnityTest]
 	public IEnumerator CameraRoomCanMoveToMainMenuPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
+		LoadSceneByName ("CameraRoom");
 		yield return null;
 	}
 }
