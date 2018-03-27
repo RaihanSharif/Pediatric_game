@@ -47,12 +47,56 @@ public class SystemTest_IngestionKid {
 		spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
 		yield return null;
 
-		var kid = new GameObject ().AddComponent<changeFoodOnContact> ();
-		if (kid.isMouthOpen) {
-			LoadSceneByName ("WaitingRoom");
-			yield return null;
-		}
+		LoadSceneByName ("WaitingRoom");
+		yield return null;
+		yield return new WaitForSeconds (2);
 
-		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
+		// Load all three minigames and go back to waiting room
+
+		// Flappy bird 
+		#region 
+		var birdObj = GameObject.Find("TheBird");
+		var birdScript = birdObj.GetComponent<TheBird>();
+		yield return new WaitForSeconds(2);
+		birdScript.OnMouseDown();
+		yield return null;
+
+		var gameControlObject = GameObject.Find("GameControl");
+		gameControlObject.GetComponent<GameControl> ().setTimeTo1 ();
+		var birdObject = GameObject.Find("Bird");
+		birdObject.transform.position = new Vector3 (1f, -2f, 0f);
+		yield return new WaitForSeconds (2);
+
+		LoadSceneByName ("WaitingRoom");
+		yield return null;
+		yield return new WaitForSeconds (2);
+		#endregion
+
+		// Paper toss
+		#region
+		var trashCan = GameObject.Find("TrashCanButton").GetComponent<Button>();
+		trashCan.onClick.Invoke();
+		yield return null;
+		yield return new WaitForSeconds (3);
+
+		var nextButton = GameObject.Find ("BackButton").GetComponent<Button> ();
+		nextButton.onClick.Invoke ();
+		yield return null;
+		#endregion
+
+		// Matching cards
+		#region
+		var gameMatching = GameObject.Find("Button").GetComponent<Button>();
+		gameMatching.onClick.Invoke ();
+		yield return null;
+		yield return new WaitForSeconds(2);
+
+		var theNextButton = GameObject.Find("BackButton").GetComponent<Button>();
+		theNextButton.onClick.Invoke();
+		yield return null;
+		#endregion
+
+		LoadSceneByName ("CameraRoom");
+		yield return null;
 	}
 }
