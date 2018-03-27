@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     // this gets index of the matching card for the first card
     public int indexForMatchingCard = 0;
 
+    private int cardsClicked = 0;
+
     AudioSource sound;
     public AudioClip match;
 
@@ -71,7 +73,9 @@ public class GameManager : MonoBehaviour
 
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))
+        {
             checkCards();
+        }    
         if (_matches != cards.Length / 2)
             stopAllAnimations();
         if (finishedTutorial)
@@ -139,7 +143,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void checkCards()
     {
-
         List<int> c = new List<int>();
         // going through each card in the cards list 
         for (int i = 0; i < cards.Length; i++)

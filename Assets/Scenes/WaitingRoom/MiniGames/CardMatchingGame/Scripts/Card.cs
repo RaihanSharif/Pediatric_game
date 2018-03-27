@@ -32,6 +32,7 @@ public class Card : MonoBehaviour
     public AudioClip winning;
     public AudioClip losing;
 
+
     // this counts how many times the first card is being pressed ( for tutorial ). So when it is pressed once then 
     // the worng match will be animated and when it is being pressed for the second time then the right match will be animated
     public int numOfClicksForFirstCard = 0;
@@ -73,16 +74,19 @@ public class Card : MonoBehaviour
     /// </summary>
     public void flipCard()
     {
-        // && gameManagerScript.finishedTutorial
-        if (_state == 0)
-            _state = 1;
-        else if (_state == 1)
-            _state = 0;
+        if (!DO_NOT)
+        {
+            // && gameManagerScript.finishedTutorial
+            if (_state == 0)
+                _state = 1;
+            else if (_state == 1)
+                _state = 0;
 
-        // if state = 0 ( means card is faced up ) then flip it back
-        if (_state == 0 && !DO_NOT) GetComponent<Image>().sprite = _cardBack;
-        // if state 1 ( means car is faced down ) then flip it up
-        else if (_state == 1 && !DO_NOT) GetComponent<Image>().sprite = _cardFace;
+            // if state = 0 ( means card is faced up ) then flip it back
+            if (_state == 0 && !DO_NOT) GetComponent<Image>().sprite = _cardBack;
+            // if state 1 ( means car is faced down ) then flip it up
+            else if (_state == 1 && !DO_NOT) GetComponent<Image>().sprite = _cardFace;
+        }
     }
 
     public int cardValue
