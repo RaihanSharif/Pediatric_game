@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     AudioSource sound;
     public AudioClip match;
+    public AudioClip winning;
+    
 
     [SerializeField]
     private LevelFinishedMenu lvlFM;
@@ -61,6 +63,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+ 
+
+    bool playAudio = true;
+
 
     /// <summary>
     /// this checks if the cards are intialised or not 
@@ -69,7 +75,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (_matches == 0)
+        {
+            if (playAudio)
+            {
+                sound.PlayOneShot(winning);
+                playAudio = false;
+            }
+
             lvlFM.OnLevelFinished();
+        }
+        
 
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))

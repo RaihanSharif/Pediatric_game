@@ -29,8 +29,7 @@ public class Card : MonoBehaviour
 
     AudioSource sound;
 
-    public AudioClip winning;
-    public AudioClip losing;
+    public AudioClip notMatch;
 
 
     // this counts how many times the first card is being pressed ( for tutorial ). So when it is pressed once then 
@@ -171,7 +170,6 @@ public class Card : MonoBehaviour
 
             // the tutorial is finished ( as this is the last stage which should be played after the wrong match card stage )
             gameManagerScript.finishedTutorial = true;
-            sound.PlayOneShot(winning);
         }
 
         // if the sprite of the first card is NOT the same as the sprite of the card which is being clicke AND tutorial is not over AND the number of matches is still half of all card ( which is 8 in this case )
@@ -181,7 +179,7 @@ public class Card : MonoBehaviour
         {
 
             animator.SetTrigger("OriginalCardState");
-            sound.PlayOneShot(losing);
+            sound.PlayOneShot(notMatch);
             gameManagerScript.playAnimationForFirstCard();
             GetComponent<Button>().interactable = false;
         }

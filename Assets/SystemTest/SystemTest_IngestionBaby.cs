@@ -15,16 +15,20 @@ public class SystemTest_IngestionBaby {
 
 	private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
 
-
+	/// <summary>
+	/// Go through the whole game selecting the Ingestion Baby option
+	/// </summary>
 	[UnityTest]
 	[Timeout(100000000)]
 	public IEnumerator SystemTest_IngestionBabyPasses() {
-		
+
+		// Load Splash Screen
 		LoadSceneByName ("SplashScreen");
 		yield return null;
 		yield return new WaitForSeconds (6.1f);
 		yield return null;
 
+		// After 6 seconds, the main menu should have been reached, select Ingestion and Milk
 		var ingestionButton = GameObject.FindGameObjectWithTag ("Ingestion").GetComponent<Button> ();
 		ingestionButton.onClick.Invoke ();
 		yield return new WaitForSeconds (1);
@@ -33,6 +37,8 @@ public class SystemTest_IngestionBaby {
 		babyIngestionButton.onClick.Invoke ();
 		yield return null;
 
+		// Pop all the bubbles and finish the milk, then move to waiting room
+		#region IngestionBaby
 		yield return new WaitForSeconds (3);
 		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
 		bubble.OnMouseDown ();
@@ -82,11 +88,12 @@ public class SystemTest_IngestionBaby {
 			LoadSceneByName ("WaitingRoom");
 			yield return null;
 		}
+		#endregion
 
 		// Load all three minigames and go back to waiting room
 
 		// Flappy bird 
-		#region 
+		#region Flappybird
 		var birdObj = GameObject.Find("TheBird");
 		TheBird birdScript = birdObj.GetComponent<TheBird>();
 		yield return new WaitForSeconds(2);
@@ -105,7 +112,7 @@ public class SystemTest_IngestionBaby {
 		#endregion
 
 		// Paper toss
-		#region
+		#region Papertoss
 		var trashCan = GameObject.Find("TrashCanButton").GetComponent<Button>();
 		trashCan.onClick.Invoke();
 		yield return null;
@@ -117,7 +124,7 @@ public class SystemTest_IngestionBaby {
 		#endregion
 
 		// Matching cards
-		#region
+		#region Matchingcards
 		var gameMatching = GameObject.Find("Button").GetComponent<Button>();
 		gameMatching.onClick.Invoke ();
 		yield return null;
@@ -128,11 +135,17 @@ public class SystemTest_IngestionBaby {
 		yield return null;
 		#endregion
 
-		LoadSceneByName ("CameraRoom");
-		yield return null;
+		var progress = GameObject.Find ("RadialProgressBar").GetComponent<RadialProgressBar> ();
+		var progressBarVal = progress.getCurrentBarValue ();
+
+		// We change to camera room only if the progress down is at zero or less
+		if (progressBarVal <= 0) {
+			LoadSceneByName ("CameraRoom");
+			yield return null;
+		}
 
 		// Camera Room
-		#region 
+		#region CameraRoom
 		yield return new WaitForSeconds (10);
 
 		var sandbag1 = GameObject.FindGameObjectWithTag(tags[2]);
@@ -205,6 +218,7 @@ public class SystemTest_IngestionBaby {
 		#endregion
 
 		yield return new WaitForSeconds (2);
+
 		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ().name);
 
 	}
