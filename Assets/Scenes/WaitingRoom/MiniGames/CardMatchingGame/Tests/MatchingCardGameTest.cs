@@ -207,24 +207,6 @@ public class MatchingCardGameTest {
 
 	}
 
-	[UnityTest]
-	public IEnumerator Matches(){
-
-		LoadSceneByName("CardMatchingGame");
-		yield return null;
-
-		var gm = GameObject.Find("GameManager");
-		var gmscript = gm.GetComponent<GameManager>();
-		var m = gmscript._matches;
-		yield return null;
-		m--;
-
-		yield return null;
-
-		Assert.AreEqual(7, m);
-
-	}
-
 	/// <summary>
 	/// Checks whether the text that displays the number of matches left
 	/// updates when the two cards match.
@@ -277,24 +259,21 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
+		var cards = gmscript.cards;
+		var indexes = new List<int>();
+
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indexes.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indexes);
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(0, card1script.state);
+		Assert.AreNotEqual(2, cards[indexes[0]].GetComponent<Card>().state);
 
 	}
 
@@ -313,24 +292,21 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
+		var cards = gmscript.cards;
+		var indexes = new List<int>();
+
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indexes.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indexes);
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(0, card2script.state);
+		Assert.AreNotEqual(2, cards[indexes[1]].GetComponent<Card>().state);
 
 	}
 
@@ -419,26 +395,24 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		var countToCompare = gmscript._matches;
 		gmscript.finishedTutorial = true;
+
+		var cards = gmscript.cards;
+		var indexes = new List<int>();
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indexes.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indexes);
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(8, gmscript._matches);
+		Assert.AreNotEqual(countToCompare-1, gmscript._matches);
 
 	}
 
@@ -455,26 +429,24 @@ public class MatchingCardGameTest {
 
 		var gm = GameObject.Find("GameManager");
 		var gmscript = gm.GetComponent<GameManager>();
+		var countToCompare = gmscript._matches;
 		gmscript.finishedTutorial = true;
+
+		var cards = gmscript.cards;
+		var indexes = new List<int>();
 
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indexes.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indexes);
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual("Number of Matches Left: 8", gmscript.matchText.text);
+		Assert.AreNotEqual("Matches Left: " + (countToCompare-1).ToString(), gmscript.matchText.text);
 
 	}
 
