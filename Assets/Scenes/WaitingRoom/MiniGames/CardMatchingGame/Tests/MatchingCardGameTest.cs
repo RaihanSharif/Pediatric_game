@@ -15,34 +15,6 @@ public class MatchingCardGameTest {
 	}
 
 
-	//		var card1script = compare[0].GetComponent<Card>();
-	//		var card2script = compare[1].GetComponent<Card>();
-	//
-	//		compare[0].GetComponent<Button>().onClick.Invoke();
-	//		yield return new WaitForSeconds(1);
-	//
-	//		compare[1].GetComponent<Button>().onClick.Invoke();
-	//		yield return new WaitForSeconds(1);
-
-
-	//	var card1 = GameObject.Find("card 3"); 		// name of variable is card1 but name of game object is not as to not trigger the tutorial, so I just used "card 3"
-	//	var card2 = GameObject.Find("card 2");
-	//
-	//	var card1script = card1.GetComponent<Card>();
-	//	var card2script = card2.GetComponent<Card>();
-	//
-	//	card1script.cardValue = 1;
-	//	card2script.cardValue = 1;
-	//
-	//	yield return null;
-	//
-	//	card1.GetComponent<Button>().onClick.Invoke();
-	//	yield return new WaitForSeconds(1);
-	//
-	//	card2.GetComponent<Button>().onClick.Invoke();
-	//	yield return new WaitForSeconds(1);
-
-
 	//=================================== WHEN CARD VALUES ARE EQUAL =====================================\\
 
 
