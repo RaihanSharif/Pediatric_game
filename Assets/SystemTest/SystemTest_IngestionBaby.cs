@@ -13,6 +13,8 @@ public class SystemTest_IngestionBaby {
 
 	}
 
+	private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
+
 
 	[UnityTest]
 	[Timeout(100000000)]
@@ -202,7 +204,8 @@ public class SystemTest_IngestionBaby {
 		}
 		#endregion
 
-//		Assert.AreEqual ("CameraRoom", SceneManager.GetActiveScene ().name);
+		yield return new WaitForSeconds (2);
+		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ().name);
 
 	}
 }
