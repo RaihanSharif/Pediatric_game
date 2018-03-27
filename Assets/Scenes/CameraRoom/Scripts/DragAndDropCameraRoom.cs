@@ -280,39 +280,25 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 zoomToLevel2 = true;
             }
         }
-        else if     //If Strap1 is in place and the sandbags are already in place, snap it into position.
-            (draggedObject.name.Equals("Strap1") &&
-            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
-            && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
-            && sandbag1inPlace && sandbag2inPlace)
+        else if (strap1SnapBoolean)     //If Strap1 is in place and the sandbags are already in place, snap it into position.
         {
             disableDragableItem(-4.0f, 0.0f);
             strap1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Strap2 is in place and the sandbags are already in place, snap it into position.
-            (draggedObject.name.Equals("Strap2") &&
-            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
-            && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
-            && sandbag1inPlace && sandbag2inPlace)
+        else if (strap2SnapBoolean)     //If Strap2 is in place and the sandbags are already in place, snap it into position.
         {
             disableDragableItem(0.0f, 0.0f);
             strap2inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Sandbag1 is in place, snap it into position.
-            (draggedObject.name.Equals("Sandbag1") &&
-            draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
-            && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        else if (sandbag1SnapBoolean)   //If Sandbag1 is in place, snap it into position.
         {
             disableDragableItem(-2.0f, -1.65f);
             sandbag1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Sandbag2 is in place, snap it into position.
-           (draggedObject.name.Equals("Sandbag2") &&
-           draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
-           && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        else if (sandbag2SnapBoolean)   //If Sandbag2 is in place, snap it into position.
         {
             disableDragableItem(-2.0f, 1.65f);
             sandbag2inPlace = true;
@@ -340,7 +326,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
                     isScanning = true;
                     disableDragableItem(2.3f, 0f);
                     disableHitbox("CameraTop");
-                    //draggedObject.transform.position = new Vector2(1f, 0f);
                 }
                 else
                 {
@@ -390,6 +375,73 @@ public class DragAndDropCameraRoom : MonoBehaviour
             setGuidance("None");
         }
     }
+
+    /// <summary>
+    /// Boolean submethods for making the ClickIntoPlace method more readable.
+    /// </summary>
+    #region
+
+    /// <summary>
+    /// Returns a boolean denoting whether Strap1 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// Also checks that the sandbags have been place prior to snapping.
+    /// </summary>
+    bool strap1SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Strap1") &&
+                draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+                && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
+                && sandbag1inPlace && sandbag2inPlace;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Strap2 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// Also checks that the sandbags have been place prior to snapping.
+    /// </summary>
+    bool strap2SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Strap2") &&
+                draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+                && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
+                && sandbag1inPlace && sandbag2inPlace;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Sandbag1 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// </summary>
+    bool sandbag1SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Sandbag1") &&
+                draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
+                && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Sandbag2 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// </summary>
+    bool sandbag2SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Sandbag2") &&
+                draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
+                && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f;
+        }
+    }
+
+    #endregion
 
     /// <summary>
     /// A method used to activate the SpriteRenderer component
