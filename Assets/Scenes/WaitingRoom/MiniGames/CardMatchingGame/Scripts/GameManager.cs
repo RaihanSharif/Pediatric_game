@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // boolean flag that checks if cards are initialised or not
     private bool _init = false;
     // the number of matches left, 8 is assigned as there are 16 cards and there are 8 matches.
-    public int _matches = 8;
+    public int _matches = 7;
 
     // checks if the tutorial is finished or not
     public bool finishedTutorial;
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         // every card has a match 
         for (int id = 0; id < 2; id++)
         {
-            for (int i = 1; i < 9; i++)
+            for (int i = 1; i < 8; i++)
             {
                 bool test = false;
                 int choice = 0;
