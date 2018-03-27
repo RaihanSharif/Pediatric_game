@@ -49,9 +49,29 @@ public class SystemTest_Injection {
 		}
 
 		// Injection both creme spots and move to waiting room
+		var circle = GameObject.Find ("Button").GetComponent<Button> ();
+		circle.onClick.Invoke ();
+		yield return null;
 
+		var aCremeSpot = GameObject.FindGameObjectWithTag ("CremeSpot1").GetComponent<CremeSpotCollision> ();
+		var smiley = GameObject.Find ("Smiley1").GetComponent<Smiley> ();
+		aCremeSpot.injectionIsDone (smiley);
+		yield return new WaitForSeconds (5);
 
-		Assert.AreEqual ("InjectionBaby", SceneManager.GetActiveScene ().name);
+		var anotherCremeSpot = GameObject.FindGameObjectWithTag ("CremeSpot2").GetComponent<CremeSpotCollision> ();
+		var otherSmiley = GameObject.Find ("Smiley2").GetComponent<Smiley> ();
+		anotherCremeSpot.injectionIsDone (otherSmiley);
+		yield return new WaitForSeconds (5);
+
+		var someArm = GameObject.FindGameObjectWithTag ("Arm").GetComponent<Arm> ();
+		yield return new WaitForSeconds (3);
+
+		if (someArm.getCompleted()) {
+			LoadSceneByName ("WaitingRoom");
+			yield return null;
+		}
+
+		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene ().name);
 
 	}
 }
