@@ -22,9 +22,17 @@ public class SystemTest_IngestionBaby {
 		yield return new WaitForSeconds (6.1f);
 		yield return null;
 
-		Assert.AreEqual (SceneManager.GetActiveScene ().name, "MainMenu");
+		var ingestionButton = GameObject.FindGameObjectWithTag ("Ingestion").GetComponent<Button> ();
+		ingestionButton.onClick.Invoke ();
+		yield return new WaitForSeconds (1);
+
+		var babyIngestionButton = GameObject.FindGameObjectWithTag ("Baby").GetComponent<Button> ();
+		babyIngestionButton.onClick.Invoke ();
+		yield return null;
 
 
+
+//		Assert.AreEqual ("IngestionBaby", SceneManager.GetActiveScene ().name);
 
 	}
 }
