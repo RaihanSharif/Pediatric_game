@@ -179,6 +179,7 @@ public class SystemTest_IngestionKid {
 		#endregion
 
 		yield return new WaitForSeconds (2);
+
 		Assert.AreEqual ("MainMenu", SceneManager.GetActiveScene ().name);
 	}
 }
