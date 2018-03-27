@@ -34,19 +34,19 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(2, cards[indexes[0]].GetComponent<Card>().state);
+		Assert.AreEqual(2, cards[indices[0]].GetComponent<Card>().state);
 
 	}
 
@@ -66,19 +66,19 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(2, cards[indexes[1]].GetComponent<Card>().state);
+		Assert.AreEqual(2, cards[indices[1]].GetComponent<Card>().state);
 
 	}
 
@@ -98,19 +98,19 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indexes[0]].GetComponent<Button>().enabled);
+		Assert.AreEqual(false, cards[indices[0]].GetComponent<Button>().enabled);
 
 	}
 
@@ -130,19 +130,19 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indexes[1]].GetComponent<Button>().enabled);
+		Assert.AreEqual(false, cards[indices[1]].GetComponent<Button>().enabled);
 
 	}
 
@@ -163,15 +163,15 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
@@ -196,15 +196,15 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (cards[i].GetComponent<Card>().cardValue == 1) indexes.Add(i);
+			if (cards[i].GetComponent<Card>().cardValue == 1) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
@@ -232,20 +232,20 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (i == 0) indexes.Add(i);
-			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreNotEqual(2, cards[indexes[0]].GetComponent<Card>().state);
+		Assert.AreNotEqual(2, cards[indices[0]].GetComponent<Card>().state);
 
 	}
 
@@ -265,20 +265,20 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (i == 0) indexes.Add(i);
-			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreNotEqual(2, cards[indexes[1]].GetComponent<Card>().state);
+		Assert.AreNotEqual(2, cards[indices[1]].GetComponent<Card>().state);
 
 	}
 
@@ -371,16 +371,16 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (i == 0) indexes.Add(i);
-			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
@@ -405,16 +405,16 @@ public class MatchingCardGameTest {
 		gmscript.finishedTutorial = true;
 
 		var cards = gmscript.cards;
-		var indexes = new List<int>();
+		var indices = new List<int>();
 
 		yield return null;
 
 		for (int i = 0; i < cards.Length; i++){
-			if (i == 0) indexes.Add(i);
-			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indexes.Add(i);
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
 		}
 
-		gmscript.cardComparison(indexes);
+		gmscript.cardComparison(indices);
 
 		yield return new WaitForSeconds(1);
 
