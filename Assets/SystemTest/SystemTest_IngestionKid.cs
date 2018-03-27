@@ -32,6 +32,14 @@ public class SystemTest_IngestionKid {
 		kidIngestionButton.onClick.Invoke ();
 		yield return null;
 
+		yield return new WaitForSeconds (10);
 
+		var spoon = GameObject.Find ("spoon");
+		for (int i = 0; i < 10; i++) {
+			spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
+			yield return new WaitForSeconds (0.1f);
+			spoon.transform.position = new Vector3 (4.9f, 0.001f, 0f);
+			yield return new WaitForSeconds (0.1f);
+		}
 	}
 }
