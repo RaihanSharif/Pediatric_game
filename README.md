@@ -1,9 +1,6 @@
 
-# Pediatric Hospital Game
+# Pediatric Hospital Game ![alt text](https://github.com/RaihanSharif/Pediatric_game/blob/master/DocumentationAssets/TennisToothMini.png)
 
-<p align="center">
-  <img src="https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png"/
-</p>
 <p align="center">
   <img src="https://github.com/RaihanSharif/Pediatric_game/raw/master/DocumentationAssets/logo-primary.png"/>
 </p>
