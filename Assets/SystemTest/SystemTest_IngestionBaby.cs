@@ -19,12 +19,14 @@ public class SystemTest_IngestionBaby {
 	[UnityTest]
 	[Timeout(100000000)]
 	public IEnumerator SystemTest_IngestionBabyPasses() {
-		
+
+		// Load Splash Screen
 		LoadSceneByName ("SplashScreen");
 		yield return null;
 		yield return new WaitForSeconds (6.1f);
 		yield return null;
 
+		// After 6 seconds, the main menu should have been reached, select Ingestion and Milk
 		var ingestionButton = GameObject.FindGameObjectWithTag ("Ingestion").GetComponent<Button> ();
 		ingestionButton.onClick.Invoke ();
 		yield return new WaitForSeconds (1);
@@ -33,6 +35,7 @@ public class SystemTest_IngestionBaby {
 		babyIngestionButton.onClick.Invoke ();
 		yield return null;
 
+		// Pop all the bubbles and finish the milk, then move to waiting room
 		yield return new WaitForSeconds (3);
 		var bubble = GameObject.Find ("BlueBubble1").GetComponent<BubbleClick> ();
 		bubble.OnMouseDown ();
