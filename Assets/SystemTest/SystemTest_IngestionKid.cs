@@ -2,20 +2,36 @@
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SystemTest_IngestionKid {
 
-	[Test]
-	public void SystemTest_IngestionKidSimplePasses() {
-		// Use the Assert class to test conditions.
+	private void LoadSceneByName(string name){
+
+		SceneManager.LoadScene(name, LoadSceneMode.Single);
+
 	}
 
-	// A UnityTest behaves like a coroutine in PlayMode
-	// and allows you to yield null to skip a frame in EditMode
+	private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
+
+
 	[UnityTest]
-	public IEnumerator SystemTest_IngestionKidWithEnumeratorPasses() {
-		// Use the Assert class to test conditions.
-		// yield to skip a frame
+	[Timeout(100000000)]
+	public IEnumerator SystemTest_IngestionKidPasses() {
+		LoadSceneByName ("SplashScreen");
 		yield return null;
+		yield return new WaitForSeconds (6.1f);
+		yield return null;
+
+		var ingestionButton = GameObject.FindGameObjectWithTag ("Ingestion").GetComponent<Button> ();
+		ingestionButton.onClick.Invoke ();
+		yield return new WaitForSeconds (1);
+
+		var kidIngestionButton = GameObject.FindGameObjectWithTag ("Kid").GetComponent<Button> ();
+		kidIngestionButton.onClick.Invoke ();
+		yield return null;
+
+
 	}
 }
