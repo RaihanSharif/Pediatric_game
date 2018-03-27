@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
     /// compares if the cards that faces up have the same value or not. it takes a parameter c which is being passed from checkCards function 
     /// </summary>
     /// <param name="c"></param>
-    void cardComparison(List<int> c)
+    public void cardComparison(List<int> c)
     {
         // this halt the game for few fractions of the second while the comparision takes place 
         Card.DO_NOT = true;
