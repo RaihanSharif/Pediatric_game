@@ -2,7 +2,10 @@
 # Pediatric Hospital Game
 
 <p align="center">
-  <img src="https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png"/>
+  <img src="https://github.com/RaihanSharif/Pediatric_game/raw/MarkDownEditV2/Assets/Scenes/SplashScene/Sprites/Tennis%20Tooth%20logo.png"/
+</p>
+<p align="center">
+  <img src="https://github.com/RaihanSharif/Pediatric_game/raw/master/DocumentationAssets/logo-primary.png"/>
 </p>
 
 ### Objectives
