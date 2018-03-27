@@ -138,7 +138,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     /// <summary>
     /// Zooms the camera smoothly to the position required in the second level.
     /// </summary>
-    private void cameraZoom()
+    public void cameraZoom()
     {
         elapsed += Time.deltaTime;  //Keep track of the time elapsed during the zoom, using it to smoothly move the items.
         Camera.main.orthographicSize = Mathf.SmoothStep(5f, 3.5f, elapsed);     //Zoom the camera smoothly
@@ -550,7 +550,16 @@ public class DragAndDropCameraRoom : MonoBehaviour
     {
         camera2inPlace = setBool;
     }
+    
+    public void setZoomToLevel2(bool setBool)
+    {
+        zoomToLevel2 = setBool;
+    }
 
+    public void setinLevel2(bool setBool)
+    {
+        inLevel2 = setBool;
+    }
 
     #endregion
 
@@ -601,6 +610,10 @@ public class DragAndDropCameraRoom : MonoBehaviour
     public bool getdraggingItem()
     {
         return draggingItem;
+    }
+    public bool getIsScanning()
+    {
+        return isScanning;
     }
     #endregion
 
