@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
             cards[c[1]].GetComponent<Button>().enabled = false;
             x = 2;
             _matches--;
-            matchText.text = "Number of Matches: " + _matches;
+            matchText.text = "Matches Left: " + _matches;
             sound.PlayOneShot(match);
             // if the number of matches is 0 then go to the menu scene 
             if (_matches == 0)

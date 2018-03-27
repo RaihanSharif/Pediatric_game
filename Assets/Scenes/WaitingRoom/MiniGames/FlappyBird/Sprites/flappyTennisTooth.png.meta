@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: 0647ac5272aa8e14b91e60dc143dd8e3
-timeCreated: 1521142121
+guid: af379c9c255cded4a9868d78cc24dfa6
+timeCreated: 1522011020
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: flappyTennisTooth_0
+    21300002: flappyTennisTooth_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,13 +42,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -98,7 +100,35 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: flappyTennisTooth_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 786.5
+        width: 1221
+        height: 786.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: flappyTennisTooth_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.5
+        width: 1221
+        height: 786.5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
