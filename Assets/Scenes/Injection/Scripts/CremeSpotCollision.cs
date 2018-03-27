@@ -43,12 +43,6 @@ public class CremeSpotCollision : MonoBehaviour {
 					injectionIsDone (smiley2);
 
 					// if creme application is completed for creme spot 1, then follow this process
-				}else if (this.tag == "CremeSpotApplication1") {
-					CremeApplicationIsDone();
-
-					// if creme application is completed for creme spot 2, then follow this process
-				}else if(this.tag == "CremeSpotApplication2"){
-					CremeApplicationIsDone();
 				}
 			}
 		}
@@ -70,12 +64,6 @@ public class CremeSpotCollision : MonoBehaviour {
 		syringe.anim.enabled = false; // stop the syringe animation
 		inCollision = false; // the creme spot is no more in collision now 
 		
-
-	}
-
-	void CremeApplicationIsDone(){
-
-		Debug.Log ("cremeApp is done");
 
 	}
 
