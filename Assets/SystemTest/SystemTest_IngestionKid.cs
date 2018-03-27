@@ -19,11 +19,13 @@ public class SystemTest_IngestionKid {
 	[UnityTest]
 	[Timeout(100000000)]
 	public IEnumerator SystemTest_IngestionKidPasses() {
+		// Load Splash Screen
 		LoadSceneByName ("SplashScreen");
 		yield return null;
 		yield return new WaitForSeconds (6.1f);
 		yield return null;
 
+		// After 6 seconds, the main menu should have been reached, select Ingestion and Food
 		var ingestionButton = GameObject.FindGameObjectWithTag ("Ingestion").GetComponent<Button> ();
 		ingestionButton.onClick.Invoke ();
 		yield return new WaitForSeconds (1);
@@ -32,8 +34,8 @@ public class SystemTest_IngestionKid {
 		kidIngestionButton.onClick.Invoke ();
 		yield return null;
 
+		// Make kid eat all the food and move along to waiting room
 		yield return new WaitForSeconds (10);
-
 		var spoon = GameObject.Find ("spoon");
 		for (int i = 0; i < 10; i++) {
 			spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
@@ -41,5 +43,16 @@ public class SystemTest_IngestionKid {
 			spoon.transform.position = new Vector3 (4.9f, 0.001f, 0f);
 			yield return new WaitForSeconds (0.1f);
 		}
+
+		spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
+		yield return null;
+
+		var kid = new GameObject ().AddComponent<changeFoodOnContact> ();
+		if (kid.isMouthOpen) {
+			LoadSceneByName ("WaitingRoom");
+			yield return null;
+		}
+
+		Assert.AreEqual ("WaitingRoom", SceneManager.GetActiveScene().name);
 	}
 }
