@@ -167,4 +167,72 @@ public class CameraRoomUnitTests
 
     }
 
+    [UnityTest]
+    public IEnumerator EnteredLevel2()
+    {
+
+        findScene("CameraRoom");
+        yield return null;
+        var table = GameObject.FindGameObjectWithTag(tags[4]);
+        table.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[4]));
+        yield return null;
+        yield return new WaitForSeconds(8);
+        var levelScript = table.GetComponent<DragAndDropCameraRoom>();
+        levelScript.setZoomToLevel2(true);
+        yield return new WaitForSeconds(2);
+        var inLevel2 = levelScript.getinLevel2();
+        Assert.AreEqual(inLevel2, true);
+
+    }
+
+    [UnityTest]
+    public IEnumerator CameraLocksIntoScanPosition()
+    {
+
+        findScene("CameraRoom");
+        yield return null;
+        var cameraTop = GameObject.FindGameObjectWithTag(tags[5]);
+        cameraTop.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[5]));
+        yield return null;
+        yield return new WaitForSeconds(8);
+        var levelScript = cameraTop.GetComponent<DragAndDropCameraRoom>();
+        levelScript.setZoomToLevel2(true);
+        yield return new WaitForSeconds(2);
+        cameraTop.transform.position = new Vector2(2.3f, 0f);
+        levelScript.setSandbag1(true);
+        levelScript.setSandbag2(true);
+        levelScript.setStrap1(true);
+        levelScript.setStrap2(true);
+        levelScript.setinLevel2(true);
+        levelScript.clickIntoPlace();
+        yield return new WaitForSeconds(1);
+        var cameraInPlace = levelScript.getIsScanning();
+        Assert.AreEqual(cameraInPlace, true);
+
+    }
+
+    [UnityTest]
+    public IEnumerator CameraLevelComplete()
+    {
+        findScene("CameraRoom");
+        yield return null;
+        var cameraTop = GameObject.FindGameObjectWithTag(tags[5]);
+        cameraTop.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[5]));
+        yield return null;
+        yield return new WaitForSeconds(8);
+        var levelScript = cameraTop.GetComponent<DragAndDropCameraRoom>();
+        levelScript.setZoomToLevel2(true);
+        yield return new WaitForSeconds(2);
+        cameraTop.transform.position = new Vector2(2.3f, 0f);
+        levelScript.setSandbag1(true);
+        levelScript.setSandbag2(true);
+        levelScript.setStrap1(true);
+        levelScript.setStrap2(true);
+        levelScript.setinLevel2(true);
+        levelScript.clickIntoPlace();
+        yield return new WaitForSeconds(5);
+        var levelOver = levelScript.getlevelOver();
+        Assert.AreEqual(levelOver, true);
+    }
+
 }
