@@ -131,8 +131,14 @@ public class SystemTest_IngestionBaby {
 		yield return null;
 		#endregion
 
-		LoadSceneByName ("CameraRoom");
-		yield return null;
+		var progress = GameObject.Find ("RadialProgressBar").GetComponent<RadialProgressBar> ();
+		var progressBarVal = progress.getCurrentBarValue ();
+
+		// We change to camera room only if the progress down is at zero or less
+		if (progressBarVal <= 0) {
+			LoadSceneByName ("CameraRoom");
+			yield return null;
+		}
 
 		// Camera Room
 		#region 
