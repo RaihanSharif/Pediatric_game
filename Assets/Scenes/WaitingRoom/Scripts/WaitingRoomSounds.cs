@@ -9,13 +9,6 @@ public class WaitingRoomSounds : MonoBehaviour {
 	public AudioSource MusicSource;
 
 
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-
 	/// <summary>
 	/// Plays the bird.
 	/// </summary>

@@ -43,7 +43,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (3);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 
 		Assert.AreEqual (otherBubble.bubbleNum-1, 3);
@@ -65,7 +65,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -91,7 +91,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -122,7 +122,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -158,7 +158,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -199,7 +199,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -249,7 +249,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 
@@ -307,7 +307,7 @@ public class IngBabyUnitTest {
 		yield return new WaitForSeconds (2);
 		var otherBubble = GameObject.Find ("PinkBubble1").GetComponent<BubbleClick> ();
 		otherBubble.OnMouseDown ();
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.1f);
 		otherBubble.OnMouseDown ();
 		yield return new WaitForSeconds (1);
 

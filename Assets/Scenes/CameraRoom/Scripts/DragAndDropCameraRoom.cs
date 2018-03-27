@@ -15,6 +15,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private bool zoomToLevel2 = false;
     private bool inLevel2 = false;
     private bool levelOver = false;
+    private bool isScanning = false;
     private bool draggingItem = false; //whether the player is currently dragging an item
     private GameObject draggedObject;  //holds a reference to an object being dragged
     private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
@@ -37,6 +38,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         makeTargetRed();
         makeGuidanceObjectsTransparent();
         setGuidance("Sandbag");
+        setGuidanceColor("SandbagArrow", 1f, 0f, 0f);
     }
 
     /// <summary>
@@ -185,7 +187,14 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (inLevel2)
             {
                 //When the table is in place, allow the top camera to move.
-                enableHitbox("CameraTop");
+                if (isScanning)
+                {
+                    disableHitbox("CameraTop");
+                }
+                else
+                {
+                    enableHitbox("CameraTop");
+                }
             }
 
             //Perform a raycast at at the input position.
@@ -263,7 +272,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0.0f);
 
             //If the table reaches the necessary position...
-            if (draggedObject.transform.position.x > 1.5f && draggedObject.transform.position.x < 2.0f)
+            if (draggedObject.transform.position.x > 1.5f )
             {
                 //... move it to exactly (2.1, 0) and disable its hitbox.
                 disableDragableItem(2.1f, 0.0f);
@@ -271,39 +280,25 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 zoomToLevel2 = true;
             }
         }
-        else if     //If Strap1 is in place and the sandbags are already in place, snap it into position.
-            (draggedObject.name.Equals("Strap1") &&
-            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
-            && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
-            && sandbag1inPlace && sandbag2inPlace)
+        else if (strap1SnapBoolean)     //If Strap1 is in place and the sandbags are already in place, snap it into position.
         {
             disableDragableItem(-4.0f, 0.0f);
             strap1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Strap2 is in place and the sandbags are already in place, snap it into position.
-            (draggedObject.name.Equals("Strap2") &&
-            draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
-            && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
-            && sandbag1inPlace && sandbag2inPlace)
+        else if (strap2SnapBoolean)     //If Strap2 is in place and the sandbags are already in place, snap it into position.
         {
             disableDragableItem(0.0f, 0.0f);
             strap2inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Sandbag1 is in place, snap it into position.
-            (draggedObject.name.Equals("Sandbag1") &&
-            draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
-            && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        else if (sandbag1SnapBoolean)   //If Sandbag1 is in place, snap it into position.
         {
             disableDragableItem(-2.0f, -1.65f);
             sandbag1inPlace = true;
             draggedObject.transform.parent = GameObject.FindWithTag("Table").transform;
         }
-        else if     //If Sandbag2 is in place, snap it into position.
-           (draggedObject.name.Equals("Sandbag2") &&
-           draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
-           && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f)
+        else if (sandbag2SnapBoolean)   //If Sandbag2 is in place, snap it into position.
         {
             disableDragableItem(-2.0f, 1.65f);
             sandbag2inPlace = true;
@@ -326,7 +321,16 @@ public class DragAndDropCameraRoom : MonoBehaviour
             }
             else    //...else if in the second half of the level, move the camera along the x axis.
             {
-                draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                if (draggedObject.transform.position.x > 1.5 && draggedObject.transform.position.x < 3)
+                {
+                    isScanning = true;
+                    disableDragableItem(2.3f, 0f);
+                    disableHitbox("CameraTop");
+                }
+                else
+                {
+                    draggedObject.transform.position = new Vector2(draggedObject.transform.position.x, 0f);
+                }
             }
         }
         else if     //If the bottom camera is being moved and both the sandbags and straps are in place...
@@ -354,16 +358,90 @@ public class DragAndDropCameraRoom : MonoBehaviour
         else if (!camera1inPlace || !camera2inPlace)
         {
             setGuidance("Camera");
+            setGuidanceColor("Camera", 1f, 0f, 0f);
         }
         else if (!tableInPLace)
         {
             setGuidance("Table");
+            setGuidanceColor("Table", 1f, 0f, 0f);
+        }
+        else if (!isScanning)
+        {
+            setGuidance("Scan");
+            setGuidanceColor("Scan", 1f, 0f, 0f);
         }
         else
         {
-            setGuidance("Scan");
+            setGuidance("None");
         }
     }
+
+    /// <summary>
+    /// Boolean submethods for making the ClickIntoPlace method more readable.
+    /// </summary>
+    #region
+
+    /// <summary>
+    /// Returns a boolean denoting whether Strap1 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// Also checks that the sandbags have been place prior to snapping.
+    /// </summary>
+    bool strap1SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Strap1") &&
+                draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+                && draggedObject.transform.position.x < -3.5f && draggedObject.transform.position.x > -4.5f
+                && sandbag1inPlace && sandbag2inPlace;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Strap2 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// Also checks that the sandbags have been place prior to snapping.
+    /// </summary>
+    bool strap2SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Strap2") &&
+                draggedObject.transform.position.y < 0.5f && draggedObject.transform.position.y > -0.5f
+                && draggedObject.transform.position.x < 0.5f && draggedObject.transform.position.x > -0.5f
+                && sandbag1inPlace && sandbag2inPlace;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Sandbag1 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// </summary>
+    bool sandbag1SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Sandbag1") &&
+                draggedObject.transform.position.y < -1.15f && draggedObject.transform.position.y > -2.15f
+                && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f;
+        }
+    }
+
+    /// <summary>
+    /// Returns a boolean denoting whether Sandbag2 is being dragged,
+    /// and whether it is in the correct position to snap into place.
+    /// </summary>
+    bool sandbag2SnapBoolean
+    {
+        get
+        {
+            return draggedObject.name.Equals("Sandbag2") &&
+                draggedObject.transform.position.y > 1.15f && draggedObject.transform.position.y < 2.15f
+                && draggedObject.transform.position.x < -1.5f && draggedObject.transform.position.x > -2.5f;
+        }
+    }
+
+    #endregion
 
     /// <summary>
     /// A method used to activate the SpriteRenderer component
@@ -386,6 +464,17 @@ public class DragAndDropCameraRoom : MonoBehaviour
         }
     }
 
+    void setGuidanceColor(string contents, float r, float g, float b)
+    {
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Guidance"))
+        {
+            if (gameObject.name.Contains(contents))
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(r, g, b, 0.5f);
+            }
+        }
+    }
+
     /// <summary>
     /// Method used to iterate through all the 
     /// named & tagged items in the array 'tags', 
@@ -402,7 +491,6 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 if (hit.collider.name.Equals(tag))
                 {
                     draggedObject = GameObject.FindGameObjectWithTag(tag);  //...grab the object...
-                    Debug.Log("hit = :" + hit.collider.name);
                     draggingItem = true;
                     touchOffset = (Vector2)hit.transform.position - inputPosition;  //...while keeping track of where the user clicked on the object.
                     break;
@@ -519,7 +607,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     /// <summary>
     /// Method called when the level is cleared, used to move to the next stage.
     /// </summary>
-    void levelCleared()
+    public void levelCleared()
     {
         levelOver = true; //Signals to the script that the game has ended
         lvlFM.OnLevelFinished();

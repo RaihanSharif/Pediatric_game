@@ -68,13 +68,12 @@ public class DragAndDropInjection : MonoBehaviour {
 			if (touches.Length > 0 )
 			{
 				var hit = touches [0];
-//				Debug.Log (hit.collider.name);
+
 
 
 				if (hit.transform != null && (hit.collider.name == "syringe"))
 				{
 					draggedObject =  GameObject.FindGameObjectWithTag("Syringe");
-					Debug.Log ("hit = :" + hit.collider.name);
 					draggingItem = true;
 //					draggedObject = hit.transform.gameObject;
 					touchOffset = (Vector2)hit.transform.position - inputPosition;
@@ -83,7 +82,6 @@ public class DragAndDropInjection : MonoBehaviour {
 				{
 					draggedObject =  GameObject.FindGameObjectWithTag("CremeTube");
 					draggedObject.GetComponent<Animator>().enabled = false;
-					Debug.Log ("hit = :" + hit.collider.name);
 					draggingItem = true;
 					//					draggedObject = hit.transform.gameObject;
 					touchOffset = (Vector2)hit.transform.position - inputPosition;
