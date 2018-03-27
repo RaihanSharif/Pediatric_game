@@ -15,7 +15,9 @@ public class SystemTest_IngestionKid {
 
 	private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
 
-
+	/// <summary>
+	/// Go through the whole game selecting the Ingestion Kid option
+	/// </summary>
 	[UnityTest]
 	[Timeout(100000000)]
 	public IEnumerator SystemTest_IngestionKidPasses() {
@@ -35,6 +37,7 @@ public class SystemTest_IngestionKid {
 		yield return null;
 
 		// Make kid eat all the food and move along to waiting room
+		#region IngestionKid
 		yield return new WaitForSeconds (10);
 		var spoon = GameObject.Find ("spoon");
 		for (int i = 0; i < 10; i++) {
@@ -50,11 +53,12 @@ public class SystemTest_IngestionKid {
 		LoadSceneByName ("WaitingRoom");
 		yield return null;
 		yield return new WaitForSeconds (2);
+		#endregion
 
 		// Load all three minigames and go back to waiting room
 
 		// Flappy bird 
-		#region 
+		#region Flappybird
 		var birdObj = GameObject.Find("TheBird");
 		var birdScript = birdObj.GetComponent<TheBird>();
 		yield return new WaitForSeconds(2);
@@ -73,7 +77,7 @@ public class SystemTest_IngestionKid {
 		#endregion
 
 		// Paper toss
-		#region
+		#region Papertoss
 		var trashCan = GameObject.Find("TrashCanButton").GetComponent<Button>();
 		trashCan.onClick.Invoke();
 		yield return null;
@@ -85,7 +89,7 @@ public class SystemTest_IngestionKid {
 		#endregion
 
 		// Matching cards
-		#region
+		#region Matchingcards
 		var gameMatching = GameObject.Find("Button").GetComponent<Button>();
 		gameMatching.onClick.Invoke ();
 		yield return null;
@@ -106,7 +110,7 @@ public class SystemTest_IngestionKid {
 		}
 
 		// Camera Room
-		#region 
+		#region CameraRoom
 		yield return new WaitForSeconds (10);
 
 		var sandbag1 = GameObject.FindGameObjectWithTag(tags[2]);

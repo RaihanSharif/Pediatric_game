@@ -15,6 +15,9 @@ public class SystemTest_Injection {
 
 	private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
 
+	/// <summary>
+	/// Go through the whole game selecting the Injection option
+	/// </summary>
 	[UnityTest]
 	[Timeout(100000000)]
 	public IEnumerator SystemTest_InjectionPasses() {
@@ -30,6 +33,7 @@ public class SystemTest_Injection {
 		yield return null;
 
 		// Pour creme on two arm spots and move to Injection
+		#region CremeApplication
 		var cremeSpot = GameObject.Find ("CremeSpot1").GetComponent<CremeSpotCollision> ();
 		cremeSpot.GetComponent<Animator> ().Play("CremeSpot1ChangeColor");
 		yield return new WaitForSeconds (5);
@@ -47,8 +51,10 @@ public class SystemTest_Injection {
 			yield return null;
 			yield return new WaitForSeconds (1);
 		}
+		#endregion
 
-		// Injection both creme spots and move to waiting room
+		// Inject both creme spots and move to waiting room
+		#region Injection
 		var circle = GameObject.Find ("Button").GetComponent<Button> ();
 		circle.onClick.Invoke ();
 		yield return null;
@@ -71,11 +77,12 @@ public class SystemTest_Injection {
 			yield return null;
 			yield return new WaitForSeconds (2);
 		}
+		#endregion
 
 		// Load all three minigames and go back to waiting room
 
 		// Flappy bird 
-		#region 
+		#region Flappybird
 		var birdObj = GameObject.Find("TheBird");
 		var birdScript = birdObj.GetComponent<TheBird>();
 		yield return new WaitForSeconds(2);
@@ -94,7 +101,7 @@ public class SystemTest_Injection {
 		#endregion
 
 		// Paper toss
-		#region
+		#region Papertoss
 		var trashCan = GameObject.Find("TrashCanButton").GetComponent<Button>();
 		trashCan.onClick.Invoke();
 		yield return null;
@@ -106,7 +113,7 @@ public class SystemTest_Injection {
 		#endregion
 
 		// Matching cards
-		#region
+		#region Matchingcards
 		var gameMatching = GameObject.Find("Button").GetComponent<Button>();
 		gameMatching.onClick.Invoke ();
 		yield return null;
@@ -127,7 +134,7 @@ public class SystemTest_Injection {
 		}
 
 		// Camera Room
-		#region 
+		#region CameraRoom
 		yield return new WaitForSeconds (10);
 
 		var sandbag1 = GameObject.FindGameObjectWithTag(tags[2]);
