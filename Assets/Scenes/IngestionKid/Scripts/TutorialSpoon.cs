@@ -8,19 +8,18 @@ public class TutorialSpoon : MonoBehaviour {
     public GameObject tutorialSpoon;
     public DragAndDrop spoonScript;
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-
+    /// <summary>
+    /// this is being called in the update where we start a timer
+    /// </summary>
     void runTimer()
     {
         timer += Time.deltaTime;
 
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// if the timer is more than 8 seconds then hide the tutorial spoon and reveal the games spoon 
+    /// </summary>
     void Update ()
     {
         runTimer();

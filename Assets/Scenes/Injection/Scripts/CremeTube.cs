@@ -16,9 +16,13 @@ public class CremeTube : MonoBehaviour {
 	public GameObject cremeSpot2;
 
 
-	// Use this for initialization
-	void Start () {
-
+    /// <summary>
+    /// At the start of the game all the collidors are disabled 
+    /// Then we run the animation for the creme tutorial 
+    /// And the m_SpriteRenderer is being initialized 
+    /// </summary>
+    void Start ()
+    {
 		disableAllColliders();
 		this.GetComponent<Animator>().Play ("StartExplanation");
 		m_SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,7 +30,11 @@ public class CremeTube : MonoBehaviour {
 	}
 
 
-	public void disableAllColliders(){
+    /// <summary>
+    /// This disabled the collidors for all game objects in the scene 
+    /// </summary>
+	public void disableAllColliders()
+    {
 		cremeSpot1.GetComponent<PolygonCollider2D> ().enabled = false;
 		cremeSpot2.GetComponent<PolygonCollider2D> ().enabled = false;
 		this.GetComponent<BoxCollider2D> ().enabled = false;
@@ -35,8 +43,11 @@ public class CremeTube : MonoBehaviour {
 	}
 
 
-
-	public void enableCremeSpotColliders(){
+    /// <summary>
+    /// emables all the collidors for all the game objects in the scene 
+    /// </summary>
+	public void enableCremeSpotColliders()
+    {
 		cremeSpot1.GetComponent<PolygonCollider2D> ().enabled = true;
 		cremeSpot2.GetComponent<PolygonCollider2D> ().enabled = true;
 		this.GetComponent<BoxCollider2D> ().enabled = true;
