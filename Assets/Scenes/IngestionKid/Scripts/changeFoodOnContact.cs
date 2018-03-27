@@ -14,12 +14,17 @@ public class changeFoodOnContact : MonoBehaviour {
     public bool isMouthOpen;
     public LevelFinishedMenu lvlFM; //Reference to the event manager
 
+    public AudioClip kidsCheeringSoundEffect;
+    AudioSource audioSource;
+
     // Use this for initialisation
     void Start ()
     {
         isMouthOpen = false;
         // redender the first sprite in the food multisprite, a.k.a. the full plate
         this.GetComponent<SpriteRenderer>().sprite = mySprites[0];
+        audioSource = GetComponent<AudioSource>();
+
     }
 
 
@@ -35,6 +40,7 @@ public class changeFoodOnContact : MonoBehaviour {
             isMouthOpen = true;
 
         } else if (frame == 10) {
+            audioSource.Play();
             spoonScript.enabled = false;
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			frame++;

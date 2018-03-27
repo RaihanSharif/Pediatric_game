@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // boolean flag that checks if cards are initialised or not
     private bool _init = false;
     // the number of matches left, 8 is assigned as there are 16 cards and there are 8 matches.
-    public int _matches = 8;
+    public int _matches = 7;
 
     // checks if the tutorial is finished or not
     public bool finishedTutorial;
@@ -25,9 +25,15 @@ public class GameManager : MonoBehaviour
     // this gets index of the matching card for the first card
     public int indexForMatchingCard = 0;
 
+    private int cardsClicked = 0;
+
     AudioSource sound;
     public AudioClip match;
+    public AudioClip winning;
+    
 
+    [SerializeField]
+    private LevelFinishedMenu lvlFM;
 
     /// <summary>
     /// At the start of the game we want the animation for the first card to be displayed
@@ -57,6 +63,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+ 
+
+    bool playAudio = true;
+
 
     /// <summary>
     /// this checks if the cards are intialised or not 
@@ -64,9 +74,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (_matches == 0)
+        {
+            if (playAudio)
+            {
+                sound.PlayOneShot(winning);
+                playAudio = false;
+            }
+
+            lvlFM.OnLevelFinished();
+        }
+        
+
         if (!_init) { initializeCards(); }
         if (Input.GetMouseButtonUp(0))
+        {
             checkCards();
+        }    
         if (_matches != cards.Length / 2)
             stopAllAnimations();
         if (finishedTutorial)
@@ -89,7 +113,8 @@ public class GameManager : MonoBehaviour
         // every card has a match 
         for (int id = 0; id < 2; id++)
         {
-            for (int i = 1; i < 9; i++)
+            // 7 matches 
+            for (int i = 1; i < 8; i++)
             {
                 bool test = false;
                 int choice = 0;
@@ -134,7 +159,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void checkCards()
     {
-
         List<int> c = new List<int>();
         // going through each card in the cards list 
         for (int i = 0; i < cards.Length; i++)
@@ -166,11 +190,11 @@ public class GameManager : MonoBehaviour
             cards[c[1]].GetComponent<Button>().enabled = false;
             x = 2;
             _matches--;
-            matchText.text = "Number of Matches: " + _matches;
+            matchText.text = "Matches Left: " + _matches;
             sound.PlayOneShot(match);
             // if the number of matches is 0 then go to the menu scene 
             if (_matches == 0)
-                SceneManager.LoadScene("SecondGameMenu");
+                lvlFM.OnLevelFinished();
 
         }
 

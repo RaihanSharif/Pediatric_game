@@ -29,8 +29,8 @@ public class Card : MonoBehaviour
 
     AudioSource sound;
 
-    public AudioClip winning;
-    public AudioClip losing;
+    public AudioClip notMatch;
+
 
     // this counts how many times the first card is being pressed ( for tutorial ). So when it is pressed once then 
     // the worng match will be animated and when it is being pressed for the second time then the right match will be animated
@@ -73,16 +73,19 @@ public class Card : MonoBehaviour
     /// </summary>
     public void flipCard()
     {
-        // && gameManagerScript.finishedTutorial
-        if (_state == 0)
-            _state = 1;
-        else if (_state == 1)
-            _state = 0;
+        if (!DO_NOT)
+        {
+            // && gameManagerScript.finishedTutorial
+            if (_state == 0)
+                _state = 1;
+            else if (_state == 1)
+                _state = 0;
 
-        // if state = 0 ( means card is faced up ) then flip it back
-        if (_state == 0 && !DO_NOT) GetComponent<Image>().sprite = _cardBack;
-        // if state 1 ( means car is faced down ) then flip it up
-        else if (_state == 1 && !DO_NOT) GetComponent<Image>().sprite = _cardFace;
+            // if state = 0 ( means card is faced up ) then flip it back
+            if (_state == 0 && !DO_NOT) GetComponent<Image>().sprite = _cardBack;
+            // if state 1 ( means car is faced down ) then flip it up
+            else if (_state == 1 && !DO_NOT) GetComponent<Image>().sprite = _cardFace;
+        }
     }
 
     public int cardValue
@@ -167,7 +170,6 @@ public class Card : MonoBehaviour
 
             // the tutorial is finished ( as this is the last stage which should be played after the wrong match card stage )
             gameManagerScript.finishedTutorial = true;
-            sound.PlayOneShot(winning);
         }
 
         // if the sprite of the first card is NOT the same as the sprite of the card which is being clicke AND tutorial is not over AND the number of matches is still half of all card ( which is 8 in this case )
@@ -177,7 +179,7 @@ public class Card : MonoBehaviour
         {
 
             animator.SetTrigger("OriginalCardState");
-            sound.PlayOneShot(losing);
+            sound.PlayOneShot(notMatch);
             gameManagerScript.playAnimationForFirstCard();
             GetComponent<Button>().interactable = false;
         }

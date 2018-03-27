@@ -71,7 +71,6 @@ public class FlappyBirdUnitTest {
 		LoadSceneByName("FlappyBird");
 		yield return null;
 		var birdObject = GameObject.Find("Bird");
-		Debug.Log(birdObject.GetComponent<Bird>().upForce);
 		Assert.AreEqual(250f, birdObject.GetComponent<Bird>().upForce);
 		yield return null;
 	}

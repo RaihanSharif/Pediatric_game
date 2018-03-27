@@ -3,6 +3,7 @@ using System.Collections.Generic;
 //using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Bubble : MonoBehaviour
 {
@@ -35,9 +36,8 @@ public class Bubble : MonoBehaviour
     public bool isFirstPinkBubbleFirstClicked;
     public bool isFirstPinkBubbleSecondClicked;
     public GameObject arrowObject;
-    
 
-
+    private float counter;
 
     /// <summary>
     /// At the start of the game all the texts and all the bubbles are hidden 
@@ -53,8 +53,16 @@ public class Bubble : MonoBehaviour
     void Update()
     {
 
-        if (checkLostGame())
-            gameOver();
+        if (checkLostGame()){
+            
+            losingText.enabled = true;
+            counter += Time.deltaTime;
+            if (counter > 3) {
+                Scene loadedLevel = SceneManager.GetActiveScene();
+                SceneManager.LoadScene (loadedLevel.buildIndex);
+                counter = 0f;
+            }
+        }
 
         startTimer();
         showBubbles();
@@ -283,26 +291,6 @@ public class Bubble : MonoBehaviour
         playAnimationOnClickScript.bottleEnabled = true;
         babyBottleScript.bottleEnabled = true;
         arrowScript.isTimeToActivateThirdArrow = true;
-    }
-
-
-    /// <summary>
-    /// This is called when checkLostGame returns true. 
-    /// </summary>
-    public void gameOver()
-    {
-        // sets the falg gameOver in babyBottleScript to true
-        babyBottleScript.gameOver = true;
-        // sets the flag gameOver in playAnimaitonOnClickScript to true
-        playAnimationOnClickScript.gameOver = true;
-        // removes the smiley object 
-        Destroy(playAnimationOnClickScript.simleyObject);  
-        // pauses the game 
-        Time.timeScale = 0;
-        timer = 0;
-        hideAllBubbleAtStart();
-        losingText.enabled = true;
-
     }
 
     /// <summary>

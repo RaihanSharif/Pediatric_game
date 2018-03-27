@@ -31,8 +31,10 @@ public class IngKidUnitTest {
 		LoadSceneByName("IngestionKid");
 		yield return null;
 
+		yield return new WaitForSeconds (10);
+
 		var spoon = GameObject.FindGameObjectWithTag("Spoon");
-		spoon.transform.position = new Vector3(-6.8f, -1.9f, 0f);
+		spoon.transform.position = new Vector3(-4.5f, -3.5f, 0f);
 		yield return new WaitForSeconds (1);
 		var food = GameObject.Find ("food");
 		var script = food.GetComponent<changeFoodOnContact> ();
@@ -48,6 +50,8 @@ public class IngKidUnitTest {
 	public IEnumerator SpoonTakesFoodThenKidEatsFails() {
 		LoadSceneByName("IngestionKid");
 		yield return null;
+
+		yield return new WaitForSeconds (10);
 
 		var spoon = GameObject.FindGameObjectWithTag("Spoon");
 		spoon.transform.position = new Vector3(-3.87f, 0.37f, 0f);
@@ -69,6 +73,8 @@ public class IngKidUnitTest {
 		LoadSceneByName("IngestionKid");
 		yield return null;
 
+		yield return new WaitForSeconds (10);
+
 		var spoon = GameObject.FindGameObjectWithTag("Spoon");
 		spoon.transform.position = new Vector3(-3.87f, 0.37f, 0f);
 		yield return new WaitForSeconds (1);
@@ -87,6 +93,8 @@ public class IngKidUnitTest {
 	public IEnumerator KidMouthOpenThenClosePasses() {
 		LoadSceneByName ("IngestionKid");
 		yield return null;
+
+		yield return new WaitForSeconds (10);
 
 		var spoon = GameObject.Find ("spoon");
 		spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
@@ -109,8 +117,10 @@ public class IngKidUnitTest {
 		LoadSceneByName ("IngestionKid");
 		yield return null;
 
+		yield return new WaitForSeconds (10);
+
 		var spoon = GameObject.Find ("spoon");
-		for (int i = 0; i < 24; i++) {
+		for (int i = 0; i < 10; i++) {
 			spoon.transform.position = new Vector3 (-3.87f, 0.37f, 0f);
 			yield return new WaitForSeconds (0.1f);
 			spoon.transform.position = new Vector3 (4.9f, 0.001f, 0f);
