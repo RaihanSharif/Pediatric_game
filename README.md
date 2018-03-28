@@ -70,9 +70,9 @@ Refer to the [Wiki](https://github.com/RaihanSharif/Pediatric_game/wiki) for ins
 ### Software Requirements
 Required: Any Unity 2017.2, or later version
 
-### Owner and Responsible Devs
-**Owner:** Chelsea & Westminster Hospital <br>
-**Responsible Devs:** Tennis Tooth
+### Made for and Developers
+**Made for:** Chelsea & Westminster Hospital <br>
+**Developers:** Tennis Tooth Team
 
 ### Navigation Diagram Of Game
 The following diagram shows the transition of one scene to another in the form of a flow diagram. It will help you understand how each scene is linked to each other.
