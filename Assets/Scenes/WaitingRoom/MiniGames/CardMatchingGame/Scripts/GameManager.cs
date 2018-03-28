@@ -8,15 +8,19 @@ public class GameManager : MonoBehaviour
 {
     // the list of the faces that are given for each card
     public Sprite[] cardFace;
+
     // the face back, this is not a list as all cards have the same back sprite
     public Sprite cardBack;
+
     public GameObject[] cards;
-    // the text dispalyed in the bottom of the screen indicating the number of the matches that are left
+
+    // the text displayed in the bottom of the screen indicating the number of the matches that are left
     public Text matchText;
 
     // boolean flag that checks if cards are initialised or not
     private bool _init = false;
-    // the number of matches left, 8 is assigned as there are 16 cards and there are 8 matches.
+
+    // the number of matches left, 8 is assigned as there are 16 cards and there are 8 matches
     public int _matches = 7;
 
     // checks if the tutorial is finished or not
@@ -30,13 +34,13 @@ public class GameManager : MonoBehaviour
     AudioSource sound;
     public AudioClip match;
     public AudioClip winning;
-    
+	bool playAudio = true;
 
     [SerializeField]
     private LevelFinishedMenu lvlFM;
 
     /// <summary>
-    /// At the start of the game we want the animation for the first card to be displayed
+    /// At the start of the game we want the animation for the first card to be displayed.
     /// </summary>
     void Start()
     {
@@ -59,18 +63,12 @@ public class GameManager : MonoBehaviour
         foreach (GameObject card in cards)
         {
             card.GetComponent<Button>().interactable = true;
-
         }
     }
 
- 
-
-    bool playAudio = true;
-
-
     /// <summary>
-    /// this checks if the cards are intialised or not 
-    /// when the mouse is clicked then call the function checkCards
+    /// This checks if the cards are initialised or not 
+    /// when the mouse is clicked then calls the function checkCards.
     /// </summary>
     void Update()
     {
@@ -81,22 +79,22 @@ public class GameManager : MonoBehaviour
                 sound.PlayOneShot(winning);
                 playAudio = false;
             }
-
             lvlFM.OnLevelFinished();
         }
-        
 
-        if (!_init) { initializeCards(); }
+        if (!_init) 
+			initializeCards();
         if (Input.GetMouseButtonUp(0))
-        {
-            checkCards();
-        }    
+            checkCards();   
         if (_matches != cards.Length / 2)
             stopAllAnimations();
         if (finishedTutorial)
             enableAllCards();
     }
 
+	/// <summary>
+	/// Stops all animations that might be playing in the cards.
+	/// </summary>
     void stopAllAnimations()
     {
         foreach (GameObject card in cards)
@@ -106,7 +104,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// This initialises the cards so that for each card there is a matching. 
+    /// This initialises the cards so that for each card there is a match. 
     /// </summary>
     void initializeCards()
     {
@@ -132,11 +130,12 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject c in cards)
             c.GetComponent<Card>().setupGraphics();
-        if (!_init) _init = true;
+        if (!_init) 
+			_init = true;
     }
 
     /// <summary>
-    /// returns the sprite for the card back    
+    /// Returns the sprite for the card back. 
     /// </summary>
     /// <returns></returns>
     public Sprite getCardBack()
@@ -145,7 +144,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// gets the index of the card that we want to get the face up and returns it.
+    /// Gets the index of the card that we want to get the face up and returns it.
     /// </summary>
     /// <param name="i"></param>
     /// <returns></returns>
@@ -163,7 +162,7 @@ public class GameManager : MonoBehaviour
         // going through each card in the cards list 
         for (int i = 0; i < cards.Length; i++)
         {
-            // and if the state is 1 ( card up ) then add to list
+            // and if the state is 1 (card up) then add to list
             if (cards[i].GetComponent<Card>().state == 1)
                 c.Add(i);
         }
@@ -174,12 +173,12 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// compares if the cards that faces up have the same value or not. it takes a parameter c which is being passed from checkCards function 
+    /// Compares if the cards that face up have the same value or not. It takes a parameter c which is being passed from checkCards function 
     /// </summary>
     /// <param name="c"></param>
     public void cardComparison(List<int> c)
     {
-        // this halt the game for few fractions of the second while the comparision takes place 
+        // this halts the game for few fractions of a second while the comparison takes place 
         Card.DO_NOT = true;
         int x = 0;
         // from the list c in checkCards check if the value of the first card is the same as the value of the second card
@@ -198,7 +197,6 @@ public class GameManager : MonoBehaviour
 
         }
 
-
         for (int i = 0; i < c.Count; i++)
         {
             cards[c[i]].GetComponent<Card>().state = x;
@@ -207,7 +205,10 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // gets the cardSpriteName for the first card then it goes through each card to check which card has the same sprite 
+    /// <summary>
+	/// Gets the cardSpriteName for the first card then it goes 
+	/// through each card to check which card has the same sprite.
+	/// </summary> 
     public int getIndexOfMatchingFirstCard(string cardSpriteName)
     {
 
@@ -224,7 +225,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// plays the animation for the wrong matching card ( which is always one after the right matching card ) 
+    /// Plays the animation for the wrong matching card (which is always one after the right matching card).
     /// </summary>
     public void playAnimationForCorrectgMatch()
     {
@@ -232,7 +233,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// plays the enlarge and the changing colour to yellow for the first card
+    /// Plays the enlarge and the changing colour to yellow for the first card.
     /// </summary>
     public void playAnimationForFirstCard()
     {
@@ -240,11 +241,11 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// play animation for the wrong match
+    /// Plays animation for the wrong match.
     /// </summary>
     public void playAnimationForWrongMatch()
     {
-        // checks if the match is the last card then the worng matching card will not be one after it but rather it will be 1 before it 
+        // checks if the match is the last card then the wrong matching card will not be one after it but rather it will be 1 before it 
         if (indexForMatchingCard == cards.Length - 1 || indexForMatchingCard == cards.Length + 1 || indexForMatchingCard == cards.Length)
         {
             cards[indexForMatchingCard - 2].GetComponent<Animator>().SetTrigger("changeColourNEnlarge");
