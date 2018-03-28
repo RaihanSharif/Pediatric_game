@@ -6,7 +6,7 @@
 </p>
 
 ### Objectives
-This is a game made for the **Chelsea & Westminster Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and medical examination in the hospital. The Design of each room of the application is based on the rooms in the actual hospital. The game tries to be as realistic as possible by making use of staff members' images and actors in the game so that the kids have an idea of what they will be going through.
+This is a game made for the **Chelsea & Westminster Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and medical examination in the hospital. The design of each room in the application is based on the actual rooms in the hospital. The game tries to be as realistic as possible by making use of staff members' images and actors in the game so that the kids have an idea of what they will be going through.
 
 
 ### Tools used
