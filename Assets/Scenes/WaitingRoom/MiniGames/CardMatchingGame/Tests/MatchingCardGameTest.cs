@@ -107,10 +107,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[0]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indices[0]].GetComponent<Button>().enabled);
+		Assert.AreNotEqual(true, isEnabled);
 
 	}
 
@@ -139,10 +140,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[1]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indices[1]].GetComponent<Button>().enabled);
+		Assert.AreNotEqual(true, isEnabled);
 
 	}
 
@@ -308,10 +310,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[0]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(true, cards[indices[0]].GetComponent<Button>().enabled);
+		Assert.AreEqual(true, isEnabled);
 
 	}
 
@@ -341,10 +344,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[1]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(true, cards[indices[1]].GetComponent<Button>().enabled);
+		Assert.AreEqual(true, isEnabled);
 
 	}
 
