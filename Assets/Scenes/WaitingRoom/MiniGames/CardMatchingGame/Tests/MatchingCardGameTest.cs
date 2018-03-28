@@ -297,7 +297,6 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
-<<<<<<< HEAD
 		var cards = gmscript.cards;
 		var indices = new List<int>();
 
@@ -313,26 +312,6 @@ public class MatchingCardGameTest {
 		yield return new WaitForSeconds(1);
 
 		Assert.AreEqual(true, cards[indices[0]].GetComponent<Button>().enabled);
-=======
-		yield return null;
-
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
-
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
-
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(true, card1.GetComponent<Button>().enabled);
->>>>>>> master
 
 	}
 
@@ -351,7 +330,6 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
-<<<<<<< HEAD
 		var cards = gmscript.cards;
 		var indices = new List<int>();
 
@@ -367,26 +345,6 @@ public class MatchingCardGameTest {
 		yield return new WaitForSeconds(1);
 
 		Assert.AreEqual(true, cards[indices[1]].GetComponent<Button>().enabled);
-=======
-		yield return null;
-
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
-
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
-
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(true, card2.GetComponent<Button>().enabled);
->>>>>>> master
 
 	}
 
