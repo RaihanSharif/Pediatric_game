@@ -38,38 +38,38 @@ public class CameraRoomIntegrationTest {
 		yield return new WaitForSeconds (10);
 
 		var sandbag1 = GameObject.FindGameObjectWithTag(tags[2]);
-		sandbag1.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[2]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[2]));
 		sandbag1.transform.position = new Vector2(-2f, -2f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var testingScript = sandbag1.GetComponent<DragAndDropCameraRoom>();
+		var testingScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		testingScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
 		var sandbag2 = GameObject.FindGameObjectWithTag(tags[3]);
-		sandbag2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[3]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[3]));
 		sandbag2.transform.position = new Vector2(-2f, 1.65f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var testScript = sandbag2.GetComponent<DragAndDropCameraRoom>();
+		var testScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		testScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
 		var strap1 = GameObject.FindGameObjectWithTag(tags[0]);
-		strap1.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[0]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[0]));
 		strap1.transform.position = new Vector2(-4, 0.2f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var theScript = strap1.GetComponent<DragAndDropCameraRoom>();
+		var theScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		theScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
 		var strap2 = GameObject.FindGameObjectWithTag(tags[1]);
-		strap2.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[1]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[1]));
 		strap2.transform.position = new Vector2(0f, 0.2f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var aScript = strap1.GetComponent<DragAndDropCameraRoom>();
+		var aScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		aScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
@@ -83,24 +83,24 @@ public class CameraRoomIntegrationTest {
 		yield return new WaitForSeconds(1);
 
 		var cameraBottom = GameObject.FindGameObjectWithTag(tags[6]);
-		cameraBottom.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[6]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[6]));
 		cameraBottom.transform.position = new Vector2(6.3f, 0f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var anotherScript = cameraBottom.GetComponent<DragAndDropCameraRoom>();
+		var anotherScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		anotherScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
 		var table = GameObject.FindGameObjectWithTag(tags[4]);
-		table.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[4]));
+        GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[4]));
 		table.transform.position = new Vector2(1.75f, 0f);
 		yield return null;
 		yield return new WaitForSeconds(1);
-		var lastScript = table.GetComponent<DragAndDropCameraRoom>();
+		var lastScript = GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom>();
 		lastScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
-		if (table.GetComponent<DragAndDropCameraRoom> ().gettableInPLace ()) {
+		if (GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom> ().gettableInPLace ()) {
 			LoadSceneByName ("MainMenu");
 			yield return null;
 		}
