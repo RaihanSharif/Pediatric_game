@@ -61,30 +61,11 @@ public class WaitingRoomIntegrationTest {
 	}
 
 	/// <summary>
-	/// Loads the waiting room scene, clicks on the bird button,
-	/// then checks whether the flappy bird scene has been opened.
-	/// </summary>
-    [UnityTest]
-    public IEnumerator WaitingRoomGoesToFlappyBirdReturnsTrue() {
-        LoadSceneByName("WaitingRoom");
-        yield return null;
-
-        var birdObj = GameObject.Find("TheBird");
-        TheBird birdScript = birdObj.GetComponent<TheBird>();
-
-        yield return new WaitForSeconds(2);
-        birdScript.OnMouseDown();
-        yield return null;
-
-        Assert.AreEqual("FlappyBird", SceneManager.GetActiveScene().name);
-    }
-
-	/// <summary>
 	/// Load all three minigames and go back to waiting room each time,
 	/// then check if it is possible to advance to the camera room
 	/// </summary>
 	[UnityTest]
-	public IEnumerator WaitRoomGoesToCameraRoomReturnsTrue() {
+	public IEnumerator A_WaitRoomGoesToCameraRoomReturnsTrue() {
 		LoadSceneByName ("WaitingRoom");
 		yield return null;
 
