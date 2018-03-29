@@ -100,7 +100,13 @@ public class CameraRoomIntegrationTest {
 		lastScript.clickIntoPlace();
 		yield return new WaitForSeconds(1);
 
-		if (GameObject.FindGameObjectWithTag(tags[5]).GetComponent<DragAndDropCameraRoom> ().gettableInPLace ()) {
+		cameraTop.GetComponent<DragAndDropCameraRoom>().setDraggedObject(GameObject.FindGameObjectWithTag(tags[5]));
+		cameraTop.transform.position = new Vector2(2.3f, 0f);
+		yield return null;
+		yield return new WaitForSeconds(5);
+
+
+		if (lastScript.getlevelOver()) {
 			LoadSceneByName ("MainMenu");
 			yield return null;
 		}
