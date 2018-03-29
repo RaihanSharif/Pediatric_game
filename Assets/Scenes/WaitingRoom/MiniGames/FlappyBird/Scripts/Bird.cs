@@ -39,6 +39,10 @@ public class Bird : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// this method is called when the bird collides with the ground or the columns
+	/// </summary>
+	/// <param name="other">Collision event.</param>
 	void OnCollisionEnter2D(Collision2D other)
 	{
 

@@ -44,8 +44,7 @@ public class ArrowClass : MonoBehaviour {
 	        hideFirstArrow();
 	    if (bubbleScript.isFirstPinkBubbleSecondClicked)
 	        hideSecondArrow();
-	    if (isTimeToActivateThirdArrow && BabybottleScript.FirstBottleClickAfterAllBubblesPopped)
-	        hideThirdArrow();
+
 	}
 
     /// <summary>
