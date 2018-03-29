@@ -29,26 +29,10 @@ public class FlappyBirdUnitTest {
 		gameControlObject.GetComponent<GameControl> ().setTimeTo1 ();
 		var birdObject = GameObject.Find("Bird");
 		birdObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
-		yield return new WaitForSeconds(2f);
 		Assert.AreEqual(birdObject.GetComponent<Rigidbody2D>().velocity, Vector2.zero);
 
 	}
-
-
-
-//	[UnityTest]
-//	public IEnumerator ScrollSpeedTestPasses(){
-//
-//
-//		//var controlGame = new GameObject().AddComponent<GameControl>();
-//		var gameControlObject = GameObject.Find("GameControl");
-//		gameControlObject.GetComponent<GameControl> ().setTimeTo1 ();
-//		Assert.AreEqual(-1.5f, gameControlObject.GetComponent<GameControl>().scrollSpeed);
-//
-//		yield return null;
-//	}
-
-
+		
 	[UnityTest]
 	public IEnumerator FlappyBirdCollidesWithGroundTestPasses(){
 
