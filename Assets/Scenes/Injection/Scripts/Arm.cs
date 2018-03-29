@@ -92,6 +92,10 @@ public class Arm : MonoBehaviour {
 		IncreaseProgress (ProgressOffset);
 	}
 
+	/// <summary>
+	/// Check if game is completed or not 
+	/// </summary>
+	/// <returns><c>true</c>, if completed was gotten, <c>false</c> otherwise.</returns>
 	public bool getCompleted()
 	{
 		return completed;

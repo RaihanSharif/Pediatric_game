@@ -21,13 +21,16 @@ public class Babybottle : MonoBehaviour {
     [SerializeField]
     private LevelFinishedMenu lvlFM;
 
-
+	/// <summary>
+	/// Method called at the start of the game
+	/// </summary>
     void Start()
     {
     	this.GetComponent<SpriteRenderer>().sprite = P100;
         sound = GetComponent<AudioSource>();
     }
     
+
 
     void Update()
     {
@@ -40,11 +43,18 @@ public class Babybottle : MonoBehaviour {
             bottleEnabled = true;
     }
 
+	/// <summary>
+	/// Plays the success sound.
+	/// </summary>
     void playSound()
     {
         sound.PlayOneShot(win);
     }
 
+
+	/// <summary>
+	/// Raises the mouse down event.
+	/// </summary>
     public void OnMouseDown()
     {
         if (arrowClass.isTimeToActivateThirdArrow)
@@ -67,6 +77,9 @@ public class Babybottle : MonoBehaviour {
 
     }
 
+	/// <summary>
+	/// Changes the sprites in the game.
+	/// </summary>
     void changeSprite()
     {
         switch (ctr)

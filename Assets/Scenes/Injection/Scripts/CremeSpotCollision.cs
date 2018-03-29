@@ -144,7 +144,9 @@ public class CremeSpotCollision : MonoBehaviour {
 
 	}
 
-
+	/// <summary>
+	/// Finishes the creme application.
+	/// </summary>
 	void finishCremeApplication(){
 
 		

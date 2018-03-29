@@ -60,6 +60,9 @@ public class GameControl : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// The bird scores when it gets through the gap
+	/// </summary>
 	public void BirdScored()
 	{
 		//The bird can't score if the game is over.
@@ -71,6 +74,10 @@ public class GameControl : MonoBehaviour
 		scoreText.text = "Score: " + score.ToString();
 	}
 
+
+	/// <summary>
+	/// When the bird dies (collision), the game is over
+	/// </summary>
 	public void BirdDied()
 	{
 		//Activate the game over text.

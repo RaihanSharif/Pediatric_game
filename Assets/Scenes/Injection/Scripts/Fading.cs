@@ -15,6 +15,10 @@ public class Fading : MonoBehaviour {
 	[SerializeField]
 	private GameObject scoreSlider;
 
+
+	/// <summary>
+	/// Moves to next scene.
+	/// </summary>
 	public void moveToNextScene(){
 		if (SceneManager.GetActiveScene ().name == "CremeApplication") {
             SceneManager.LoadScene("InjectionBaby", LoadSceneMode.Single);

@@ -14,12 +14,16 @@ public class ComeBackSprite : MonoBehaviour {
 		disableBackButton();
 	}
 
-
+	/// <summary>
+	/// Gos the back to waiting room.
+	/// </summary>
 	public void goBackToWaitingRoom(){
 		SceneManager.LoadScene("WaitingRoom");
 	}
 
-
+	/// <summary>
+	/// Disables the go back button.
+	/// </summary>
 	public void disableBackButton(){
 		this.GetComponent<GameObject> ().SetActive (false);
 	}
