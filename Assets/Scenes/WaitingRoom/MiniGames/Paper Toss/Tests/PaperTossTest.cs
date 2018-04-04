@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class PaperTossTest {
 
 	private void LoadSceneByName(string name){
+		
 		SceneManager.LoadScene(name, LoadSceneMode.Single);
+
 	}
 
 	/// <summary>

@@ -26,6 +26,9 @@ public class CremeTube : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	/// Disables all colliders.
+	/// </summary>
 	public void disableAllColliders(){
 		cremeSpot1.GetComponent<PolygonCollider2D> ().enabled = false;
 		cremeSpot2.GetComponent<PolygonCollider2D> ().enabled = false;
@@ -35,7 +38,9 @@ public class CremeTube : MonoBehaviour {
 	}
 
 
-
+	/// <summary>
+	/// Enables the creme spot colliders.
+	/// </summary>
 	public void enableCremeSpotColliders(){
 		cremeSpot1.GetComponent<PolygonCollider2D> ().enabled = true;
 		cremeSpot2.GetComponent<PolygonCollider2D> ().enabled = true;

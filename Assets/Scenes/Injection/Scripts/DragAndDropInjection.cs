@@ -109,9 +109,7 @@ public class DragAndDropInjection : MonoBehaviour {
 	/// </summary>
 	void DropItem()
 	{
-		
 		draggingItem = false;
-		//draggedObject.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
 

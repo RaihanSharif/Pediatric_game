@@ -12,7 +12,6 @@ public class changeFoodOnContact : MonoBehaviour {
 	public DragAndDrop spoonScript; // the script attached to the spoon for drag and drop
     public int frame = 0;  // refers to the number of 'bites' taken so far
     public bool isMouthOpen;
-    public LevelFinishedMenu lvlFM; //Reference to the event manager
 
     public AudioClip kidsCheeringSoundEffect;
     AudioSource audioSource;
@@ -44,7 +43,6 @@ public class changeFoodOnContact : MonoBehaviour {
             spoonScript.enabled = false;
 			this.GetComponent<SpriteRenderer>().enabled = false;
 			frame++;
-            lvlFM.OnLevelFinished();
 
 		}
 

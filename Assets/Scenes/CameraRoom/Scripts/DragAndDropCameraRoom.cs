@@ -20,6 +20,9 @@ public class DragAndDropCameraRoom : MonoBehaviour
     private GameObject draggedObject;  //holds a reference to an object being dragged
     private Vector2 touchOffset;  // allows a grabbed object to stick realistically to the player’s touch position (more about this later).
     private string[] tags = { "Strap1", "Strap2", "Sandbag1", "Sandbag2", "Table", "CameraTop", "CameraBottom" };
+    public GameObject shuffleAudio;
+    public GameObject scanAudio;
+    public GameObject cheerAudio;
 
     private int score = 0;
     private float elapsed = 0.0f;
@@ -96,6 +99,11 @@ public class DragAndDropCameraRoom : MonoBehaviour
         {
             levelCleared();
         }
+
+        if (levelOver)
+        {
+            scanAudio.GetComponent<AudioSource>().mute = true;
+        }
     }
 
     /// <summary>
@@ -130,7 +138,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
             if (targetR <= 1 && targetG < 1 && targetR > 0 && targetG >= 0)
             {
                 //...and fade the target from red towards green.
-                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.0005f, targetG + 0.0005f, 0, 1);
+                GameObject.FindGameObjectWithTag("Target").GetComponent<SpriteRenderer>().color = new Color(targetR - 0.0075f, targetG + 0.0075f, 0, 1);
             }
         }
     }
@@ -169,6 +177,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
         if (draggingItem)
         {
             draggedObject.transform.position = inputPosition + touchOffset;
+            playSounds();
             clickIntoPlace();
         }
         else    //Otherwise, check boolean values to see the state of the level and enable hitboxes as necessary to move along the game.
@@ -189,6 +198,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 //When the table is in place, allow the top camera to move.
                 if (isScanning)
                 {
+                    scanAudio.GetComponent<AudioSource>().mute = false;
                     disableHitbox("CameraTop");
                 }
                 else
@@ -205,6 +215,21 @@ public class DragAndDropCameraRoom : MonoBehaviour
                 var hit = touches[0];
                 PickUp(tags, hit, inputPosition);
             }
+        }
+    }
+
+    /// <summary>
+    /// A method to play the relevant sounds.
+    /// </summary>
+    void playSounds()
+    {
+        if (draggedObject.tag.Equals(tags[0]) || draggedObject.tag.Equals(tags[1]) || draggedObject.tag.Equals(tags[2]) || draggedObject.tag.Equals(tags[3]) || draggedObject.tag.Equals(tags[4]))
+        {
+            shuffleAudio.GetComponent<AudioSource>().Play();
+        }
+        else if (draggedObject.tag.Equals(tags[5]) || draggedObject.tag.Equals(tags[6]))
+        {
+            scanAudio.GetComponent<AudioSource>().mute = false;
         }
     }
 
@@ -254,6 +279,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     void DropItem()
     {
         draggingItem = false;
+        scanAudio.GetComponent<AudioSource>().mute = true;
     }
 
     /// <summary>
@@ -623,6 +649,7 @@ public class DragAndDropCameraRoom : MonoBehaviour
     public void levelCleared()
     {
         levelOver = true; //Signals to the script that the game has ended
+        cheerAudio.GetComponent<AudioSource>().Play();
         lvlFM.OnLevelFinished();
     }
 }

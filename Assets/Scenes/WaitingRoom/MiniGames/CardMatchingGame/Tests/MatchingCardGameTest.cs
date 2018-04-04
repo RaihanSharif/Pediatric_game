@@ -107,10 +107,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[0]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indices[0]].GetComponent<Button>().enabled);
+		Assert.AreNotEqual(true, isEnabled);
 
 	}
 
@@ -139,10 +140,11 @@ public class MatchingCardGameTest {
 		}
 
 		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[1]].GetComponent<Button>().enabled;
 
 		yield return new WaitForSeconds(1);
 
-		Assert.AreEqual(false, cards[indices[1]].GetComponent<Button>().enabled);
+		Assert.AreNotEqual(true, isEnabled);
 
 	}
 
@@ -297,24 +299,22 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
+		var cards = gmscript.cards;
+		var indices = new List<int>();
+
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[0]].GetComponent<Button>().enabled;
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(true, card1.GetComponent<Button>().enabled);
+		Assert.AreEqual(true, isEnabled);
 
 	}
 
@@ -333,24 +333,22 @@ public class MatchingCardGameTest {
 		var gmscript = gm.GetComponent<GameManager>();
 		gmscript.finishedTutorial = true;
 
+		var cards = gmscript.cards;
+		var indices = new List<int>();
+
 		yield return null;
 
-		var card1 = GameObject.Find("card 3");
-		var card2 = GameObject.Find("card 2");
+		for (int i = 0; i < cards.Length; i++){
+			if (i == 0) indices.Add(i);
+			else if (cards[i].GetComponent<Card>().cardValue != cards[0].GetComponent<Card>().cardValue) indices.Add(i);
+		}
 
-		var card1script = card1.GetComponent<Card>();
-		var card2script = card2.GetComponent<Card>();
+		gmscript.cardComparison(indices);
+		var isEnabled = cards[indices[1]].GetComponent<Button>().enabled;
 
-		card1script.cardValue = 1;
-		card2script.cardValue = 2;
-
-		card1.GetComponent<Button>().onClick.Invoke();
 		yield return new WaitForSeconds(1);
 
-		card2.GetComponent<Button>().onClick.Invoke();
-		yield return new WaitForSeconds(1);
-
-		Assert.AreEqual(true, card2.GetComponent<Button>().enabled);
+		Assert.AreEqual(true, isEnabled);
 
 	}
 
