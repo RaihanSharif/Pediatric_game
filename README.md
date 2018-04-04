@@ -9,6 +9,7 @@
 This is a game made for the **Chelsea & Westminster Hospital** which follows a linear playthrough from start to finish, simulating the experiences of a child during a visit and medical examination in the hospital. The design of each room in the application is based on the actual rooms in the hospital. The game tries to be as realistic as possible by using images of staff members and actors in the game so that the kids have an idea of what they will be going through.
 
 
+
 ### Tools used
 1. [Unity](https://unity3d.com/)
 2. [Photoshop](https://www.adobe.com/uk/products/photoshop.html) (To make and edit sprites)
